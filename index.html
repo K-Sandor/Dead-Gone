@@ -142,7 +142,6 @@ details ul{padding-left:18px;margin:8px 0}
 .zoom{display:flex;gap:6px;position:absolute;right:8px;top:8px}
 .zoom .mini{width:32px;height:32px;font-size:16px;padding:0;display:grid;place-items:center}
 .zoom .mini.on{border-color:var(--ap);color:var(--ap)}
-#bhint{font-size:13px;min-height:1.4em}
 .tools3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .tools3 .btn{padding:12px 4px}
 .placebar{position:absolute;left:8px;right:8px;bottom:8px;display:flex;align-items:center;gap:8px;background:rgba(16,19,21,.92);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
@@ -172,14 +171,20 @@ details ul{padding-left:18px;margin:8px 0}
   .controls{align-self:start;justify-self:end;margin:8px;z-index:2;display:flex;gap:5px}
   .controls .btn{padding:5px 8px;font-size:12px;line-height:1.2}
   .controls .btn:not(.primary):not(.on){background:rgba(30,35,38,.88)}
-  /* base: view on the left; title, hint and the three buttons on the right */
-  #scr-build{display:grid;grid-template-columns:minmax(0,1fr) 150px;grid-template-rows:auto minmax(0,1fr) auto}
-  #bstage{grid-column:1;grid-row:1 / -1}
-  #scr-build .bhead{grid-column:2;grid-row:1;flex-direction:column;align-items:flex-start;gap:2px}
-  #scr-build .bhead .num{white-space:normal;text-align:left}
-  #bhint{grid-column:2;grid-row:2;overflow:hidden;margin:0;font-size:12px}
-  #scr-build .tools3{grid-column:2;grid-row:3;grid-template-columns:1fr;gap:6px}
-  #scr-build .tools3 .btn{padding:9px 4px}
+  /* v100: Block, held with the right thumb: a round button at the bottom right, above the aim stick (whose centre is 74 px in from the right and bottom) */
+  #btn-block{align-self:end;justify-self:end;margin:0 36px 140px 0;z-index:2;width:76px;height:76px;border-radius:50%;padding:0;font-size:14px;
+    background:rgba(30,35,38,.78);border:2px solid rgba(143,211,255,.65);color:#cfe9ff}
+  #btn-block.on{background:rgba(60,105,140,.9);border-color:#8fd3ff;color:#fff}
+  /* base (v101): the view fills the screen; zoom buttons and a small day / resources strip over the top left, the three buttons in a row over the top right */
+  #scr-build{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);position:relative}
+  #scr-build>*{grid-column:1;grid-row:1}
+  #scr-build .bhead{align-self:start;justify-self:start;margin:48px 0 0 8px;z-index:2;pointer-events:none;background:rgba(16,19,21,.7);border-radius:6px;padding:3px 8px}
+  #scr-build .bhead h2{display:none}
+  #scr-build .bhead .num{font-size:12px;white-space:nowrap}
+  #scr-build .tools3{align-self:start;justify-self:end;margin:8px;z-index:2;display:flex;gap:5px}
+  #scr-build .tools3 .btn{padding:5px 10px;font-size:12px;line-height:1.2}
+  #scr-build .tools3 .btn:not(.primary){background:rgba(30,35,38,.88)}
+  body[data-screen=build] #toast{top:auto;bottom:calc(70px + env(safe-area-inset-bottom,0px));max-width:min(50%,480px)}
   /* town and world map: map on the left, info on the right */
   #scr-town,#scr-map{display:grid;grid-template-columns:min(calc((100vh - 16px) * 10 / 13),62%) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto}
   #tstage,#mstage{grid-column:1;grid-row:1 / -1}
@@ -286,7 +291,6 @@ details ul{padding-left:18px;margin:8px 0}
       <button class="btn primary" id="b-act" hidden></button>
       <div class="zoom"><button class="mini" id="zout" aria-label="Zoom out">−</button><button class="mini" id="zin" aria-label="Zoom in">+</button><button class="mini" id="fs" aria-label="Full screen" title="Full screen" hidden><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button></div>
     </div>
-    <p class="sub" id="bhint">Drag on the left to walk, on the right to look around. Walk up to the shelter, a storage or a tree and tap it.</p>
     <div class="tools3">
       <button class="btn" id="go-camp">Character</button>
       <button class="btn" id="go-buildmenu">Build</button>
@@ -306,9 +310,9 @@ details ul{padding-left:18px;margin:8px 0}
       <button class="btn" id="btn-stealth">Sneak</button>
       <button class="btn" id="btn-bag">Bag</button>
       <button class="btn" id="btn-reload">Reload</button>
-      <button class="btn" id="btn-block">Block</button>
       <button class="btn primary" id="btn-act">Search</button>
     </div>
+    <button class="btn" id="btn-block" aria-label="Block (hold)">Block</button>
   </section>
 </div>
 
