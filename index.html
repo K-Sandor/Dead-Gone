@@ -24,7 +24,7 @@
   color-scheme:dark;
 }
 html,body{height:100%}
-body{background:var(--ground);color:var(--text);font:15px/1.45 "IBM Plex Sans",system-ui,-apple-system,sans-serif;padding-inline:16px}
+body{margin:0;background:var(--ground);color:var(--text);font:15px/1.45 "IBM Plex Sans",system-ui,-apple-system,sans-serif;padding-inline:16px}
 #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column}
 .screen{flex:1;min-height:0;display:flex;flex-direction:column;gap:14px;padding-block:14px;overflow-y:auto}
 #scr-run{overflow:hidden;gap:8px;padding-block:10px}
@@ -90,8 +90,8 @@ details ul{padding-left:18px;margin:8px 0}
 #btn-block{touch-action:none;user-select:none;-webkit-user-select:none}
 /* sheet */
 #backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:5}
-#sheet{position:fixed;left:0;right:0;bottom:0;margin:0 auto;max-width:520px;max-height:72%;overflow-y:auto;background:var(--panel);border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));z-index:6;display:flex;flex-direction:column;gap:10px}
-#sheet header{display:flex;align-items:center;gap:10px}
+#sheet{box-sizing:border-box;position:fixed;left:0;right:0;bottom:0;margin:0 auto;max-width:520px;max-height:72%;overflow-y:auto;background:var(--panel);border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));z-index:6;display:flex;flex-direction:column;gap:10px}
+#sheet header{display:flex;align-items:center;gap:10px;position:sticky;top:-16px;z-index:3;background:var(--panel);margin-top:-16px;padding:16px 0 6px}
 #sheet header h2{flex:1}
 #travel{position:fixed;inset:0;background:var(--ground);z-index:9;display:flex;align-items:center;justify-content:center;font:20px "Pixelify Sans",monospace;color:var(--muted)}
 #scr-map,#scr-town{overflow:hidden;gap:8px;padding-block:10px}
@@ -158,11 +158,22 @@ details ul{padding-left:18px;margin:8px 0}
   body{padding-inline:max(10px,env(safe-area-inset-left,0px)) max(10px,env(safe-area-inset-right,0px))}
   #app{max-width:none}
   .screen{padding-block:8px;gap:8px}
-  #scr-camp{max-width:980px;width:100%;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-content:start;align-items:end}
-  #scr-camp>:not(:first-child):not(.tabs){grid-column:1 / -1}
-  #scr-camp h1{font-size:22px}
-  #pg-eq,#pg-bag{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
-  #pg-bag>.sub{grid-column:1 / -1}
+  /* the Character screen (v103): a top row with title, tabs and Back; on Bag & stats the screen stays put and only the bag list scrolls */
+  #scr-camp{max-width:980px;width:100%;margin:0 auto}
+  .camp-top{display:flex;align-items:center;gap:10px;flex:none}
+  .camp-top>div:first-child{flex:1;min-width:0}
+  .camp-top h1{font-size:20px;margin:0}
+  .camp-top .sub{margin:0;font-size:12px}
+  .camp-top .tabs{display:flex;gap:6px;flex:none}
+  .camp-top .tabs .btn,#camp-back{padding:6px 12px;font-size:14px;flex:none}
+  #pg-eq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+  #scr-camp.bagmode{overflow:hidden}
+  #scr-camp.bagmode>details{display:none}
+  #pg-bag{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);grid-template-rows:minmax(0,1fr) auto;gap:8px;align-items:stretch}
+  #pg-bag>#b-char{grid-column:1;grid-row:1;overflow-y:auto;min-height:0}
+  #pg-bag>.sub{grid-column:1;grid-row:2;margin:0}
+  #pg-bag>.card:has(#b-inv),#pg-bag>.bagcard{grid-column:2;grid-row:1 / -1;display:flex;flex-direction:column;min-height:0}
+  #b-inv{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}
   /* run (v86): the view takes the whole screen; HUD over its top left, a row of small buttons over its top right */
   #scr-run{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);position:relative}
   #scr-run>*{grid-column:1;grid-row:1}
@@ -186,15 +197,46 @@ details ul{padding-left:18px;margin:8px 0}
   #scr-build .tools3 .btn:not(.primary){background:rgba(30,35,38,.88)}
   body[data-screen=build] #toast{top:auto;bottom:calc(70px + env(safe-area-inset-bottom,0px));max-width:min(50%,480px)}
   /* town and world map: map on the left, info on the right */
-  #scr-town,#scr-map{display:grid;grid-template-columns:min(calc((100vh - 16px) * 10 / 13),62%) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto}
-  #tstage,#mstage{grid-column:1;grid-row:1 / -1}
-  #scr-town>:not(#tstage),#scr-map>:not(#mstage){grid-column:2}
-  #t-info,#m-info{align-self:start;overflow-y:auto;max-height:100%}
+  #scr-town{display:grid;grid-template-columns:min(calc((100vh - 16px) * 10 / 13),62%) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto}
+  #tstage{grid-column:1;grid-row:1 / -1}
+  #scr-town>:not(#tstage){grid-column:2}
+  #t-info{align-self:start;overflow-y:auto;max-height:100%}
+  /* world map (v104): the map fills the screen; day strip top left, Bag and Back top right, a small window for the tapped place */
+  #scr-map{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);position:relative}
+  #scr-map>*{grid-column:1;grid-row:1}
+  body[data-screen=map]{padding-inline:0}
+  body[data-screen=map] #scr-map{padding-block:0}
+  #mstage{border-radius:0}
+  #scr-map .bhead{align-self:start;justify-self:start;margin:8px 0 0 max(8px,env(safe-area-inset-left,0px));z-index:2;pointer-events:none;background:rgba(16,19,21,.75);border-radius:6px;padding:3px 8px;gap:8px}
+  #scr-map .bhead h2{font-size:13px;margin:0}
+  #scr-map .bhead .num{font-size:12px}
+  .mtools{align-self:start;justify-self:end;margin:8px max(8px,env(safe-area-inset-right,0px)) 0 0;z-index:2;display:flex;gap:5px}
+  .mtools .btn{padding:5px 12px;font-size:12px;line-height:1.2}
+  .mtools .btn:not(.primary){background:rgba(30,35,38,.88)}
+  #m-info{align-self:center;justify-self:end;z-index:3;width:min(300px,46%);box-sizing:border-box;max-height:calc(100% - 56px);margin:40px max(12px,env(safe-area-inset-right,0px)) 0 0;overflow-y:auto;background:rgba(25,30,33,.96);padding:10px 12px;gap:6px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+  #m-info.left{justify-self:start;margin:40px 0 0 max(12px,env(safe-area-inset-left,0px))}
+  #m-info h3{margin:0;color:var(--text);font-size:15px}
+  #m-info p{margin:0;font-size:13px}
+  #m-info .mbtns{display:flex;gap:6px}
+  #m-info .mbtns .btn{flex:1;padding:8px 6px;font-size:14px}
+  body[data-screen=map] #toast{top:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px))}
   .tstatus{grid-template-columns:1fr;gap:4px}
-  #sheet{max-width:min(720px,calc(100% - 24px));max-height:94%}
+  #sheet{max-width:min(720px,calc(100% - 24px));max-height:calc(100% - 8px)}
   /* in a building or raid messages go to the bottom middle, between the two sticks (v87: only there, so they cover no buttons elsewhere) */
   body[data-screen=run] #toast{top:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px));max-width:min(56%,520px)}
   .zoom{left:8px;right:auto}
+  /* v102: the run and base screens fill the whole screen, also behind a camera cut-out; what lies over the view stays inside the safe area */
+  body[data-screen=run],body[data-screen=build]{padding-inline:0}
+  body[data-screen=run] #scr-run,body[data-screen=build] #scr-build{padding-block:0}
+  #stage,#cv,#bstage{border-radius:0}
+  #scr-run .hud{margin-left:max(8px,env(safe-area-inset-left,0px))}
+  .controls{margin-right:max(8px,env(safe-area-inset-right,0px))}
+  #btn-block{margin-right:calc(36px + env(safe-area-inset-right,0px))}
+  .zoom{left:max(8px,env(safe-area-inset-left,0px))}
+  #scr-build .bhead{margin-left:max(8px,env(safe-area-inset-left,0px))}
+  #scr-build .tools3{margin-right:max(8px,env(safe-area-inset-right,0px))}
+  #b-act{right:max(8px,env(safe-area-inset-right,0px))}
+  .placebar{left:max(8px,env(safe-area-inset-left,0px));right:max(8px,env(safe-area-inset-right,0px))}
 }
 #rotate{position:fixed;inset:0;z-index:10;background:var(--ground);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center}
 #rotate .ph{width:46px;height:78px;border:3px solid var(--ap);border-radius:8px;animation:turn 2.4s ease-in-out infinite}
@@ -207,13 +249,16 @@ details ul{padding-left:18px;margin:8px 0}
 <div id="app">
   <!-- BASE -->
   <section id="scr-camp" class="screen" hidden>
-    <div>
-      <h1>Character</h1>
-      <p class="sub">Day <span class="num" id="b-day">1</span> · Loot runs survived: <span class="num" id="b-runs">0</span></p>
-    </div>
-    <div class="tabs" role="tablist">
-      <button class="btn sel" id="tab-eq" role="tab">Equipment</button>
-      <button class="btn" id="tab-bag" role="tab">Bag &amp; stats</button>
+    <div class="camp-top">
+      <div>
+        <h1>Character</h1>
+        <p class="sub">Day <span class="num" id="b-day">1</span> · Loot runs survived: <span class="num" id="b-runs">0</span></p>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="btn sel" id="tab-eq" role="tab">Equipment</button>
+        <button class="btn" id="tab-bag" role="tab">Bag &amp; stats</button>
+      </div>
+      <button class="btn primary" id="camp-back">Back</button>
     </div>
     <div id="pg-eq" class="page">
       <div class="card" style="padding:8px">
@@ -227,14 +272,11 @@ details ul{padding-left:18px;margin:8px 0}
     </div>
     <div id="pg-bag" class="page" hidden>
       <div class="card" id="b-char"></div>
-      <div class="card">
+      <div class="card bagcard">
         <h3>Your bag</h3>
         <div class="list" id="b-inv"></div>
       </div>
       <p class="sub" style="font-size:13px">Base supplies are kept in a Storage building. Walk to it in your camp to store or take items.</p>
-    </div>
-    <div class="actions">
-      <button class="btn primary" id="camp-back">Back to base</button>
     </div>
     <details>
       <summary>Game data and notes</summary>
@@ -279,8 +321,9 @@ details ul{padding-left:18px;margin:8px 0}
   <!-- MAP -->
   <section id="scr-map" class="screen" hidden>
     <div class="bhead"><h2>World map</h2><span class="num" id="m-day">Day 1</span></div>
+    <div class="mtools"><button class="btn" id="m-bag">Bag</button><button class="btn primary" id="m-back">Back</button></div>
     <div id="mstage"><canvas id="mcv"></canvas></div>
-    <div class="card" id="m-info"></div>
+    <div class="card" id="m-info" hidden></div>
   </section>
 
   <!-- BUILD -->
@@ -743,7 +786,7 @@ function playerPal(){
   return {legs:g.legs ? legLook(g.legs).c : '#6f6a5c', shoes:g.feet ? '#2e2118' : SKIN, body:al && al.vest ? al.c : g.body ? topLook(g.body).c : '#9a9488', trim:g.body ? shadeC(topLook(g.body).c, .6) : '#7d776b', skin:SKIN, hair:hl ? hl.c : '#2f241b', hand:gloveLook(g.hands) || SKIN, visor:!!(hl && hl.kind === 'full')};
 }
 let campPage = 'eq';
-function setCampPage(pg){ campPage = pg; $('#pg-eq').hidden = pg !== 'eq'; $('#pg-bag').hidden = pg !== 'bag'; $('#tab-eq').classList.toggle('sel', pg === 'eq'); $('#tab-bag').classList.toggle('sel', pg === 'bag'); refresh(); }
+function setCampPage(pg){ campPage = pg; $('#scr-camp').classList.toggle('bagmode', pg === 'bag'); $('#pg-eq').hidden = pg !== 'eq'; $('#pg-bag').hidden = pg !== 'bag'; $('#tab-eq').classList.toggle('sel', pg === 'eq'); $('#tab-bag').classList.toggle('sel', pg === 'bag'); refresh(); }
 // slot layout over the figure: [slot, side, top %, anchor y (figure units)]
 const EQ_LAYOUT = [['head', 'l', 3, 3], ['body', 'l', 27, 13], ['hands', 'l', 51, 21], ['armor', 'l', 75, 16], ['backpack', 'r', 12, 11], ['legs', 'r', 50, 28], ['feet', 'r', 78, 37.5]];
 // root: the Character page's Equipment tab, or the left side of the bag; reopen: what to show again after a weapon is picked for a hand
@@ -937,6 +980,7 @@ function bldList(target){
 function show(name){
   if(name === 'base') name = 'build';
   state.screen = name; document.body.dataset.screen = name;
+  if(name === 'map'){ mapPan = null; mapPop = false; }
   for(const s of ['camp','town','run','build','map']) $('#scr-' + s).hidden = (s !== name);
   refresh(); save();
   if(name === 'run' || name === 'build' || name === 'map' || name === 'town') requestAnimationFrame(resize);
@@ -2010,7 +2054,12 @@ function float(x, y, text, color, delay = 0){ floats.push({x, y, text, color, t0
 // The tile size comes from the width of the view. A view that is wider than tall (landscape) counts as the upright view of the same area (5 wide, 7 tall),
 // so you see about as much of the world either way: more to the sides, less up and down.
 const viewW = (w, h) => w > h ? Math.sqrt(w * h * 5 / 7) : w;
+// v102: the phone's safe-area insets (a camera cut-out in landscape), for things drawn on the canvas near its edges
+const SAFE = {l:0, r:0};
+function measureSafe(){ const d = document.createElement('div'); d.style.cssText = 'position:fixed;left:0;top:0;visibility:hidden;padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)';
+  document.body.append(d); const cs = getComputedStyle(d); SAFE.l = parseFloat(cs.paddingLeft) || 0; SAFE.r = parseFloat(cs.paddingRight) || 0; d.remove(); }
 function resize(){
+  measureSafe();
   dpr = window.devicePixelRatio || 1;
   if(state.screen === 'town'){
     const st = $('#tstage'); const w = st.clientWidth, h = st.clientHeight;
@@ -2103,9 +2152,9 @@ function drawSticks(cw, chh, only){   // only: 'move' = no aim stick (the base) 
     ctx.beginPath(); ctx.arc(x, y, STICK, 0, 7); ctx.fillStyle = 'rgba(20,24,27,.22)'; ctx.fill(); ctx.strokeStyle = c; ctx.lineWidth = 1.5; ctx.stroke();
     ctx.fillStyle = c; ctx.font = '600 11px "IBM Plex Mono",monospace'; ctx.textAlign = 'center'; ctx.fillText(label, x, y + 4); };
   const m = STICK + 22, seen = state.seen || (state.seen = {});   // v86: the idle MOVE / AIM circles go once each stick has been used
-  if(inp.mO){ seen.move = true; live(inp.mO, inp.mP, 'rgba(226,169,63,.75)'); } else if(only !== 'live' && !seen.move) idle(m, chh - m, 'MOVE', 'rgba(226,169,63,.45)');
+  if(inp.mO){ seen.move = true; live(inp.mO, inp.mP, 'rgba(226,169,63,.75)'); } else if(only !== 'live' && !seen.move) idle(m + SAFE.l, chh - m, 'MOVE', 'rgba(226,169,63,.45)');
   if(only) return;
-  if(inp.aO){ seen.aim = true; live(inp.aO, inp.aP, 'rgba(255,106,90,.8)'); } else if(!seen.aim) idle(cw - m, chh - m, 'AIM', 'rgba(255,106,90,.45)');
+  if(inp.aO){ seen.aim = true; live(inp.aO, inp.aP, 'rgba(255,106,90,.8)'); } else if(!seen.aim) idle(cw - m - SAFE.r, chh - m, 'AIM', 'rgba(255,106,90,.45)');
 }
 
 /* ---------- isometric core ---------- */
@@ -3609,7 +3658,14 @@ function travelCost(from, to){
   return {h:Math.max(mn, Math.round(RL.hunger_drain_travel * k * home)), t:Math.max(mn, Math.round(RL.thirst_drain_travel * k * home))};
 }
 let mapSel = 'polis';
-function mapView(){ const st = $('#mstage'); const w = st.clientWidth, h = st.clientHeight; const k = Math.min(w / WORLD.w, h / WORLD.h); return {k, ox:(w - WORLD.w * k) / 2, oy:(h - WORLD.h * k) / 2, w, h}; }
+// v104: the map covers the whole screen (the world is taller than a landscape screen) and is dragged to see the rest.
+// mapPan = how far the view is scrolled, in screen pixels (null: centre on the selected place). mapPop = the small window for mapSel is open.
+let mapPan = null, mapPop = false;
+function mapView(){ const st = $('#mstage'); const w = st.clientWidth, h = st.clientHeight; const k = Math.max(w / WORLD.w, h / WORLD.h);
+  const mx = Math.max(0, WORLD.w * k - w), my = Math.max(0, WORLD.h * k - h);
+  if(!mapPan){ const pl = PLACES[mapSel] || PLACES.base; mapPan = {x:pl.x * k - w / 2, y:pl.y * k - h / 2}; }
+  mapPan.x = clamp(mapPan.x, 0, mx); mapPan.y = clamp(mapPan.y, 0, my);
+  return {k, ox:-mapPan.x, oy:-mapPan.y, w, h}; }
 // Where the survivor currently is on the world map. Travelling between places costs hunger and thirst.
 const here = () => PLACES[state.at] ? state.at : 'base';
 function openMapBag(){ openBagView('town', 'Bag', 'mapbag'); }
@@ -3635,23 +3691,40 @@ function journey(to, ok){
 }
 function mapInfo(){
   $('#m-day').textContent = `Day ${state.day}`;
-  const pl = PLACES[mapSel], box = $('#m-info'); box.innerHTML = '';
+  const box = $('#m-info'); box.innerHTML = ''; box.hidden = !mapPop; if(!mapPop) return;
+  const pl = PLACES[mapSel], v = mapView(), at = here() === mapSel, tc = travelCost(here(), mapSel);
+  box.classList.toggle('left', v.ox + pl.x * v.k > v.w / 2);   // the window sits on the other side of the screen from the place
   const btn = mapSel === 'base'
-    ? el('button', {class:'btn primary', onclick:() => journey('base')}, here() === 'base' ? 'Back to base' : 'Go to base')
-    : el('button', {class:'btn primary', onclick:() => journey(mapSel)}, here() === mapSel ? `Back to ${pl.name}` : `Travel to ${pl.name}`);
-  const tc = travelCost(here(), mapSel);
-  if(mapSel === signalPlace()) box.append(el('p', {style:'margin:0;color:#ff8a7a;font-size:13px'}, `Distress call: ${state.signal.name} is in the ${SITES[mapSel].lots[state.signal.lot].label}. ${signalLeft()} day${signalLeft() === 1 ? '' : 's'} left.`));
-  const cost = here() === mapSel ? "You're already here: no travel cost." : `Travelling from ${here() === 'base' ? 'your base' : PLACES[here()].name} costs ${tc.h} hunger and ${tc.t} thirst (you have ${C().hunger} / ${C().thirst}).`;
-  box.append(el('div', {class:'row'}, el('span', {class:'name'}, el('b', {}, pl.name), el('small', {}, `${pl.blurb} · ${cost}`)), btn));
-  box.append(el('p', {class:'sub', style:'font-size:13px;margin:0'}, 'Tap a place on the map to select it. The further away it is, the more hunger and thirst the journey costs.'));
-  box.append(el('div', {class:'actions'}, el('button', {class:'btn', onclick:openMapBag}, 'Bag')));   // v87
+    ? el('button', {class:'btn primary', onclick:() => journey('base')}, at ? 'Back to base' : 'Go to base')
+    : el('button', {class:'btn primary', onclick:() => journey(mapSel)}, at ? 'Back' : 'Travel');
+  box.append(el('h3', {}, pl.name), el('p', {class:'sub'}, pl.blurb));
+  if(mapSel === signalPlace()) box.append(el('p', {style:'color:#ff8a7a'}, `Distress call: ${state.signal.name} · ${signalLeft()} day${signalLeft() === 1 ? '' : 's'} left`));
+  box.append(el('p', {}, at ? "You're here." : `Journey from ${here() === 'base' ? 'your base' : PLACES[here()].name}: −${tc.h} hunger, −${tc.t} thirst (you have ${C().hunger} / ${C().thirst})`));
+  box.append(el('div', {class:'mbtns'}, btn, el('button', {class:'btn', onclick:closeMapPop}, 'Close')));
 }
-mcv.addEventListener('pointerdown', e => {
+function openMapPop(key){ mapSel = key; mapPop = true; mapInfo(); }
+function closeMapPop(){ mapPop = false; mapInfo(); }
+$('#m-bag').onclick = openMapBag;
+$('#m-back').onclick = () => journey(here());   // back to where you are, no cost
+// drag to move the map; a tap (no drag) on a place opens its window, a tap elsewhere closes it
+let mapDrag = null;
+mcv.addEventListener('pointerdown', e => { mapView(); mapDrag = {id:e.pointerId, x:e.clientX, y:e.clientY, px:mapPan.x, py:mapPan.y, moved:false}; try { mcv.setPointerCapture(e.pointerId); } catch(_){} });
+mcv.addEventListener('pointermove', e => {
+  if(!mapDrag || e.pointerId !== mapDrag.id) return;
+  const dx = e.clientX - mapDrag.x, dy = e.clientY - mapDrag.y;
+  if(Math.hypot(dx, dy) > 8) mapDrag.moved = true;
+  if(mapDrag.moved){ mapPan.x = mapDrag.px - dx; mapPan.y = mapDrag.py - dy; }
+});
+mcv.addEventListener('pointerup', e => {
+  if(!mapDrag || e.pointerId !== mapDrag.id) return;
+  const moved = mapDrag.moved; mapDrag = null; if(moved) return;
   const v = mapView(), rc = mcv.getBoundingClientRect();
   const wx = (e.clientX - rc.left - v.ox) / v.k, wy = (e.clientY - rc.top - v.oy) / v.k;
   let best = null; for(const [key, pl] of Object.entries(PLACES)){ const d = Math.hypot(wx - pl.x, wy - pl.y); if(d < Math.max(90, pl.r + 15) && (!best || d < best[1])) best = [key, d]; }
-  if(best){ mapSel = best[0]; mapInfo(); }
+  if(best) openMapPop(best[0]); else closeMapPop();
 });
+mcv.addEventListener('pointercancel', () => { mapDrag = null; });
+mcv.addEventListener('wheel', e => { e.preventDefault(); mapView(); mapPan.x += e.deltaX; mapPan.y += e.deltaY; }, {passive:false});
 function seeded(n){ let x = Math.sin(n * 12.9898) * 43758.5453; return x - Math.floor(x); }
 function drawMap(now){
   const g = mctx, v = mapView(), k = v.k, X = x => v.ox + x * k, Y = y => v.oy + y * k;
