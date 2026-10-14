@@ -139,6 +139,16 @@ details ul{padding-left:18px;margin:8px 0}
 .bagview .slot small{font-size:9px;letter-spacing:.04em}
 #sheet.wide{box-sizing:border-box;max-height:calc(100% - 6px)}
 #b-act{position:absolute;right:8px;bottom:8px;padding:10px 16px}
+/* item icons (v108) */
+.iic{width:28px;height:28px;flex:none;image-rendering:pixelated;image-rendering:crisp-edges;display:inline-block;align-self:center;background:rgba(255,255,255,.04);border-radius:4px}
+.iic.sm{width:16px;height:16px;background:none;vertical-align:-3px;margin-right:2px}
+.row>.iic{margin-right:-2px}
+.slot>.iic{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:24px;height:24px}
+.slot.r>.iic{right:auto;left:5px}
+.slot.full:not(.r){padding-right:32px}
+.slot.full.r{padding-left:32px}
+.eq-hands .slot{position:relative}
+.eq-hands .slot.both>.iic{right:8px}
 .zoom{display:flex;gap:6px;position:absolute;right:8px;top:8px}
 .zoom .mini{width:32px;height:32px;font-size:16px;padding:0;display:grid;place-items:center}
 .zoom .mini.on{border-color:var(--ap);color:var(--ap)}
@@ -213,7 +223,7 @@ details ul{padding-left:18px;margin:8px 0}
   .mtools{align-self:start;justify-self:end;margin:8px max(8px,env(safe-area-inset-right,0px)) 0 0;z-index:2;display:flex;gap:5px}
   .mtools .btn{padding:5px 12px;font-size:12px;line-height:1.2}
   .mtools .btn:not(.primary){background:rgba(30,35,38,.88)}
-  #m-info{align-self:center;justify-self:end;z-index:3;width:min(300px,46%);box-sizing:border-box;max-height:calc(100% - 56px);margin:40px max(12px,env(safe-area-inset-right,0px)) 0 0;overflow-y:auto;background:rgba(25,30,33,.96);padding:10px 12px;gap:6px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+  #m-info{align-self:center;justify-self:end;z-index:3;width:clamp(220px,calc(50vw - 50vh * 10 / 13 - 24px),300px);box-sizing:border-box;max-height:calc(100% - 56px);margin:40px max(12px,env(safe-area-inset-right,0px)) 0 0;overflow-y:auto;background:rgba(25,30,33,.96);padding:10px 12px;gap:6px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
   #m-info.left{justify-self:start;margin:40px 0 0 max(12px,env(safe-area-inset-left,0px))}
   #m-info h3{margin:0;color:var(--text);font-size:15px}
   #m-info p{margin:0;font-size:13px}
@@ -368,7 +378,7 @@ details ul{padding-left:18px;margin:8px 0}
 <div id="toast" role="status"></div>
 <div id="rotate" hidden><div class="ph"></div><h2>Turn your phone sideways</h2><p>Dead &amp; Gone is played in landscape.</p></div>
 
-<script type="application/json" id="game-data">{"syncedAt": "2026-10-06", "items": {"knife": {"name": "Knife", "type": "Melee", "body": 20, "range": 1, "hands": 1, "attackAp": 15, "cd": 0.6}, "bat": {"name": "Baseball bat", "type": "Melee", "body": 40, "range": 1, "hands": 2, "attackAp": 35, "cd": 1.2}, "machete": {"name": "Machete", "type": "Melee", "body": 30, "range": 1, "hands": 1, "attackAp": 15, "cd": 0.6}, "hammer": {"name": "Hammer", "type": "Melee", "body": 20, "range": 1, "hands": 1, "attackAp": 20, "cd": 0.8}, "glock": {"name": "Glock", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo9"}, "beretta": {"name": "Beretta", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo9"}, "colt": {"name": "Colt 1911", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo45"}, "revolver": {"name": "Revolver", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 6, "reload": 10, "hands": 1, "cd": 0.8, "mode": "single", "ammo": "ammo357"}, "hunting": {"name": "Hunting rifle", "type": "Rifle", "body": 40, "head": 80, "range": 30, "mag": 5, "reload": 10, "hands": 2, "cd": 1.4, "mode": "single", "ammo": "ammo308"}, "m4a1": {"name": "M4A1", "type": "Automatic rifle", "body": 30, "head": 60, "range": 20, "mag": 30, "reload": 5, "hands": 2, "cd": 0.15, "mode": "auto", "ammo": "ammo556"}, "ak47": {"name": "AK47", "type": "Automatic rifle", "body": 30, "head": 60, "range": 20, "mag": 30, "reload": 5, "hands": 2, "cd": 0.15, "mode": "auto", "ammo": "ammo762"}, "ammo9": {"name": "9mm Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "ammo45": {"name": ".45 ACP Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "ammo357": {"name": ".357 Magnum Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "ammo308": {"name": ".308 Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "ammo556": {"name": "5.56 Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "ammo762": {"name": "7.62 Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "bandage": {"name": "Bandage", "type": "Medical", "use": 10, "hp": 20, "stopsBleed": true}, "painkiller": {"name": "Painkiller", "type": "Medical", "use": 10, "hp": 10, "dmgRed": 10, "turns": 3}, "antibiotics": {"name": "Antibiotics", "type": "Medical", "use": 20, "treatsWound": true}, "medkit": {"name": "Medkit", "type": "Medical", "use": 20, "hp": 80, "stopsBleed": true, "treatsWound": true}, "herbtea": {"name": "Herbal tea", "type": "Medical", "use": 10, "hp": 25, "thirst": 20}, "water": {"name": "Water", "type": "Drink", "use": 10, "thirst": 50}, "soda": {"name": "Soda", "type": "Drink", "use": 10, "thirst": 30}, "cheese": {"name": "Cheese", "type": "Food", "use": 10, "hunger": 30}, "burrito": {"name": "Burrito", "type": "Food", "use": 10, "hunger": 30}, "beans": {"name": "Baked beans", "type": "Food", "use": 10, "hunger": 30}, "meat": {"name": "Canned meat", "type": "Food", "use": 10, "hunger": 30}, "materials": {"name": "Bricks", "type": "Material", "stack": 10, "findMin": 3, "findMax": 9}, "backpack": {"name": "Backpack", "type": "Backpack", "slots": 20, "slot": "backpack"}, "axe": {"name": "Splitting axe", "type": "Melee", "body": 40, "range": 1, "hands": 2, "attackAp": 30, "cd": 1.1}, "wood": {"name": "Wood", "type": "Material", "stack": 10, "findMin": 3, "findMax": 6}, "scrap": {"name": "Scrap metal", "type": "Material", "stack": 10, "findMin": 2, "findMax": 6}, "jeans": {"name": "Jeans", "type": "Clothing", "slot": "legs", "slots": 4}, "jacket": {"name": "Leather jacket", "type": "Clothing", "slot": "body", "slots": 6}, "boots": {"name": "Leather boots", "type": "Clothing", "slot": "feet"}, "vest": {"name": "Vest", "type": "Clothing", "slot": "body", "slots": 4}, "coat": {"name": "Coat", "type": "Clothing", "slot": "body", "slots": 6}, "camojacket": {"name": "Camo jacket", "type": "Clothing", "slot": "body", "slots": 6}, "raincoat": {"name": "Raincoat", "type": "Clothing", "slot": "body", "slots": 4}, "shorts": {"name": "Shorts", "type": "Clothing", "slot": "legs", "slots": 3}, "cargo": {"name": "Cargo pants", "type": "Clothing", "slot": "legs", "slots": 6}, "smallpack": {"name": "Small backpack", "type": "Backpack", "slot": "backpack", "slots": 12}, "hikingpack": {"name": "Hiking backpack", "type": "Backpack", "slot": "backpack", "slots": 30}, "impaxe": {"name": "Improvised axe", "type": "Melee", "body": 40, "range": 1, "uses": 4, "hands": 2, "attackAp": 35, "cd": 1.2}, "cloth": {"name": "Cloth", "type": "Material", "stack": 10, "findMin": 1, "findMax": 2, "use": 10, "stopsBleed": true}, "seeds": {"name": "Seeds", "type": "Material", "stack": 10, "findMin": 1, "findMax": 2}, "vegetables": {"name": "Vegetables", "type": "Food", "use": 10, "hunger": 30, "spoil": 5}, "milhelmet": {"name": "Military helmet", "type": "Clothing", "slot": "head", "woundRed": 60, "cloth": 0}, "motohelmet": {"name": "Motorbike helmet", "type": "Clothing", "slot": "head", "woundRed": 40, "cloth": 0}, "woolcap": {"name": "Wool cap", "type": "Clothing", "slot": "head", "woundRed": 10}, "leathergloves": {"name": "Leather gloves", "type": "Clothing", "slot": "hands", "bleedRed": 30}, "gloves": {"name": "Gloves", "type": "Clothing", "slot": "hands", "bleedRed": 15}, "armguards": {"name": "Arm protection", "type": "Clothing", "slot": "armor", "armor": 3, "cloth": 0}, "bodyarmor": {"name": "Body armor", "type": "Clothing", "slot": "armor", "armor": 5, "cloth": 0}, "fullarmor": {"name": "Full body armor kit", "type": "Clothing", "slot": "armor", "armor": 8, "cloth": 0}, "roastveg": {"name": "Roasted vegetables", "type": "Food", "use": 10, "hunger": 45}, "vegstew": {"name": "Vegetable stew", "type": "Food", "use": 10, "hunger": 70, "thirst": 30, "hp": 10}, "meatstew": {"name": "Meat and bean stew", "type": "Food", "use": 10, "hunger": 75, "hp": 10}, "rawmeat": {"name": "Raw meat", "type": "Food", "use": 10, "hunger": 20, "spoil": 3}, "roastmeat": {"name": "Roast meat", "type": "Food", "use": 10, "hunger": 55, "hp": 5}, "bow": {"name": "Bow", "type": "Bow", "body": 25, "head": 50, "range": 8, "mag": 1, "reload": 4, "hands": 2, "cd": 0.5, "mode": "single", "quiet": true, "ammo": "arrow"}, "arrow": {"name": "Arrows", "type": "Ammo", "stack": 20, "findMin": 3, "findMax": 8}}, "loot": {"Fridge": [["soda", 1], ["water", 1], ["cheese", 0.6], ["burrito", 0.6]], "Cabinet": [["beans", 0.9], ["water", 1.5], ["painkiller", 1.5], ["ammo9", 0.14], ["ammo45", 0.07], ["ammo357", 0.0525], ["ammo308", 0.035], ["ammo556", 0.0262], ["ammo762", 0.0262], ["knife", 0.7], ["antibiotics", 0.35], ["materials", 1], ["glock", 0.1], ["beretta", 0.1], ["colt", 0.1], ["jeans", 0.1], ["jacket", 0.1], ["boots", 0.1], ["vest", 0.1], ["coat", 0.1], ["camojacket", 0.1], ["raincoat", 0.1], ["shorts", 0.1], ["cargo", 0.1], ["woolcap", 0.1]], "Plastic container": [["ammo9", 0.14], ["ammo45", 0.07], ["ammo357", 0.0525], ["ammo308", 0.035], ["ammo556", 0.0262], ["ammo762", 0.0262], ["beans", 0.42], ["medkit", 0.35], ["bandage", 0.5], ["smallpack", 0.3], ["backpack", 0.15], ["hikingpack", 0.05], ["jeans", 0.1], ["jacket", 0.1], ["boots", 0.1], ["vest", 0.1], ["coat", 0.1], ["camojacket", 0.1], ["raincoat", 0.1], ["shorts", 0.1], ["cargo", 0.1], ["woolcap", 0.1]], "Shelves": [["beans", 0.48], ["meat", 0.48], ["water", 0.5], ["soda", 0.5], ["scrap", 0.3], ["seeds", 0.25]], "Boxes": [["materials", 0.8], ["scrap", 0.6], ["water", 0.5], ["soda", 0.5], ["meat", 0.3], ["bandage", 0.15], ["painkiller", 0.3], ["cloth", 1.2]], "Crates": [["materials", 4], ["scrap", 2], ["wood", 2], ["machete", 1], ["bat", 1.5], ["axe", 1], ["motohelmet", 0.5]], "Medicine shelf": [["bandage", 1.75], ["painkiller", 3.0], ["antibiotics", 0.5], ["medkit", 0.4], ["water", 2.5], ["soda", 1.65]], "Clothes rack": [["jeans", 0.5], ["jacket", 0.5], ["boots", 0.5], ["vest", 0.5], ["coat", 0.5], ["camojacket", 0.5], ["raincoat", 0.5], ["shorts", 0.5], ["cargo", 0.5], ["cloth", 3], ["smallpack", 0.3], ["backpack", 0.15], ["hikingpack", 0.05], ["woolcap", 0.5], ["gloves", 0.5], ["leathergloves", 0.3]], "Tool rack": [["materials", 3], ["scrap", 2.5], ["wood", 2], ["hammer", 1.5], ["knife", 0.7], ["machete", 0.5], ["axe", 0.5], ["seeds", 2], ["gloves", 0.5], ["armguards", 0.3], ["bow", 0.4], ["arrow", 1]], "Gun locker": [["ammo9", 0.8], ["ammo45", 0.4], ["ammo357", 0.3], ["ammo308", 0.2], ["ammo556", 0.15], ["ammo762", 0.15], ["glock", 0.3], ["beretta", 0.3], ["colt", 0.3], ["revolver", 0.3], ["hunting", 0.1], ["m4a1", 0.08], ["ak47", 0.08], ["bat", 1], ["medkit", 0.15], ["bandage", 0.35], ["milhelmet", 0.3], ["armguards", 0.4], ["bodyarmor", 0.3], ["fullarmor", 0.15], ["bow", 0.3], ["arrow", 1]], "Produce crate": [["vegetables", 4], ["seeds", 2.5], ["beans", 0.6], ["water", 1]]}, "rules": {"ap_per_turn": 100, "ap_move": 20, "ap_sneak_move": 30, "ap_attack": 20, "ap_search_big": 40, "ap_search_small": 20, "player_max_hp": 100, "gun_body_chance": 60, "gun_head_chance": 25, "shooting_max_miss": 10, "block_chance_melee": 0, "dodge_base": 0, "dodge_max": 0, "zombie_would_hit": 100, "tier1_chance": 60, "tier1_damage": 15, "tier2_chance": 30, "tier2_damage": 15, "tier3_chance": 10, "tier3_damage": 35, "bleed_per_turn": 5, "detect_sight_chance": 40, "detect_hearing_chance": 25, "door_hearing_cut": 75, "sneak_reduction_base": 60, "sneak_reduction_max": 80, "hunger_drain_per_trip": 5, "thirst_drain_per_trip": 5, "starving_max_hp": 50, "recover_above": 60, "infection_days": 2, "slots_base": 10, "backpack_slots": 20, "loot_chance_0": 25, "loot_chance_1": 50, "loot_chance_2": 25, "stat_max": 200, "stat_gain_per_run": 0, "base_grid": 50, "base_storage_slots": 200, "storage_slots": 100, "cost_storage": 10, "cost_wall": 2, "cost_shelter_upgrade": 20, "shelter_max_level": 5, "counter_chance": 30, "cost_woodwall": 2, "cost_workshop_wood": 10, "cost_workshop_scrap": 5, "zombies_min": 2, "zombies_max": 6, "zombies_big_bonus": 1, "gunshot_reinf_min": 1, "gunshot_reinf_max": 2, "scrap_per_weapon": 2, "salvage_gun_scrap": 3, "salvage_rifle_scrap": 5, "salvage_ammo_per_scrap": 20, "salvage_cloth_per_material": 0, "ambush_chance": 40, "hunger_drain_travel": 40, "thirst_drain_travel": 50, "travel_home_percent": 50, "heal_above": 80, "heal_sleep": 20, "heal_step": 5, "cost_upgrade_materials": 10, "cost_upgrade_scrap": 5, "melee_durability": 100, "melee_wear_per_kill": 2, "cloth_per_clothing": 2, "gun_unalerted_dmg_bonus": 100, "xp_per_stealth": 3, "xp_per_agility": 4, "xp_per_shooting": 15, "restock_days": 3, "zombies_bonus_police": 3, "hunger_drain_sleep": 20, "thirst_drain_sleep": 20, "cost_farm_wood": 4, "cost_greenhouse_materials": 10, "cost_greenhouse_wood": 6, "cost_greenhouse_scrap": 4, "cost_rain_materials": 4, "cost_rain_scrap": 2, "farm_grow_sleeps": 3, "farm_yield": 2, "greenhouse_grow_sleeps": 2, "greenhouse_yield": 3, "plant_seeds": 1, "plant_water": 1, "rain_sleeps_per_water": 1, "rain_capacity": 2, "rain_collector_max": 4, "start_beans": 2, "start_water": 2, "wander_chance": 30, "actions_per_turn": 2, "move_per_action": 2, "sneak_move_per_action": 1, "gun_durability": 100, "gun_wear_per_shot": 1, "repair_scrap": 1, "repair_amount": 10, "upgrade_scrap": 5, "upgrade_damage": 5, "upgrade_max": 3, "raid_first_day": 5, "raid_first_zombies": 5, "raid_growth": 3, "raid_gap_min": 4, "raid_gap_max": 7, "raid_storage_loss": 20, "raid_repair_materials": 5, "player_speed": 3, "sneak_speed": 1.5, "zombie_speed": 1.2, "zombie_wander_speed": 0.5, "detect_seconds": 2, "turn_seconds": 5, "search_seconds_small": 1.5, "search_seconds_big": 3, "zombie_attack_seconds": 1.6, "zombie_windup_seconds": 0.45, "zombie_reach": 1.35, "melee_reach": 1.35, "melee_arc": 55, "gun_spread": 6, "gun_spread_min": 2, "reload_seconds_per_ap": 0.2, "player_sight": 10, "zombie_multiplier": 1.5, "block_move_factor": 0.5, "block_wear": 0, "block_arc": 70, "swing_root_seconds": 0.3, "stamina_max": 100, "block_stamina_per_second": 0, "block_stamina_per_blow": 33, "stamina_regen_per_second": 6, "stamina_regen_delay": 1, "block_regen_factor": 0.5, "stun_seconds": 1, "raid_first_day_max": 8, "raid_spawn_seconds": 3, "zombies_factor_village": 0.6, "zombies_factor_farm": 0.35, "containers_share_village": 60, "travel_min_cost": 5, "cost_campfire_wood": 4, "cost_campfire_materials": 2, "cost_radio_materials": 15, "cost_radio_scrap": 10, "cost_radio_wood": 5, "radio_signal_chance": 15, "radio_signal_days": 3, "beds_per_shelter_level": 2, "survivor_food_per_night": 1, "survivor_drink_per_night": 1, "guard_block_max": 50, "farmer_plots": 2, "farmer_yield_bonus": 1, "hunter_meat_min": 1, "hunter_meat_max": 3, "scavenger_items_min": 1, "scavenger_items_max": 2, "agility_speed_max": 20, "survivor_stat_start_min": 10, "survivor_stat_start_max": 60, "survivor_stat_gain_per_day": 2, "survivor_job_bonus_max": 100, "hunter_ammo_per_meat": 1, "hunter_arrow_loss_chance": 50, "hunter_fail_chance": 25, "hunter_fail_ammo": 1, "hunter_big_chance": 15, "hunter_big_mult": 2, "arrow_recover_chance": 50, "cost_well_materials": 20, "cost_well_scrap": 5, "well_water_per_day": 5, "well_capacity": 10, "well_max": 1, "cost_watchtower_materials": 20, "cost_watchtower_wood": 10, "watchtower_max_level": 3, "cost_watchtower_upgrade": 15, "watchtower_hp_per_level": 100, "watchtower_range_bonus": 2, "cost_trap_materials": 2, "cost_trap_scrap": 1, "trap_rearm_materials": 1, "cost_wall_reinforce": 3, "cost_wall_fortify_materials": 5, "cost_wall_fortify_scrap": 2, "cost_wall_armor_materials": 6, "cost_wall_armor_scrap": 4, "wall_repair_materials": 1, "raid_wrecker_chance": 30, "raid_brute_day": 15, "raid_brute_share": 15, "brute_hp": 120, "brute_hit_bonus": 10, "survivor_heal_night": 10, "survivor_rest_heal": 25, "survivor_bleed_night": 20, "woodcutter_wood_min": 2, "woodcutter_wood_max": 3, "medic_heal": 10, "radio_operator_bonus": 10, "walkin_chance": 10, "walkin_supplies": 5, "camp_water_keep": 20, "building_hp": 100, "zombie_building_damage": 5, "zombie_building_tick_seconds": 1, "woodwall_hp": 150, "wall_hp": 300, "wall_reinforced_hp": 450, "wall_fortified_hp": 600, "wall_armored_hp": 800}, "zombie": {"hp": 50, "sight": 6, "hearing": 8, "move": 1}, "recipes": [{"upgrade": "medical", "out": "bandage", "n": 1, "cost": [{"id": "cloth", "n": 2}]}, {"upgrade": "medical", "out": "medkit", "n": 1, "cost": [{"id": "bandage", "n": 2}, {"id": "painkiller", "n": 1}, {"id": "cloth", "n": 2}]}, {"upgrade": "ammo", "out": "ammo9", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "ammo", "out": "ammo45", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "ammo", "out": "ammo357", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "ammo", "out": "ammo308", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "ammo", "out": "ammo556", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "ammo", "out": "ammo762", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "tools", "out": "knife", "n": 1, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 2}]}, {"upgrade": "tools", "out": "hammer", "n": 1, "cost": [{"id": "wood", "n": 2}, {"id": "scrap", "n": 2}]}, {"upgrade": "tools", "out": "impaxe", "n": 1, "cost": [{"id": "wood", "n": 3}, {"id": "scrap", "n": 3}]}, {"upgrade": "tools", "out": "machete", "n": 1, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 4}]}, {"upgrade": "medical", "out": "antibiotics", "n": 1, "cost": [{"id": "cloth", "n": 1}, {"id": "painkiller", "n": 1}, {"id": "herbtea", "n": 1}]}, {"upgrade": "campfire", "out": "roastveg", "n": 1, "cost": [{"id": "vegetables", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "herbtea", "n": 1, "cost": [{"id": "vegetables", "n": 1}, {"id": "water", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "vegstew", "n": 1, "cost": [{"id": "vegetables", "n": 2}, {"id": "water", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "meatstew", "n": 1, "cost": [{"id": "meat", "n": 1}, {"id": "beans", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "roastmeat", "n": 1, "cost": [{"id": "rawmeat", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "tools", "out": "bow", "n": 1, "cost": [{"id": "wood", "n": 3}, {"id": "cloth", "n": 2}]}, {"upgrade": "tools", "out": "arrow", "n": 5, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 1}]}]}</script>
+<script type="application/json" id="game-data">{"syncedAt": "2026-10-06", "items": {"knife": {"name": "Knife", "type": "Melee", "body": 20, "range": 1, "hands": 1, "attackAp": 15, "cd": 0.6}, "bat": {"name": "Baseball bat", "type": "Melee", "body": 40, "range": 1, "hands": 2, "attackAp": 35, "cd": 1.2}, "machete": {"name": "Machete", "type": "Melee", "body": 30, "range": 1, "hands": 1, "attackAp": 15, "cd": 0.6}, "hammer": {"name": "Hammer", "type": "Melee", "body": 20, "range": 1, "hands": 1, "attackAp": 20, "cd": 0.8}, "glock": {"name": "Glock", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo9"}, "beretta": {"name": "Beretta", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo9"}, "colt": {"name": "Colt 1911", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo45"}, "revolver": {"name": "Revolver", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 6, "reload": 10, "hands": 1, "cd": 0.8, "mode": "single", "ammo": "ammo357"}, "hunting": {"name": "Hunting rifle", "type": "Rifle", "body": 40, "head": 80, "range": 30, "mag": 5, "reload": 10, "hands": 2, "cd": 1.4, "mode": "single", "ammo": "ammo308"}, "m4a1": {"name": "M4A1", "type": "Automatic rifle", "body": 30, "head": 60, "range": 20, "mag": 30, "reload": 5, "hands": 2, "cd": 0.15, "mode": "auto", "ammo": "ammo556"}, "ak47": {"name": "AK47", "type": "Automatic rifle", "body": 30, "head": 60, "range": 20, "mag": 30, "reload": 5, "hands": 2, "cd": 0.15, "mode": "auto", "ammo": "ammo762"}, "ammo9": {"name": "9mm Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "ammo45": {"name": ".45 ACP Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "ammo357": {"name": ".357 Magnum Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "ammo308": {"name": ".308 Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "ammo556": {"name": "5.56 Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "ammo762": {"name": "7.62 Ammo", "type": "Ammo", "stack": 50, "findMin": 5, "findMax": 15}, "bandage": {"name": "Bandage", "type": "Medical", "use": 10, "hp": 20, "stopsBleed": true}, "painkiller": {"name": "Painkiller", "type": "Medical", "use": 10, "hp": 10, "dmgRed": 10, "turns": 3}, "antibiotics": {"name": "Antibiotics", "type": "Medical", "use": 20, "treatsWound": true}, "medkit": {"name": "Medkit", "type": "Medical", "use": 20, "hp": 80, "stopsBleed": true, "treatsWound": true}, "herbtea": {"name": "Herbal tea", "type": "Medical", "use": 10, "hp": 25, "thirst": 20}, "water": {"name": "Water", "type": "Drink", "use": 10, "thirst": 50}, "soda": {"name": "Soda", "type": "Drink", "use": 10, "thirst": 30}, "cheese": {"name": "Cheese", "type": "Food", "use": 10, "hunger": 30}, "burrito": {"name": "Burrito", "type": "Food", "use": 10, "hunger": 30}, "beans": {"name": "Baked beans", "type": "Food", "use": 10, "hunger": 30}, "meat": {"name": "Canned meat", "type": "Food", "use": 10, "hunger": 30}, "materials": {"name": "Bricks", "type": "Material", "stack": 10, "findMin": 3, "findMax": 9}, "backpack": {"name": "Backpack", "type": "Backpack", "slots": 20, "slot": "backpack"}, "axe": {"name": "Splitting axe", "type": "Melee", "body": 40, "range": 1, "hands": 2, "attackAp": 30, "cd": 1.1}, "wood": {"name": "Wood", "type": "Material", "stack": 10, "findMin": 3, "findMax": 6}, "scrap": {"name": "Scrap metal", "type": "Material", "stack": 10, "findMin": 2, "findMax": 6}, "jeans": {"name": "Jeans", "type": "Clothing", "slot": "legs", "slots": 4}, "jacket": {"name": "Leather jacket", "type": "Clothing", "slot": "body", "slots": 6}, "boots": {"name": "Leather boots", "type": "Clothing", "slot": "feet"}, "vest": {"name": "Vest", "type": "Clothing", "slot": "body", "slots": 4}, "coat": {"name": "Coat", "type": "Clothing", "slot": "body", "slots": 6}, "camojacket": {"name": "Camo jacket", "type": "Clothing", "slot": "body", "slots": 6}, "raincoat": {"name": "Raincoat", "type": "Clothing", "slot": "body", "slots": 4}, "shorts": {"name": "Shorts", "type": "Clothing", "slot": "legs", "slots": 3}, "cargo": {"name": "Cargo pants", "type": "Clothing", "slot": "legs", "slots": 6}, "smallpack": {"name": "Small backpack", "type": "Backpack", "slot": "backpack", "slots": 12}, "hikingpack": {"name": "Hiking backpack", "type": "Backpack", "slot": "backpack", "slots": 30}, "impaxe": {"name": "Improvised axe", "type": "Melee", "body": 40, "range": 1, "uses": 4, "hands": 2, "attackAp": 35, "cd": 1.2}, "cloth": {"name": "Cloth", "type": "Material", "stack": 10, "findMin": 1, "findMax": 2, "use": 10, "stopsBleed": true}, "seeds": {"name": "Seeds", "type": "Material", "stack": 10, "findMin": 1, "findMax": 2}, "vegetables": {"name": "Vegetables", "type": "Food", "use": 10, "hunger": 30, "spoil": 5}, "milhelmet": {"name": "Military helmet", "type": "Clothing", "slot": "head", "woundRed": 60, "cloth": 0}, "motohelmet": {"name": "Motorbike helmet", "type": "Clothing", "slot": "head", "woundRed": 40, "cloth": 0}, "woolcap": {"name": "Wool cap", "type": "Clothing", "slot": "head", "woundRed": 10}, "leathergloves": {"name": "Leather gloves", "type": "Clothing", "slot": "hands", "bleedRed": 30}, "gloves": {"name": "Gloves", "type": "Clothing", "slot": "hands", "bleedRed": 15}, "armguards": {"name": "Arm protection", "type": "Clothing", "slot": "armor", "armor": 3, "cloth": 0}, "bodyarmor": {"name": "Body armor", "type": "Clothing", "slot": "armor", "armor": 5, "cloth": 0}, "fullarmor": {"name": "Full body armor kit", "type": "Clothing", "slot": "armor", "armor": 8, "cloth": 0}, "roastveg": {"name": "Roasted vegetables", "type": "Food", "use": 10, "hunger": 45}, "vegstew": {"name": "Vegetable stew", "type": "Food", "use": 10, "hunger": 70, "thirst": 30, "hp": 10}, "meatstew": {"name": "Meat and bean stew", "type": "Food", "use": 10, "hunger": 75, "hp": 10}, "rawmeat": {"name": "Raw meat", "type": "Food", "use": 10, "hunger": 20, "spoil": 3}, "roastmeat": {"name": "Roast meat", "type": "Food", "use": 10, "hunger": 55, "hp": 5}, "bow": {"name": "Bow", "type": "Bow", "body": 25, "head": 50, "range": 8, "mag": 1, "reload": 4, "hands": 2, "cd": 0.5, "mode": "single", "quiet": true, "ammo": "arrow"}, "arrow": {"name": "Arrows", "type": "Ammo", "stack": 20, "findMin": 3, "findMax": 8}}, "loot": {"Fridge": [["soda", 1], ["water", 1], ["cheese", 0.6], ["burrito", 0.6]], "Cabinet": [["beans", 0.9], ["water", 1.5], ["painkiller", 1.5], ["ammo9", 0.14], ["ammo45", 0.07], ["ammo357", 0.0525], ["ammo308", 0.035], ["ammo556", 0.0262], ["ammo762", 0.0262], ["knife", 0.7], ["antibiotics", 0.35], ["materials", 1], ["glock", 0.1], ["beretta", 0.1], ["colt", 0.1], ["jeans", 0.1], ["jacket", 0.1], ["boots", 0.1], ["vest", 0.1], ["coat", 0.1], ["camojacket", 0.1], ["raincoat", 0.1], ["shorts", 0.1], ["cargo", 0.1], ["woolcap", 0.1]], "Plastic container": [["ammo9", 0.14], ["ammo45", 0.07], ["ammo357", 0.0525], ["ammo308", 0.035], ["ammo556", 0.0262], ["ammo762", 0.0262], ["beans", 0.42], ["medkit", 0.35], ["bandage", 0.5], ["smallpack", 0.3], ["backpack", 0.15], ["hikingpack", 0.05], ["jeans", 0.1], ["jacket", 0.1], ["boots", 0.1], ["vest", 0.1], ["coat", 0.1], ["camojacket", 0.1], ["raincoat", 0.1], ["shorts", 0.1], ["cargo", 0.1], ["woolcap", 0.1]], "Shelves": [["beans", 0.48], ["meat", 0.48], ["water", 0.5], ["soda", 0.5], ["scrap", 0.3], ["seeds", 0.25]], "Boxes": [["materials", 0.8], ["scrap", 0.6], ["water", 0.5], ["soda", 0.5], ["meat", 0.3], ["bandage", 0.15], ["painkiller", 0.3], ["cloth", 1.2]], "Crates": [["materials", 4], ["scrap", 2], ["wood", 2], ["machete", 1], ["bat", 1.5], ["axe", 1], ["motohelmet", 0.5]], "Medicine shelf": [["bandage", 1.75], ["painkiller", 3.0], ["antibiotics", 0.5], ["medkit", 0.4], ["water", 2.5], ["soda", 1.65]], "Clothes rack": [["jeans", 0.5], ["jacket", 0.5], ["boots", 0.5], ["vest", 0.5], ["coat", 0.5], ["camojacket", 0.5], ["raincoat", 0.5], ["shorts", 0.5], ["cargo", 0.5], ["cloth", 3], ["smallpack", 0.3], ["backpack", 0.15], ["hikingpack", 0.05], ["woolcap", 0.5], ["gloves", 0.5], ["leathergloves", 0.3]], "Tool rack": [["materials", 3], ["scrap", 2.5], ["wood", 2], ["hammer", 1.5], ["knife", 0.7], ["machete", 0.5], ["axe", 0.5], ["seeds", 2], ["gloves", 0.5], ["armguards", 0.3], ["bow", 0.4], ["arrow", 1]], "Gun locker": [["ammo9", 0.8], ["ammo45", 0.4], ["ammo357", 0.3], ["ammo308", 0.2], ["ammo556", 0.15], ["ammo762", 0.15], ["glock", 0.3], ["beretta", 0.3], ["colt", 0.3], ["revolver", 0.3], ["hunting", 0.1], ["m4a1", 0.08], ["ak47", 0.08], ["bat", 1], ["medkit", 0.15], ["bandage", 0.35], ["milhelmet", 0.3], ["armguards", 0.4], ["bodyarmor", 0.3], ["fullarmor", 0.15], ["bow", 0.3], ["arrow", 1]], "Produce crate": [["vegetables", 4], ["seeds", 2.5], ["beans", 0.6], ["water", 1]]}, "rules": {"ap_per_turn": 100, "ap_move": 20, "ap_sneak_move": 30, "ap_attack": 20, "ap_search_big": 40, "ap_search_small": 20, "player_max_hp": 100, "gun_body_chance": 60, "gun_head_chance": 25, "shooting_max_miss": 10, "block_chance_melee": 0, "dodge_base": 0, "dodge_max": 0, "zombie_would_hit": 100, "tier1_chance": 60, "tier1_damage": 15, "tier2_chance": 30, "tier2_damage": 15, "tier3_chance": 10, "tier3_damage": 35, "bleed_per_turn": 5, "detect_sight_chance": 40, "detect_hearing_chance": 25, "door_hearing_cut": 75, "sneak_reduction_base": 60, "sneak_reduction_max": 80, "hunger_drain_per_trip": 5, "thirst_drain_per_trip": 5, "starving_max_hp": 50, "recover_above": 60, "infection_days": 2, "slots_base": 10, "backpack_slots": 20, "loot_chance_0": 25, "loot_chance_1": 50, "loot_chance_2": 25, "stat_max": 200, "stat_gain_per_run": 0, "base_grid": 50, "base_storage_slots": 200, "storage_slots": 100, "cost_storage": 10, "cost_wall": 2, "cost_shelter_upgrade": 20, "shelter_max_level": 5, "counter_chance": 30, "cost_woodwall": 2, "cost_workshop_wood": 10, "cost_workshop_scrap": 5, "zombies_min": 2, "zombies_max": 6, "zombies_big_bonus": 1, "upstairs_zombie_percent": 60, "upstairs_chance": 60, "bunker_chance": 2, "bunker_zombies_min": 1, "bunker_zombies_max": 3, "gunshot_reinf_min": 1, "gunshot_reinf_max": 2, "scrap_per_weapon": 2, "salvage_gun_scrap": 3, "salvage_rifle_scrap": 5, "salvage_ammo_per_scrap": 20, "salvage_cloth_per_material": 0, "ambush_chance": 40, "hunger_drain_travel": 40, "thirst_drain_travel": 50, "travel_home_percent": 50, "heal_above": 80, "heal_sleep": 20, "heal_step": 5, "cost_upgrade_materials": 10, "cost_upgrade_scrap": 5, "melee_durability": 100, "melee_wear_per_kill": 2, "cloth_per_clothing": 2, "gun_unalerted_dmg_bonus": 100, "xp_per_stealth": 3, "xp_per_agility": 4, "xp_per_shooting": 15, "restock_days": 3, "zombies_bonus_police": 3, "hunger_drain_sleep": 20, "thirst_drain_sleep": 20, "cost_farm_wood": 4, "cost_greenhouse_materials": 10, "cost_greenhouse_wood": 6, "cost_greenhouse_scrap": 4, "cost_rain_materials": 4, "cost_rain_scrap": 2, "farm_grow_sleeps": 3, "farm_yield": 2, "greenhouse_grow_sleeps": 2, "greenhouse_yield": 3, "plant_seeds": 1, "plant_water": 1, "rain_sleeps_per_water": 1, "rain_capacity": 2, "rain_collector_max": 4, "start_beans": 2, "start_water": 2, "wander_chance": 30, "actions_per_turn": 2, "move_per_action": 2, "sneak_move_per_action": 1, "gun_durability": 100, "gun_wear_per_shot": 1, "repair_scrap": 1, "repair_amount": 10, "upgrade_scrap": 5, "upgrade_damage": 5, "upgrade_max": 3, "raid_first_day": 5, "raid_first_zombies": 5, "raid_growth": 3, "raid_gap_min": 4, "raid_gap_max": 7, "raid_storage_loss": 20, "raid_repair_materials": 5, "player_speed": 3, "sneak_speed": 1.5, "zombie_speed": 1.2, "zombie_wander_speed": 0.5, "detect_seconds": 2, "turn_seconds": 5, "search_seconds_small": 1.5, "search_seconds_big": 3, "zombie_attack_seconds": 1.6, "zombie_windup_seconds": 0.45, "zombie_reach": 1.35, "melee_reach": 1.35, "melee_arc": 55, "gun_spread": 6, "gun_spread_min": 2, "reload_seconds_per_ap": 0.2, "player_sight": 10, "zombie_multiplier": 1.5, "block_move_factor": 0.5, "block_wear": 0, "block_arc": 70, "swing_root_seconds": 0.3, "stamina_max": 100, "block_stamina_per_second": 0, "block_stamina_per_blow": 33, "stamina_regen_per_second": 6, "stamina_regen_delay": 1, "block_regen_factor": 0.5, "stun_seconds": 1, "raid_first_day_max": 8, "raid_spawn_seconds": 3, "zombies_factor_village": 0.6, "zombies_factor_farm": 0.35, "containers_share_village": 60, "travel_min_cost": 5, "cost_campfire_wood": 4, "cost_campfire_materials": 2, "cost_radio_materials": 15, "cost_radio_scrap": 10, "cost_radio_wood": 5, "radio_signal_chance": 15, "radio_signal_days": 3, "beds_per_shelter_level": 2, "survivor_food_per_night": 1, "survivor_drink_per_night": 1, "guard_block_max": 50, "farmer_plots": 2, "farmer_yield_bonus": 1, "hunter_meat_min": 1, "hunter_meat_max": 3, "scavenger_items_min": 1, "scavenger_items_max": 2, "agility_speed_max": 20, "survivor_stat_start_min": 10, "survivor_stat_start_max": 60, "survivor_stat_gain_per_day": 2, "survivor_job_bonus_max": 100, "hunter_ammo_per_meat": 1, "hunter_arrow_loss_chance": 50, "hunter_fail_chance": 25, "hunter_fail_ammo": 1, "hunter_big_chance": 15, "hunter_big_mult": 2, "arrow_recover_chance": 50, "cost_well_materials": 20, "cost_well_scrap": 5, "well_water_per_day": 5, "well_capacity": 10, "well_max": 1, "cost_watchtower_materials": 20, "cost_watchtower_wood": 10, "watchtower_max_level": 3, "cost_watchtower_upgrade": 15, "watchtower_hp_per_level": 100, "watchtower_range_bonus": 2, "cost_trap_materials": 2, "cost_trap_scrap": 1, "trap_rearm_materials": 1, "cost_wall_reinforce": 3, "cost_wall_fortify_materials": 5, "cost_wall_fortify_scrap": 2, "cost_wall_armor_materials": 6, "cost_wall_armor_scrap": 4, "wall_repair_materials": 1, "raid_wrecker_chance": 30, "raid_brute_day": 15, "raid_brute_share": 15, "brute_hp": 120, "brute_hit_bonus": 10, "survivor_heal_night": 10, "survivor_rest_heal": 25, "survivor_bleed_night": 20, "woodcutter_wood_min": 2, "woodcutter_wood_max": 3, "medic_heal": 10, "radio_operator_bonus": 10, "walkin_chance": 10, "walkin_supplies": 5, "camp_water_keep": 20, "building_hp": 100, "zombie_building_damage": 5, "zombie_building_tick_seconds": 1, "woodwall_hp": 150, "wall_hp": 300, "wall_reinforced_hp": 450, "wall_fortified_hp": 600, "wall_armored_hp": 800}, "zombie": {"hp": 50, "sight": 6, "hearing": 8, "move": 1}, "recipes": [{"upgrade": "medical", "out": "bandage", "n": 1, "cost": [{"id": "cloth", "n": 2}]}, {"upgrade": "medical", "out": "medkit", "n": 1, "cost": [{"id": "bandage", "n": 2}, {"id": "painkiller", "n": 1}, {"id": "cloth", "n": 2}]}, {"upgrade": "ammo", "out": "ammo9", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "ammo", "out": "ammo45", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "ammo", "out": "ammo357", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "ammo", "out": "ammo308", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "ammo", "out": "ammo556", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "ammo", "out": "ammo762", "n": 5, "cost": [{"id": "scrap", "n": 1}]}, {"upgrade": "tools", "out": "knife", "n": 1, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 2}]}, {"upgrade": "tools", "out": "hammer", "n": 1, "cost": [{"id": "wood", "n": 2}, {"id": "scrap", "n": 2}]}, {"upgrade": "tools", "out": "impaxe", "n": 1, "cost": [{"id": "wood", "n": 3}, {"id": "scrap", "n": 3}]}, {"upgrade": "tools", "out": "machete", "n": 1, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 4}]}, {"upgrade": "medical", "out": "antibiotics", "n": 1, "cost": [{"id": "cloth", "n": 1}, {"id": "painkiller", "n": 1}, {"id": "herbtea", "n": 1}]}, {"upgrade": "campfire", "out": "roastveg", "n": 1, "cost": [{"id": "vegetables", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "herbtea", "n": 1, "cost": [{"id": "vegetables", "n": 1}, {"id": "water", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "vegstew", "n": 1, "cost": [{"id": "vegetables", "n": 2}, {"id": "water", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "meatstew", "n": 1, "cost": [{"id": "meat", "n": 1}, {"id": "beans", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "roastmeat", "n": 1, "cost": [{"id": "rawmeat", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "tools", "out": "bow", "n": 1, "cost": [{"id": "wood", "n": 3}, {"id": "cloth", "n": 2}]}, {"upgrade": "tools", "out": "arrow", "n": 5, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 1}]}]}</script>
 <script>
 (() => {
 'use strict';
@@ -403,7 +413,7 @@ for(const [code, name] of Object.entries(CODE)) POOLS[code] = (GD.loot[name] || 
 function weighted(pool){ const tot = pool.reduce((a, [, w]) => a + w, 0); let r = Math.random() * tot; for(const [id, w] of pool){ if((r -= w) < 0) return id; } return pool[pool.length - 1][0]; }
 const CNAME = CODE;
 const BIG = {F:1,C:1,S:1,R:1,M:1,T:1,G:1};
-// Map legend: # wall · . floor · D doorway · E exit · P start · containers F C p S B R M H T G V
+// Map legend: # wall · . floor · D doorway · E exit · P start · ^ stairs (v106) · _ hatch to the bunker / ladder up out of it (v107) · containers F C p S B R M H T G V
 // furniture (blocks movement, not sight): k counter · t table · b bed · n nightstand · o sofa · v TV · w toilet · u bathtub · c checkout · x pallet · m mannequin
 // rooms: floor type per room, in reading order (top-left first)
 const MAPS = {
@@ -582,6 +592,81 @@ const MAPS = {
 };
 const BKEYS = ['house', 'grocery', 'gas', 'pharmacy', 'clothing', 'hardware', 'police'];   // the buildings of Polis; their keys are also their types
 const W = 12, H = 16;
+// v106: upstairs floors. The upstairs of a building is laid out like any floor (random plan from this recipe); its exit spot becomes wall and its start spot
+// the stairs down. Q = the type's own big container (gun locker, medicine shelf, clothes rack, tool rack).
+const UPS = {
+  home:{rooms:["carpet", "wood", "bath", "carpet", "wood"], rows:[
+    '############',
+    '#b.n#C..p.b#',
+    '#b..#.....b#',
+    '#...D..n...#',
+    '#C..#......#',
+    '##D######D##',
+    '#w...#.....#',
+    '#.u..D..C..#',
+    '#.u..#.....#',
+    '#p...#b.n..#',
+    '######D#####',
+    '#..........#',
+    '#.C.....p..#',
+    '#..........#',
+    '#....P.....#',
+    '#####E######']},
+  office:{rooms:["carpet", "concrete", "lino", "concrete"], rows:[
+    '############',
+    '#C.t.#B..R.#',
+    '#....#.....#',
+    '#.t..D..R..#',
+    '#C...#B....#',
+    '##D#####D###',
+    '#..........#',
+    '#.C..tt..C.#',
+    '#..........#',
+    '#B.......p.#',
+    '####D#######',
+    '#..........#',
+    '#.Q......R.#',
+    '#..........#',
+    '#....P.....#',
+    '#####E######']},
+  loft:{rooms:["wood", "wood"], rows:[
+    '############',
+    '#R...x....R#',
+    '#..........#',
+    '#..xx......#',
+    '#.......V..#',
+    '#..........#',
+    '#R.........#',
+    '#....xx....#',
+    '#..........#',
+    '#.V......x.#',
+    '######D#####',
+    '#T.........#',
+    '#..........#',
+    '#.....B....#',
+    '#....P.....#',
+    '#####E######']}
+};
+const UPSTAIRS = {house:['home'], farmhouse:['home'], police:['office', 'G'], pharmacy:['office', 'M'], clothing:['office', 'H'], hardware:['office', 'T'], barn:['loft']};
+for(const [t, [u, q]] of Object.entries(UPSTAIRS)){ MAPS[t].upMap = {rooms:UPS[u].rooms, rows:UPS[u].rows.map(r => q ? r.replace(/Q/g, q) : r)}; MAPS[t].blurb += ' · often 2 floors'; }
+// v107: the secret bunker under any building (armory, storage, bunks, kitchen, the room at the ladder). Its start spot is the ladder up (tile _).
+const BUNKER = {name:'Bunker', wallTop:'#2f3331', wallCap:'#4a504c', wallFront:'#6d746f', rooms:['concrete', 'concrete', 'carpet', 'lino', 'concrete'], rows:[
+  '############',
+  '#G.G.#R.R.R#',
+  '#....#.....#',
+  '#....D.....#',
+  '#M...#R...F#',
+  '##D######D##',
+  '#b..b#.....#',
+  '#....D..t..#',
+  '#b..b#.....#',
+  '#C...#C..S.#',
+  '######D#####',
+  '#..........#',
+  '#.R......M.#',
+  '#..........#',
+  '#....P.....#',
+  '#####E######']};
 
 /* ---------- state ---------- */
 const KEY = 'zombie-loot-run-v1';
@@ -605,6 +690,7 @@ if(!state.char.gear) state.char.gear = START_GEAR();
 for(const it of state.char.inv) if(it.eq === true) it.eq = (DEF[it.id] && DEF[it.id].hands >= 2) ? 'B' : 'R';
 if(state.char.backpack){ state.char.gear.backpack = 'backpack'; } delete state.char.backpack;
 if(!state.at) state.at = (state.screen === 'town' || state.run) ? 'polis' : 'base';
+for(const b of Object.values(state.buildings || {})) if(b.up){ const cur = b.floor ? 1 : 0, oth = 1 - cur; b.links = {[oth]:b.stairs}; b.up.links = {[cur]:b.up.stairs}; delete b.stairs; delete b.up.stairs; b.fl = {[oth]:b.up}; delete b.up; b.floor = cur; }   // v107
 // The stat scale can change (10 until 2026-10-07, then 200). A save remembers the scale its stats were earned on;
 // when the rule changes, the survivor's stats are rescaled once so their bonuses stay what they were.
 { const old = state.statMax || 10, now = GD.rules.stat_max;
@@ -733,6 +819,130 @@ function reload(inRun, gun){
 let toastT;
 function toast(msg){ const t = $('#toast'); if(!t) return; t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), clamp(1200 + msg.length * 28, 2200, 7000)); }   // long messages stay up longer
 function el(tag, attrs = {}, ...kids){ const e = document.createElement(tag); for(const k in attrs){ if(k === 'class') e.className = attrs[k]; else if(k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } kids.flat().forEach(k => e.append(k)); return e; }
+/* ---------- item icons (v108): 16x16 pixel sprites, k = outline, other letters from the item's palette ---------- */
+const SPR = {
+  knife:["................", "............kk..", "...........kWk..", "..........kWsk..", ".........kWsk...", "........kWsk....", ".......kWsk.....", "......kWsk......", ".....kWsk.......", "...kkksk........", "....kHHk........", "...kHHk.........", "..kHHk..........", ".kHHk...........", ".kkk............", "................"],
+  machete:["................", ".............k..", "............kWk.", "...........kWWk.", "..........kWWsk.", ".........kWWsk..", "........kWWsk...", ".......kWWsk....", "......kWWsk.....", ".....kWWsk......", "....kkWsk.......", "...kHkkk........", "..kHHk..........", ".kHHk...........", ".kkk............", "................"],
+  bat:["................", "...........kkk..", "..........kWWWk.", ".........kWWWWk.", "........kWWWWk..", ".......kWWWWk...", "......kWWWsk....", ".....kWWWsk.....", "....kWWWsk......", "...kWWsk........", "..kWsk..........", ".kHsk...........", ".kHHk...........", "..kk............", "................", "................"],
+  hammer:["................", ".....kkkkkkkkk..", "...kkcmmmmmmmmk.", "..kccMMMMMMMMMk.", ".kckkkkMHHMkMMk.", ".kck..kHHk.kMMk.", ".kk...kHHk.kMMk.", "......kHHk.kkkk.", "......kHHk......", "......kHHk......", "......kHHk......", "......kGGk......", "......kGGk......", "......kGGk......", "......kkkk......", "................"],
+  axe:["................", "................", "................", ".........kkk....", "........kMMMk...", ".......kMMMMMk..", "......kHkMMMMk..", ".....kHk.kMMk...", "....kHk...kk....", "...kHk..........", "..kHk...........", "..kHk...........", "..kk............", "................", "................", "................"],
+  pistol:["................", "................", "................", "..kkkkkkkkkkk...", "..kMMMMMMMMMMk..", "..kMssssssssMk..", "..kkkkkkkkkkkk..", "..kGGGkkSk......", "..kGGGk.kk......", "..kGGGk.........", "..kGGGk.........", "..kGGGk.........", "..kkkkk.........", "................", "................", "................"],
+  revolver:["................", "................", "................", "..k..kkk......k.", ".kHkkCCCkkkkkkFk", ".kHMMCcCBBBBBBBk", "..kMMCcCbbbbbbbk", "..kMMCCCMkkkkkk.", ".kGGMTTkk.......", "kGGGkTk.........", "kGGGkk..........", "kGGk............", ".kk.............", "................", "................", "................"],
+  rifle:["................", "................", "................", "................", ".......kkkkkk...", "......kSSSSSLk..", ".kk...kkMkkMkkk.", "kWWkkkRRRBBBBBBk", "kWWWWWWWWWWkkkk.", "kWWWWkkTkkk.....", "kWWWk..k........", ".kkk............", "................", "................", "................", "................"],
+  m4:["................", "................", "................", ".....kkkkk......", "....kMk.kMk.....", "kkkkkMMMMMkkkkkk", "kMMMMMMMMMMMMMMk", "kMMkkkMMMMkkkkkk", "kMk..kMMk.......", "kk...kMMk.......", ".....kMMk.......", ".....kkkk.......", "................", "................", "................", "................"],
+  ak:["................", "................", "................", "................", "kkkk..kkkkkkkkkk", "kWWWkkMMMMMMMMMk", "kWWWWWMMMWWWkkkk", ".kWWWkkMMkkk....", "..kkk.kMMk......", ".......kMMk.....", "........kMMk....", ".........kk.....", "................", "................", "................", "................"],
+  bow:["................", ".....kk.........", "....kWWk........", "....kWkS........", ".....kWk.S......", ".....kWk..S.....", "......kWk..S....", "......kGk..S....", "......kGk..S....", "......kWk..S....", ".....kWk..S.....", ".....kWk.S......", "....kWkS........", "....kWWk........", ".....kk.........", "................"],
+  arrow:["................", "................", "...........kkk..", "..........kMMk..", ".........kMMk...", "........kWkk....", ".......kWk......", "......kWk.......", ".....kWk........", "..kFkWk.........", "..kFWk..........", ".kFFkFk.........", ".kkkFk..........", "...kk...........", "................", "................"],
+  ammo:["................", "................", "................", "....k.k.k.k.....", "...kBkBkBkBk....", "...kBkBkBkBk....", ".kkkkkkkkkkkkk..", ".kCCCCCCCCCCCk..", ".kCLLLLLLLLLCk..", ".kCLLLLLLLLLCk..", ".kCCCCCCCCCCCk..", ".kDDDDDDDDDDDk..", ".kkkkkkkkkkkkk..", "................", "................", "................"],
+  bandage:["................", "................", "................", "................", "..kkkkkk........", ".kWWWWWWk.......", "kWWsWWWWWk......", "kWsksWWWWkkkkk..", "kWsksWWWWWWWWWk.", "kWWsWWWWWkkkkk..", ".kWWWWWWk.......", "..kkkkkk........", "................", "................", "................", "................"],
+  pills:["................", "................", "................", ".....kkkkkk.....", ".....kCCCCk.....", ".....kkkkkk.....", "....kBBBBBBk....", "....kBLLLLBk....", "....kBLLLLBk....", "....kBLLLLBk....", "....kBBBBBBk....", "....kBBBBBBk....", "....kkkkkkkk....", "................", "................", "................"],
+  medkit:["................", "................", "......kkkk......", ".....kk..kk.....", ".kkkkkkkkkkkkkk.", ".kRRRRRRRRRRRRk.", ".kRRRRRWWRRRRRk.", ".kRRRRRWWRRRRRk.", ".kRRRWWWWWWRRRk.", ".kRRRWWWWWWRRRk.", ".kRRRRRWWRRRRRk.", ".kRRRRRWWRRRRRk.", ".kDDDDDDDDDDDDk.", ".kkkkkkkkkkkkkk.", "................", "................"],
+  mug:["................", "................", "................", ".....S..S.......", "......S..S......", ".....S..S.......", "...kkkkkkkk.....", "...kTTTTTTkkk...", "...kMMMMMMk.k...", "...kMMGMMMk.k...", "...kMGGMMMkkk...", "...kMMMMMMk.....", "....kkkkkk......", "................", "................", "................"],
+  bottle:["................", "................", "......kkk.......", "......kCk.......", ".....kkkkk......", "....kWWWWWk.....", "....kWwWWWk.....", "....kLLLLLk.....", "....kLLLLLk.....", "....kWwWWWk.....", "....kWwWWWk.....", "....kWWWWWk.....", "....kkkkkkk.....", "................", "................", "................"],
+  canSoda:["................", "................", "................", "......kkkk......", ".....kSSSSk.....", ".....kRRRRk.....", ".....kRWRRk.....", ".....kRWRRk.....", ".....kRRRRk.....", ".....kRRRRk.....", ".....kRWRRk.....", ".....kSSSSk.....", "......kkkk......", "................", "................", "................"],
+  cheese:["................", "................", "................", "..........kk....", ".......kkkYYk...", "....kkkYYYYYk...", "..kkYYYYYYYYk...", "..kYYYoYYYYYk...", "..kYYYYYYoYYk...", "..kYoYYYYYYYk...", "..kYYYYYoYYYk...", "..kkkkkkkkkkk...", "................", "................", "................", "................"],
+  burrito:["................", "................", "................", "..........kkk...", "........kkFFFk..", "......kkTTkFFk..", "....kkTTTTTkFk..", "...kTTTTTTTTkk..", "..kTTTTTTTTk....", "..kTTTTTTkk.....", "...kkTTkk.......", ".....kk.........", "................", "................", "................", "................"],
+  can:["................", "................", "................", ".....kkkkkk.....", "....kSSSSSSk....", "....kkkkkkkk....", "....kLLLLLLk....", "....kLOOOOLk....", "....kLOOOOLk....", "....kLLLLLLk....", "....kkkkkkkk....", "....kSSSSSSk....", ".....kkkkkk.....", "................", "................", "................"],
+  steak:["................", "................", "................", "................", "....kkkkk.......", "..kkRRRRRkk.....", ".kRRRRPRRRRk....", ".kRRPRRRRRRRk...", ".kRRRRRRPRRRk...", "..kRRRRRRRkWWk..", "...kkkkkkkWWWk..", "..........kkk...", "................", "................", "................", "................"],
+  bricks:["................", "................", "................", "................", "....kkkkkkkkk...", "....kBBBkBBBk...", ".kkkkkkkkkkkkkk.", ".kBBkBBBBkBBBBk.", ".kkkkkkkkkkkkkk.", ".kBBBBkBBBBkBBk.", ".kDDDDkDDDDkDDk.", ".kkkkkkkkkkkkkk.", "................", "................", "................", "................"],
+  logs:["................", "................", "................", "......kkkk......", ".....kRRRRk.....", ".....kRrrRk.....", ".....kRRRRk.....", "...kkkkkkkkkk...", "..kRRRRkkRRRRk..", "..kRrrRkkRrrRk..", "..kRRRRkkRRRRk..", "...kkkk..kkkk...", "................", "................", "................", "................"],
+  gear:["................", "................", "......kkk.......", "...kk.kMk.kk....", "...kMkkMkkMk....", "....kMMMMMk.....", "..kkkMMkMMkkk...", "..kMMMk.kMMMk...", "..kkkMMkMMkkk...", "....kMMMMMk.....", "...kMkkMkkMk....", "...kk.kMk.kk....", "......kkk.......", "................", "................", "................"],
+  cloth:["................", "................", "................", "................", "..kkkkkkkkkkk...", ".kCCCCCCCCCCCk..", ".kcccccccccccck.", ".kCCCCCCCCCCCk..", ".kcccccccccccck.", ".kCCCCCCCCCCCk..", ".kkkkkkkkkkkkk..", "................", "................", "................", "................", "................"],
+  seeds:["................", "................", "................", "....kkkkkkkk....", "....kPPPPPPk....", "....kkkkkkkk....", "....kPPPPPPk....", "....kPGGPPPk....", "....kPGGGPPk....", "....kPPGPPPk....", "....kPPGPPPk....", "....kPPPPPPk....", "....kkkkkkkk....", "................", "................", "................"],
+  carrot:["................", "................", "..........G.G...", "...........GG...", "..........kkk...", ".........kOOk...", "........kOOOk...", ".......kOOOk....", "......kOOOk.....", ".....kOOOk......", "....kOOk........", "...kOk..........", "...kk...........", "................", "................", "................"],
+  bowl:["................", "................", "................", ".....S...S......", "......S...S.....", ".....S...S......", "..kkkkkkkkkkkk..", "..kFfFFfFFfFFk..", "..kBBBBBBBBBBk..", "...kBBBBBBBBk...", "....kBBBBBBk....", ".....kkkkkk.....", "................", "................", "................", "................"],
+  pack:["................", "................", ".....kkkkkk.....", "....kk....kk....", "...kkkkkkkkkk...", "...kPPPPPPPPk...", "...kPPPPPPPPk...", "...kPkkkkkkPk...", "...kPkPPPPkPk...", "...kPkkkkkkPk...", "...kPPPPPPPPk...", "...kDDDDDDDDk...", "...kkkkkkkkkk...", "................", "................", "................"],
+  pants:["................", "................", "...kkkkkkkkk....", "...kBBBBBBBk....", "...kPPPPPPPk....", "...kPPPkPPPk....", "...kPPPkPPPk....", "...kPPk.kPPk....", "...kPPk.kPPk....", "...kPPk.kPPk....", "...kPPk.kPPk....", "...kPPk.kPPk....", "...kkkk.kkkk....", "................", "................", "................"],
+  shorts:["................", "................", "................", "................", "...kkkkkkkkk....", "...kBBBBBBBk....", "...kPPPPPPPk....", "...kPPPkPPPk....", "...kPPk.kPPk....", "...kPPk.kPPk....", "...kkkk.kkkk....", "................", "................", "................", "................", "................"],
+  jacket:["................", "................", "................", "...kkk.kkk......", ".kkPPkkkPPkk....", "kPPPckWkPPcPk...", "kPcPPPkPPPPPk...", "kPPkPPcPPPkPPk..", "kPPkcPPkPPPkPPk.", "kPPkPPPkPcPkPPk.", "kkkkPPPkPPPkkkk.", "...kPPPkPPPk....", "...kkkkkkkkk....", "................", "................", "................"],
+  vest:["................", "................", "................", "................", "....kkk.kkk.....", "...kPPkkkPPk....", "..kPPPkWkPPPk...", "..kPPPPkPPPPk...", "..kPPPPkPPPPk...", "..kPPPPkPPPPk...", "..kPPPPkPPPPk...", "..kkkkkkkkkkk...", "................", "................", "................", "................"],
+  coat:["................", "................", "...kkk.kkk......", ".kkPPkkkPPkk....", "kPPPPkWkPPPPk...", "kPPPPPkPPPPPk...", "kPPkPPPkPPPkPPk.", "kPPkPPPkPPPkPPk.", "kPPkPPPkPPPkPPk.", "kkkkPPPkPPPkkkk.", "...kPPPkPPPk....", "...kPPPkPPPk....", "...kPPPkPPPk....", "...kkkkkkkkk....", "................", "................"],
+  boots:["................", "................", "................", "...kkkk.........", "...kBBk.........", "...kBBk.........", "...kBBk.........", "...kBBkkkk......", "...kBBBBBBkk....", "...kBBBBBBBBk...", "...kSSSSSSSSk...", "...kkkkkkkkkk...", "................", "................", "................", "................"],
+  helmet:["................", "................", "................", "................", ".....kkkkkk.....", "...kkHHHHHHkk...", "..kHHHhHHHHHHk..", "..kHHhHHHHHHHk..", "..kHHHHHHHHHHk..", "..kkkkkkkkkkkk..", "...k........k...", "................", "................", "................", "................", "................"],
+  moto:["................", "................", "................", ".....kkkkkk.....", "...kkHHHHHHkk...", "..kHHHHHHHHHHk..", ".kHHHHHHHHHHHHk.", ".kHHVVVVVVVVHHk.", ".kHHVvVVVVVVHHk.", ".kHHVVVVVVVVHHk.", ".kHHHHHHHHHHHHk.", "..kHHHHHHHHHHk..", "...kkkkkkkkkk...", "................", "................", "................"],
+  cap:["................", "................", "................", ".......kk.......", "......kPPk......", "....kkkkkkkk....", "...kRRRRRRRRk...", "..kRRRRRRRRRRk..", "..kRRRRRRRRRRk..", "..kSSSSSSSSSSk..", "..kSsSsSsSsSSk..", "..kkkkkkkkkkkk..", "................", "................", "................", "................"],
+  gloves:["................", "................", "................", "....k.k.k.......", "...kGkGkGk......", "...kGkGkGkk.....", "...kGGGGGkGk....", "...kGGGGGGGk....", "...kGGGGGGk.....", "...kGGGGGk......", "...kCCCCCk......", "...kkkkkkk......", "................", "................", "................", "................"],
+  guards:["................", "................", "................", ".....kkkkkk.....", "....kMMMMMMk....", "....kMmMMMMk....", "....kkkkkkkk....", "....kMMMMMMk....", "....kMmMMMMk....", "....kkkkkkkk....", "....kMMMMMMk....", "....kMmMMMMk....", ".....kkkkkk.....", "................", "................", "................"],
+  armor:["................", "................", "................", "....kkk..kkk....", "....kMk..kMk....", "...kkMkkkkMkk...", "...kMMMMMMMMk...", "...kMPPMMPPMk...", "...kMPPMMPPMk...", "...kMMMMMMMMk...", "...kMMMMMMMMk...", "...kkkkkkkkkk...", "................", "................", "................", "................"],
+  fullarmor:["................", "................", "................", "...kkkk..kkkk...", "...kMMk..kMMk...", "...kMkkkkkkMk...", "...kMMMMMMMMk...", "...kMPPMMPPMk...", "...kMPPMMPPMk...", "...kMMMMMMMMk...", "...kMMMMMMMMk...", "...kMMk..kMMk...", "...kkkk..kkkk...", "................", "................", "................"]
+};
+const ICONS = {
+  knife:["knife", {"W": "#dfe3e6", "s": "#9aa2a8", "H": "#3b2a1e"}],
+  machete:["machete", {"W": "#dfe3e6", "s": "#9aa2a8", "H": "#2b2b2b"}],
+  bat:["bat", {"W": "#c99a5e", "s": "#9c7444", "H": "#3a3a3a"}],
+  hammer:["hammer", {"M": "#8d9396", "m": "#c9ced1", "c": "#5e6468", "H": "#9a6a3e", "G": "#2b2b2b"}],
+  axe:["axe", {"M": "#b9bec2", "H": "#8a5a32"}],
+  impaxe:["axe", {"M": "#7c6a5a", "H": "#6e5a3e"}],
+  glock:["pistol", {"M": "#3a3d40", "s": "#24272a", "G": "#1d1f21", "S": "#1d1f21"}],
+  beretta:["pistol", {"M": "#2a2c2e", "s": "#55595c", "G": "#6b4a2e", "S": "#2a2c2e"}],
+  colt:["pistol", {"M": "#b6bcc0", "s": "#848b90", "G": "#7a4a28", "S": "#848b90"}],
+  revolver:["revolver", {"H": "#5a6166", "M": "#9aa1a6", "C": "#5a6166", "c": "#3a3f43", "B": "#c9cfd2", "b": "#8a9196", "F": "#9aa1a6", "T": "#3a3f43", "G": "#6b4426"}],
+  hunting:["rifle", {"S": "#2a2d30", "L": "#8fc4dc", "M": "#2a2d30", "R": "#5a6166", "B": "#8a9196", "W": "#9a6236", "T": "#2a2d30"}],
+  m4a1:["m4", {"M": "#2f3234"}],
+  ak47:["ak", {"W": "#9a5a2a", "M": "#3a3d40"}],
+  bow:["bow", {"W": "#8a5a32", "G": "#3a2a1e", "S": "#e8e2d0"}],
+  arrow:["arrow", {"M": "#9aa2a8", "W": "#c9a36a", "F": "#c94a3a"}],
+  bandage:["bandage", {"W": "#f1ede4", "s": "#c9c3b5"}],
+  painkiller:["pills", {"C": "#d24a3a", "B": "#efece4", "L": "#4a7fc0"}],
+  antibiotics:["pills", {"C": "#efece4", "B": "#d08a2a", "L": "#efece4"}],
+  medkit:["medkit", {"R": "#c8382e", "W": "#f4f1ea", "D": "#8e2620"}],
+  herbtea:["mug", {"S": "#cfd6d9", "T": "#8a7a2a", "M": "#e6e0d2", "G": "#5a9a4a"}],
+  water:["bottle", {"C": "#2f6fb0", "W": "#7fc0e6", "w": "#d6f0fb", "L": "#e8e8e8"}],
+  soda:["canSoda", {"S": "#b9bec2", "R": "#c8382e", "W": "#f4f1ea"}],
+  cheese:["cheese", {"Y": "#f0c64a", "o": "#c99a2a"}],
+  burrito:["burrito", {"T": "#e2c48a", "F": "#c9cdd0"}],
+  beans:["can", {"S": "#b9bec2", "L": "#d0702a", "O": "#8a3a1e"}],
+  meat:["can", {"S": "#b9bec2", "L": "#a8323a", "O": "#e8a0a0"}],
+  rawmeat:["steak", {"R": "#c8423e", "P": "#f0b0aa", "W": "#f1ede4"}],
+  roastmeat:["steak", {"R": "#8a4a26", "P": "#b8763e", "W": "#e6dcc6"}],
+  materials:["bricks", {"B": "#b5523a", "D": "#8a3a28"}],
+  wood:["logs", {"R": "#c9a06a", "r": "#8a5a32"}],
+  scrap:["gear", {"M": "#8d9396"}],
+  cloth:["cloth", {"C": "#c9b48a", "c": "#a8946c"}],
+  seeds:["seeds", {"P": "#d9c79a", "G": "#5a9a4a"}],
+  vegetables:["carrot", {"O": "#e07a2a", "G": "#4a9a3a"}],
+  roastveg:["bowl", {"S": "#cfd6d9", "F": "#d0702a", "f": "#5a9a4a", "B": "#e6e0d2"}],
+  vegstew:["bowl", {"S": "#cfd6d9", "F": "#8a8a3a", "f": "#d0702a", "B": "#e6e0d2"}],
+  meatstew:["bowl", {"S": "#cfd6d9", "F": "#7a3a22", "f": "#b5523a", "B": "#e6e0d2"}],
+  backpack:["pack", {"P": "#4f5a3c", "D": "#3a4228"}],
+  smallpack:["pack", {"P": "#4a5868", "D": "#36414e"}],
+  hikingpack:["pack", {"P": "#8a4a2c", "D": "#66361f"}],
+  jeans:["pants", {"P": "#3c4a63", "B": "#2a3446"}],
+  cargo:["pants", {"P": "#5d6146", "B": "#45482f"}],
+  shorts:["shorts", {"P": "#7a6f55", "B": "#5c533e"}],
+  jacket:["jacket", {"P": "#4b3526", "c": "#4b3526", "W": "#9a9488"}],
+  camojacket:["jacket", {"P": "#56603f", "c": "#3f4a2e", "W": "#9a9488"}],
+  vest:["vest", {"P": "#6b5a3a", "W": "#9a9488"}],
+  coat:["coat", {"P": "#3a3f4a", "W": "#9a9488"}],
+  raincoat:["coat", {"P": "#c2a233", "W": "#9a9488"}],
+  boots:["boots", {"B": "#4a3626", "S": "#1c1410"}],
+  milhelmet:["helmet", {"H": "#4a5240", "h": "#6a7458"}],
+  motohelmet:["moto", {"H": "#2a2d30", "V": "#6f8a99", "v": "#a9c0cc"}],
+  woolcap:["cap", {"P": "#a8453f", "R": "#7a2f2f", "S": "#5e2424", "s": "#7a2f2f"}],
+  leathergloves:["gloves", {"G": "#4b3526", "C": "#33241a"}],
+  gloves:["gloves", {"G": "#8a8f7a", "C": "#5e6352"}],
+  armguards:["guards", {"M": "#5a6068", "m": "#8a9098"}],
+  bodyarmor:["armor", {"M": "#5a6068", "P": "#3f444a"}],
+  fullarmor:["fullarmor", {"M": "#3f444a", "P": "#2a2e32"}],
+  ammo9:["ammo", {"B": "#d9a441", "C": "#4a6a3a", "L": "#e2c26a", "D": "#2a2a28"}],
+  ammo45:["ammo", {"B": "#d9a441", "C": "#7a3a2a", "L": "#e2c26a", "D": "#2a2a28"}],
+  ammo357:["ammo", {"B": "#d9a441", "C": "#2f4a6a", "L": "#e2c26a", "D": "#2a2a28"}],
+  ammo308:["ammo", {"B": "#d9a441", "C": "#5d6146", "L": "#d9d2c0", "D": "#2a2a28"}],
+  ammo556:["ammo", {"B": "#d9a441", "C": "#8a7a52", "L": "#2f3234", "D": "#2a2a28"}],
+  ammo762:["ammo", {"B": "#d9a441", "C": "#5a2a26", "L": "#d9d2c0", "D": "#2a2a28"}]
+};
+const ICON_URL = {};
+function iconUrl(id){
+  if(id in ICON_URL) return ICON_URL[id];
+  const e = ICONS[id]; if(!e) return ICON_URL[id] = null;
+  const [sp, pal] = e, c = document.createElement('canvas'); c.width = c.height = 16; const g = c.getContext('2d');
+  SPR[sp].forEach((row, y) => [...row].forEach((ch, x) => { const col = ch === 'k' ? '#141414' : pal[ch]; if(ch === '.' || !col) return; g.fillStyle = col; g.fillRect(x, y, 1, 1); }));
+  return ICON_URL[id] = c.toDataURL();
+}
+// an item's icon as an <img>; sm = the small one used in ingredient lists
+function ico(id, sm){ const u = iconUrl(id); return u ? el('img', {class:'iic' + (sm ? ' sm' : ''), src:u, alt:''}) : el('span', {class:'iic' + (sm ? ' sm' : '')}); }
+// a recipe's ingredients with icons: 2 [icon] Cloth (5) + 1 [icon] Painkiller (0)
+const costNodes = cost => cost.flatMap((k, i) => [i ? ' + ' : '', ico(k.id, true), `${k.n} ${DEF[k.id] ? DEF[k.id].name : k.id} (${craftCount(k.id)})`]);
 function bar(label, v, max, color){
   return [el('label', {}, label), el('div', {class:'bar'}, el('i', {style:`width:${clamp(v/max*100,0,100)}%;background:${color}`})), el('span', {class:'num'}, `${Math.max(0,v)}/${max}`)];
 }
@@ -797,7 +1007,7 @@ function equipmentPage(root, reopen){
     const id = worn(c, slot);
     const b = el('button', {class:`slot ${side === 'r' ? 'r' : ''} ${id ? 'full' : 'empty'}`, style:`top:${top}%;${side === 'l' ? 'left:6px' : 'right:6px'}`,
       onclick:() => { if(!id){ toast(`Nothing worn on: ${SLOT_NAME[slot].toLowerCase()}. Wear clothing from the list below.`); return; } takeOff(slot); refresh(); }},
-      el('small', {}, SLOT_NAME[slot] + (id && DEF[id].slots ? ` · +${DEF[id].slots}` : '')), el('b', {}, id ? DEF[id].name : 'Empty'));
+      el('small', {}, SLOT_NAME[slot] + (id && DEF[id].slots ? ` · +${DEF[id].slots}` : '')), el('b', {}, id ? DEF[id].name : 'Empty'), id ? ico(id) : '');
     if(id) b.title = 'Tap to take off';
     box.append(b);
   }
@@ -806,22 +1016,22 @@ function equipmentPage(root, reopen){
   const pickFor = hand => {
     const d = el('div', {class:'list'}), opts = c.inv.map((it, i) => [it, i]).filter(([it]) => isWeapon(it.id) && !it.eq);
     if(!opts.length) d.append(el('p', {class:'empty'}, 'Nothing in your bag to hold. Weapons and tools go in your hands.'));
-    for(const [it, i] of opts) d.append(el('div', {class:'row'}, el('span', {class:'name'}, itemLabel(it), el('small', {}, itemDesc(it))),
+    for(const [it, i] of opts) d.append(el('div', {class:'row'}, ico(it.id), el('span', {class:'name'}, itemLabel(it), el('small', {}, itemDesc(it))),
       el('button', {class:'mini', onclick:() => { equipItem(i, hand); if(reopen) reopen(); else { closeSheet(); refresh(); } }}, DEF[it.id].hands >= 2 ? 'Hold (both hands)' : 'Hold')));
     openSheet(hand === 'L' ? 'Left hand' : 'Right hand', d, 'hand');
   };
   const two = c.inv.find(i => i.eq === 'B');
-  if(two) hb.append(el('button', {class:'slot full both', onclick:() => { putAway(two); refresh(); }}, el('small', {}, 'Both hands · two-handed'), el('b', {}, itemLabel(two))));
+  if(two) hb.append(el('button', {class:'slot full both', onclick:() => { putAway(two); refresh(); }}, el('small', {}, 'Both hands · two-handed'), el('b', {}, itemLabel(two)), ico(two.id)));
   else for(const [h, lab] of [['L', 'Left hand'], ['R', 'Right hand']]){
     const it = inHand(c, h);
-    hb.append(el('button', {class:`slot ${h === 'R' ? 'r' : ''} ${it ? 'full' : 'empty'}`, onclick:() => { if(it){ putAway(it); refresh(); } else pickFor(h); }}, el('small', {}, lab), el('b', {}, it ? itemLabel(it) : 'Empty')));
+    hb.append(el('button', {class:`slot ${h === 'R' ? 'r' : ''} ${it ? 'full' : 'empty'}`, onclick:() => { if(it){ putAway(it); refresh(); } else pickFor(h); }}, el('small', {}, lab), el('b', {}, it ? itemLabel(it) : 'Empty'), it ? ico(it.id) : ''));
   }
   const list = root.querySelector('.eq-list'); if(!list){ drawDoll(root); return; }   // the bag lists clothing with everything else
   list.innerHTML = '';
   const wearables = c.inv.map((it, i) => [it, i]).filter(([it]) => DEF[it.id].slot);
   list.append(el('div', {class:'row'}, el('span', {class:'name'}, el('span', {class:'num'}, `${c.inv.length}/${cap(c)} bag slots`), el('small', {}, `Tap a hand to hold or put away a weapon. ${RL.slots_base} base${gearSlots(c) - packSlots(c) ? ` + ${gearSlots(c) - packSlots(c)} clothing` : ''}${packSlots(c) ? ` + ${packSlots(c)} backpack` : ''}. Tap a slot above to take something off.`))));
   if(!wearables.length) list.append(el('p', {class:'empty'}, 'No spare clothing in your bag. Clothing can be found in cabinets and plastic containers.'));
-  for(const [it, i] of wearables) list.append(el('div', {class:'row'}, el('span', {class:'name'}, DEF[it.id].name, el('small', {}, SLOT_NAME[DEF[it.id].slot] + (DEF[it.id].slots ? ` · +${DEF[it.id].slots} bag slots` : ''))),
+  for(const [it, i] of wearables) list.append(el('div', {class:'row'}, ico(it.id), el('span', {class:'name'}, DEF[it.id].name, el('small', {}, SLOT_NAME[DEF[it.id].slot] + (DEF[it.id].slots ? ` · +${DEF[it.id].slots} bag slots` : ''))),
     el('button', {class:'mini', onclick:() => { wearItem(i); refresh(); }}, 'Wear'),
     clothOf(it.id) ? el('button', {class:'mini', onclick:() => { stripItem(i); refresh(); }}, `Strip → ${clothOf(it.id)} Cloth`) : ''));
   drawDoll(root);
@@ -927,7 +1137,7 @@ function invList(target, mode){
     if(clothOf(it.id) && mode !== 'run') btns.push(el('button', {class:'mini', onclick:() => { stripItem(i); refresh(); }}, `Strip → ${clothOf(it.id)} Cloth`));
     if(mode === 'base') btns.push(el('button', {class:'mini', onclick:() => { const x = c.inv[i]; if(addItem(state.stash, stashCap(), x)) c.inv.splice(i, 1); else toast('Base storage is full. Build more Storage.'); refresh(); }}, 'Store'));
     else btns.push(el('button', {class:'mini', onclick:() => { c.inv.splice(i, 1); refresh(); }}, 'Drop'));
-    target.append(el('div', {class:'row'}, el('span', {class:'name'}, itemLabel(it), el('small', {}, itemDesc(it))), ...btns));
+    target.append(el('div', {class:'row'}, ico(it.id), el('span', {class:'name'}, itemLabel(it), el('small', {}, itemDesc(it))), ...btns));
   });
 }
 const stashCap = () => RL.base_storage_slots + state.base.structs.filter(s => s.type === 'storage').length * RL.storage_slots;
@@ -950,7 +1160,7 @@ function stashList(target){
   const c = C(); target.innerHTML = '';
   if(!state.stash.length){ target.append(el('p', {class:'empty'}, 'Nothing stored yet. Bring loot home and press Store.')); return; }
   state.stash.forEach((it, i) => {
-    target.append(el('div', {class:'row'}, el('span', {class:'name'}, itemLabel(it), el('small', {}, itemDesc(it))),
+    target.append(el('div', {class:'row'}, ico(it.id), el('span', {class:'name'}, itemLabel(it), el('small', {}, itemDesc(it))),
       el('button', {class:'mini', onclick:() => { const x = state.stash[i]; if(addItem(c.inv, cap(c), x)) state.stash.splice(i, 1); else toast('Bag full'); refresh(); }}, 'Take')));
   });
 }
@@ -970,7 +1180,7 @@ function bldList(target){
   for(const key of BKEYS){
     const m = MAPS[key], b = state.buildings[key];
     let status = 'Fully stocked';
-    if(b){ const cs = Object.values(b.containers); const done = cs.filter(x => x.searched).length; const zl = b.zombies.filter(z => !z.dead).length; status = `${done}/${cs.length} searched · ${zl} zombies left · ${restockIn(b)}`; }
+    if(b){ const fl = floorsOf(b), cs = fl.flatMap(f => Object.values(f.containers)); const done = cs.filter(x => x.searched).length; const zl = fl.flatMap(f => f.zombies).filter(z => !z.dead).length; status = `${done}/${cs.length} searched · ${zl} zombies left · ${restockIn(b)}`; }
     target.append(el('div', {class:'row bld'}, bldIcon(key), el('span', {class:'name'}, el('b', {}, m.name), el('small', {}, `${m.blurb} · ${status}`)),
       el('button', {class:'btn primary', onclick:() => enterBuilding(key)}, 'Enter')));
   }
@@ -980,7 +1190,7 @@ function bldList(target){
 function show(name){
   if(name === 'base') name = 'build';
   state.screen = name; document.body.dataset.screen = name;
-  if(name === 'map'){ mapPan = null; mapPop = false; }
+  if(name === 'map') mapPop = false;
   for(const s of ['camp','town','run','build','map']) $('#scr-' + s).hidden = (s !== name);
   refresh(); save();
   if(name === 'run' || name === 'build' || name === 'map' || name === 'town') requestAnimationFrame(resize);
@@ -1059,7 +1269,7 @@ function openBag(){ openBagView('run', 'Bag · game paused', 'bag'); }
 function openLoot(ct){
   sheetCt = ct; const c = C(); const d = el('div', {class:'list'});
   if(!ct.items.length) d.append(el('p', {class:'empty'}, 'Nothing left here.'));
-  ct.items.forEach((it, i) => d.append(el('div', {class:'row'}, el('span', {class:'name'}, itemLabel(it), el('small', {}, itemDesc(it))),
+  ct.items.forEach((it, i) => d.append(el('div', {class:'row'}, ico(it.id), el('span', {class:'name'}, itemLabel(it), el('small', {}, itemDesc(it))),
     el('button', {class:'mini', onclick:() => { if(addItem(c.inv, cap(c), it)) ct.items.splice(i, 1); else toast(`Bag full (${cap(c)} slots)`); refresh(); }}, 'Take'))));
   if(ct.items.length > 1) d.append(el('button', {class:'btn', style:'margin-top:8px', onclick:() => {
     for(const it of [...ct.items]){ if(addItem(c.inv, cap(c), it)) ct.items.splice(ct.items.indexOf(it), 1); else { toast('Bag full'); break; } }
@@ -1197,26 +1407,79 @@ function randomLayout(m){
   for(let i = 0; i < 20; i++){ const g = placeObjects(info.bare, info.room, info, 100); if(g && !layoutCheck(g)) return {grid:g, kinds, how:'objects'}; }
   return {grid:m.rows.map(r => [...r]), kinds, how:'fixed'};
 }
-function buildBuilding(key){
+// One floor of a building from recipe m. mode: 'up' an upstairs floor, 'bunker' the bunker; both have no exit and you arrive on the stairs or ladder
+// where the exit's start spot would be. A bunker keeps all its containers, each gives at least 1 item, and holds bunker_zombies_min-max zombies.
+function makeFloor(key, m, mode){
+  const up = !!mode;
   const type = btype(key), kind = PLACES[placeOf(key)].kind;   // kind of place: city, village or farm
-  const m = MAPS[type]; const grid = [], zombies = [], containers = {}; let start = {x:5, y:14};
+  const grid = [], zombies = [], containers = {}; let start = {x:5, y:14};
   const lay = randomLayout(m);
   lay.grid.forEach((r, y) => { const row = []; r.forEach((ch, x) => {
-    if(ch === 'P'){ start = {x, y}; row.push('.'); }
+    if(ch === 'P'){ start = {x, y}; row.push(mode === 'bunker' ? '_' : up ? '^' : '.'); }
     else if(ch === 'Z'){ row.push('.'); }
+    else if(ch === 'E' && up){ row.push('#'); }
     else { if(POOLS[ch]) containers[`${x},${y}`] = {type:ch, searched:false, items:[]}; row.push(ch); }
   }); grid.push(row); });
   const nRecipe = Object.keys(containers).length;
   // outside the city some containers are simply not there: only a share of the recipe's containers is kept (at least 3), picked at random
-  { const share = RL['containers_share_' + kind] ?? 100, ks = Object.keys(containers), keep = Math.min(ks.length, Math.max(3, Math.round(ks.length * share / 100)));
+  { const share = mode === 'bunker' ? 100 : RL['containers_share_' + kind] ?? 100, ks = Object.keys(containers), keep = Math.min(ks.length, Math.max(3, Math.round(ks.length * share / 100)));
     while(ks.length > keep){ const k = ks.splice(Math.floor(Math.random() * ks.length), 1)[0], [cx, cy] = k.split(',').map(Number); delete containers[k]; grid[cy][cx] = '.'; } }
+  if(mode === 'bunker') for(const k in containers) containers[k].rich = true;
   const floor = [];
   grid.forEach((row, y) => row.forEach((ch, x) => { if(ch === '.' && Math.max(Math.abs(x - start.x), Math.abs(y - start.y)) >= 4) floor.push([x, y]); }));
   const bonus = nRecipe >= 12 ? (RL.zombies_big_bonus || 0) : 0;
   let n = Math.round((ri(RL.zombies_min, RL.zombies_max) + bonus + (RL['zombies_bonus_' + type] || 0)) * (RL.zombie_multiplier ?? 1) * (RL['zombies_factor_' + kind] ?? 1));
-  if(kind !== 'city') n = Math.max(1, n);
+  if(mode === 'bunker') n = ri(RL.bunker_zombies_min ?? 1, RL.bunker_zombies_max ?? 3);
+  else if(up) n = Math.max(1, Math.round(n * (RL.upstairs_zombie_percent ?? 60) / 100));
+  else if(kind !== 'city') n = Math.max(1, n);
   while(n-- > 0 && floor.length){ const [x, y] = floor.splice(Math.floor(Math.random() * floor.length), 1)[0]; zombies.push({x, y, hp:ZD.hp, alerted:false, dead:false}); }
   return {grid, zombies, containers, start, kinds:lay.kinds};
+}
+// The stairs up (^) or the bunker hatch (_) on the ground floor: a free tile against a wall, at least 4 tiles from the entrance, with nothing to search next to it
+// (so the action button there always means the stairs) and clear of doors.
+function placeStairs(f, mark = '^'){
+  const g = f.grid, pick = minD => { const c = [];
+    for(let y = 1; y < H - 1; y++) for(let x = 1; x < W - 1; x++){
+      if(g[y][x] !== '.' || Math.max(Math.abs(x - f.start.x), Math.abs(y - f.start.y)) < minD || f.zombies.some(z => z.x === x && z.y === y)) continue;
+      let wall = false, open = 0, bad = false;
+      for(const [dx, dy] of N4){ const ch = g[y + dy][x + dx]; if(ch === '#') wall = true; if(ch === '.') open++; }
+      for(let b = y - 1; b <= y + 1; b++) for(let a = x - 1; a <= x + 1; a++){ const ch = g[b][a]; if(ch === 'D' || ch === 'E' || ch === '^' || ch === '_' || POOLS[ch]) bad = true; }
+      if(wall && open >= 2 && !bad) c.push({x, y}); }
+    return c.length ? c[Math.floor(Math.random() * c.length)] : null; };
+  const st = pick(4) || pick(2); if(st) g[st.y][st.x] = mark; return st;
+}
+function buildBuilding(key){
+  const m = MAPS[btype(key)], b = makeFloor(key, m); b.floor = 0; b.links = {}; b.fl = {};
+  if(m.upMap && Math.random() * 100 < (RL.upstairs_chance ?? 60)){ const st = placeStairs(b, '^'); if(st){ const up = makeFloor(key, m.upMap, 'up'); up.links = {0:{x:up.start.x, y:up.start.y}}; b.links[1] = st; b.fl[1] = up; } }
+  if(Math.random() * 100 < (RL.bunker_chance ?? 2)){ const h = placeStairs(b, '_'); if(h){ const bk = makeFloor(key, BUNKER, 'bunker'); bk.links = {0:{x:bk.start.x, y:bk.start.y}}; b.links[-1] = h; b.fl[-1] = bk; b.hatchFound = false; } }
+  return b;
+}
+// b holds the floor you are on (b.floor: -1 bunker, 0 ground, 1 upstairs); the other floors wait in b.fl by number. Changing floor swaps them, so
+// everything that reads B() works on the floor you are on. b.links: tile on this floor -> the floor it leads to. A survivor you have not found yet
+// stays on their floor; one who follows you comes along.
+const FLOOR_KEYS = ['grid', 'zombies', 'containers', 'start', 'kinds', 'seen', 'decals', 'links'];
+function goFloor(b, n){
+  const o = b.fl && b.fl[n]; if(!o) return false;
+  const cur = {};
+  for(const k of FLOOR_KEYS){ cur[k] = b[k]; if(o[k] === undefined) delete b[k]; else b[k] = o[k]; }
+  if(b.surv && !b.surv.found){ cur.surv = b.surv; delete b.surv; }
+  if(o.surv) b.surv = o.surv;
+  delete b.fl[n]; b.fl[b.floor || 0] = cur; b.floor = n; roomCache.delete(b); visCache.b = null; return true;
+}
+function linkAt(b, x, y){ for(const k in b.links || {}){ const l = b.links[k]; if(l.x === x && l.y === y) return +k; } return null; }
+// The floors that count for the town status and "cleared": every floor, the bunker only once its hatch is found.
+const floorsOf = b => [[b.floor || 0, b], ...Object.entries(b.fl || {})].filter(([n]) => +n !== -1 || b.hatchFound !== false).map(q => q[1]);
+function revealHatch(b, text){
+  if(b.hatchFound !== false) return; b.hatchFound = true; const h = b.links[-1];
+  fxs.push({type:'ring', x:h.x, y:h.y, t0:performance.now(), dur:600, c:'#f2d27a'}); float(h.x, h.y, 'Hatch!', '#f2d27a', 400); toast(text); save();
+}
+function changeFloor(to){
+  const b = B(), r = R(); if(!b) return; const from = b.floor || 0;
+  if(!goFloor(b, to)) return;
+  const s = b.links[from]; r.px = r.x = s.x; r.py = r.y = s.y; r.moving = false;
+  if(b.surv && b.surv.found){ const v = b.surv; v.x = v.rx = s.x; v.y = v.ry = s.y; delete v.path; }
+  resetInput(); floats.length = 0; parts.length = 0; fxs.length = 0; pAn.rx = null; runCam.x = null;
+  toast(to === 1 ? 'Upstairs' : to === -1 ? 'Down in the bunker' : from === 1 ? 'Back downstairs' : 'Back up from the bunker'); updateHud(); save();
 }
 function enterBuilding(key, ok){
   const ch = C();
@@ -1229,7 +1492,7 @@ function enterBuilding(key, ok){
     openSheet('Low on food & water', d, 'warn'); return;
   }
   if(!state.buildings[key]){ state.buildings[key] = buildBuilding(key); state.buildings[key].day = state.day; }
-  const b = state.buildings[key];
+  const b = state.buildings[key]; if(b.floor) goFloor(b, 0);   // you always come in on the ground floor
   const sg = state.signal; if(sg && sg.lot === key){ if(!b.surv) placeSurvivor(b); if(b.surv){ b.surv.found = false; b.surv.rx = b.surv.x; b.surv.ry = b.surv.y; delete b.surv.path; } } else delete b.surv;
   state.run = {key, px:b.start.x, py:b.start.y, x:b.start.x, y:b.start.y, fdx:0, fdy:-1, cd:0, t:0, wsel:0, sneak:false, reinf:false};
   resetInput();
@@ -1239,7 +1502,7 @@ function enterBuilding(key, ok){
 const R = () => state.run;
 const B = () => state.run ? state.buildings[state.run.key] : null;
 const inb = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
-const passable = (g, x, y) => inb(x, y) && (g[y][x] === '.' || g[y][x] === 'D' || g[y][x] === 'E');
+const passable = (g, x, y) => inb(x, y) && (g[y][x] === '.' || g[y][x] === 'D' || g[y][x] === 'E' || g[y][x] === '^' || g[y][x] === '_');
 const cheb = (a, b) => Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y));
 const zAt = (x, y) => B().zombies.find(z => !z.dead && z.x === x && z.y === y);
 const P = () => ({x:R().px, y:R().py});
@@ -1532,7 +1795,7 @@ function alertZ(z){ if(z.alerted) return; z.alerted = true; z.goal = null; z.pat
 // v93: statistics of this game, shown on the death screen
 const ST = () => state.stats || (state.stats = {kills:0, guardKills:0, trapKills:0, cleared:0, searched:0, raids:0, raidsRepelled:0, survivors:0, survivorsLost:0, built:0, crafted:0});
 function killZ(z){ ST().kills++;
-  { const b = B(); if(b && state.run && state.run.key !== 'raid' && !b.clearedStat && b.zombies.length && b.zombies.every(q => q.dead || q === z)){ b.clearedStat = true; ST().cleared++; } }   // every zombie in it killed
+  { const b = B(); if(b && state.run && state.run.key !== 'raid' && !b.clearedStat && b.zombies.length && b.zombies.every(q => q.dead || q === z) && floorsOf(b).every(f => f === b || f.zombies.every(q => q.dead))){ b.clearedStat = true; ST().cleared++; } }   // every zombie in it killed
   z.dead = true; za(z).die = performance.now(); blood(z.rx, z.ry, 16, 1.2); addDecal(z.rx, z.ry, .45); float(z.rx, z.ry, 'Dead', '#8db466', 300); }
 function tryAttack(dx, dy){
   const r = R(), w = activeWeapon();
@@ -1634,6 +1897,7 @@ function nearAction(){
   for(const key in b.containers){ const [x, y] = key.split(',').map(Number), dd = Math.hypot(x - r.x, y - r.y); if(dd <= 1.45 && (!best || dd < best.d)) best = {kind:'ct', key, ct:b.containers[key], x, y, d:dd}; }
   if(best) return best;
   if(b.grid[r.py][r.px] === 'E') return {kind:'exit'};
+  { const to = linkAt(b, r.px, r.py); if(to !== null && !(to === -1 && b.hatchFound === false)) return {kind:'stairs', to}; }
   return null;
 }
 function doAction(){
@@ -1641,6 +1905,7 @@ function doAction(){
   if(searching){ searching = null; updateHud(); return; }
   const a = nearAction(); if(!a) return;
   if(a.kind === 'exit'){ leaveBuilding(); return; }
+  if(a.kind === 'stairs'){ changeFloor(a.to); return; }
   if(a.kind === 'surv'){ const v = B().surv; v.found = true; float(v.rx, v.ry, 'Thank you!', '#b6f0a4'); toast(`${v.name} is with you. Leave the building alive and they join your camp.`); save(); updateHud(); return; }
   if(a.ct.searched){ openLoot(a.ct); return; }
   searching = {key:a.key, x:a.x, y:a.y, x0:r.x, y0:r.y, t:0, total:BIG[a.ct.type] ? (RL.search_seconds_big || 3) : (RL.search_seconds_small || 1.5)};
@@ -1649,8 +1914,9 @@ function doAction(){
 function finishSearch(){
   const b = B(), s = searching, ct = b.containers[s.key]; searching = null; if(!ct || ct.searched) return;
   ct.searched = true; ST().searched++;
+  if(b.hatchFound === false && !b.floor){ const h = b.links[-1], rm = roomsOf(b); if(rm[h.y * W + h.x] === rm[s.y * W + s.x]) revealHatch(b, 'Searching, you find a hidden hatch in the floor!'); }   // v107
   const lr = rnd() * (RL.loot_chance_0 + RL.loot_chance_1 + RL.loot_chance_2);
-  const n = lr < RL.loot_chance_0 ? 0 : lr < RL.loot_chance_0 + RL.loot_chance_1 ? 1 : 2;
+  const n = Math.max(ct.rich ? 1 : 0, lr < RL.loot_chance_0 ? 0 : lr < RL.loot_chance_0 + RL.loot_chance_1 ? 1 : 2);   // a bunker container always gives something
   spray(s.x, s.y, 8, .8, ['#caa06a', '#e3cf9f', '#9aa5a8'], false, .6); fxs.push({type:'ring', x:s.x, y:s.y, t0:performance.now(), dur:400, c:'#e2a93f'});
   ct.items = POOLS[ct.type].length ? Array.from({length:n}, () => makeItem(weighted(POOLS[ct.type]))) : [];
   updateHud(); openLoot(ct); save();
@@ -1706,7 +1972,7 @@ function simZombie(z, dt, noise, loud){
     if(z.goal){ stepTo(g, z, z.goal[0], z.goal[1], RL.zombie_wander_speed || .5, dt); if(Math.hypot(z.goal[0] - z.rx, z.goal[1] - z.ry) < .05 || (z.gt -= dt) <= 0) z.goal = null; }
     else { z.wt = (z.wt ?? rnd() * (RL.detect_seconds || 2)) - dt;
       if(z.wt <= 0){ z.wt = RL.detect_seconds || 2;
-        if(rnd() < pct(RL.wander_chance)){ const opts = neighbors(g, z.x, z.y, (x, y) => (x === r.px && y === r.py) || !!zAt(x, y) || g[y][x] === 'E'); if(opts.length){ z.goal = opts[Math.floor(rnd() * opts.length)]; z.gt = 4; } } } }
+        if(rnd() < pct(RL.wander_chance)){ const opts = neighbors(g, z.x, z.y, (x, y) => (x === r.px && y === r.py) || !!zAt(x, y) || g[y][x] === 'E' || g[y][x] === '^' || g[y][x] === '_'); if(opts.length){ z.goal = opts[Math.floor(rnd() * opts.length)]; z.gt = 4; } } } }
     return;
   }
   z.atk = Math.max(0, (z.atk || 0) - dt);
@@ -1989,6 +2255,7 @@ function simRun(dt){
     if(!blk && (!inp.fire || !aimDir())){ r.fdx = mx; r.fdy = my; }
   }
   r.moving = moved; r.px = clamp(Math.round(r.x), 0, W - 1); r.py = clamp(Math.round(r.y), 0, H - 1);
+  if(b.hatchFound === false && !b.floor){ const h = b.links[-1]; if(h && Math.max(Math.abs(r.px - h.x), Math.abs(r.py - h.y)) <= 1) revealHatch(b, 'Loose boards under your feet: a hidden hatch!'); }   // v107
   // aiming and attacking
   if(inp.fire){ const ad = aimDir(); if(ad){ r.fdx = ad[0]; r.fdy = ad[1]; } if(!blk && !stunned && holdFire(activeWeapon()) && tryAttack(r.fdx, r.fdy)) inp.shot = true; }
   if(blk || stunned){ r.want = null; if(searching) searching = null; }
@@ -2023,7 +2290,7 @@ function updateHud(){
   const tags = [c.bleeding && 'bleeding', c.wound && 'wound', c.pk > 0 && `painkiller ${c.pk}`, c.starving && 'starving'].filter(Boolean);
   $('#hptext').textContent = `HP ${Math.max(0, c.hp)}/${mh}${tags.length ? ' · ' + tags.join(' · ') : ''}`;
   const n = b.zombies.filter(z => !z.dead && z.alerted).length, st = $('#rtstat');
-  st.textContent = (n ? `Chased by ${n}` : 'Unnoticed') + (b.surv ? (b.surv.found ? ` · ${b.surv.name} follows` : ' · survivor inside') : '') + (r.key === 'raid' && (b.guards || []).length ? ` · guards ${yardGuards(b).length}/${b.guards.length}` : '') + (r.stun > 0 ? ' · STUNNED' : reloading ? ' · reloading' : searching ? ' · searching' : '');
+  st.textContent = (b.floor === 1 ? 'Upstairs · ' : b.floor === -1 ? 'Bunker · ' : '') + (n ? `Chased by ${n}` : 'Unnoticed') + (b.surv ? (b.surv.found ? ` · ${b.surv.name} follows` : ' · survivor inside') : b.fl && b.fl[0] && b.fl[0].surv ? ' · survivor downstairs' : '') + (r.key === 'raid' && (b.guards || []).length ? ` · guards ${yardGuards(b).length}/${b.guards.length}` : '') + (r.stun > 0 ? ' · STUNNED' : reloading ? ' · reloading' : searching ? ' · searching' : '');
   st.style.color = n ? '#ff8a7a' : '';
   const hw = heldItems(c).filter(i => isWeapon(i.id)), w = activeWeapon(), gun = w && DEF[w.id].kind === 'gun';
   $('#wtext').textContent = w ? (gun ? `${DEF[w.id].name}${upTag(w)} ${w.mag}/${DEF[w.id].cap} · ${ammoWord(w)} ${ammoCount(c, w)}` : `${DEF[w.id].name}${upTag(w)} ${durOf(w)}/${RL.melee_durability}`) + (hw.length > 1 ? ' ⇄' : '') : 'Unarmed';
@@ -2031,7 +2298,7 @@ function updateHud(){
   $('#btn-block').classList.toggle('on', !!r.blocking);
   { const sf = $('#stfill'); sf.style.width = clamp((r.stam ?? 100) / (RL.stamina_max ?? 100) * 100, 0, 100) + '%'; sf.classList.toggle('down', r.stun > 0 || (r.stam ?? 1) <= 0); }
   const a = nearAction(), act = $('#btn-act');
-  act.textContent = searching ? 'Cancel' : !a ? 'Search' : a.kind === 'exit' ? (r.key === 'raid' ? 'Hide' : 'Leave') : a.kind === 'surv' ? 'Rescue' : a.ct.searched ? 'Open' : 'Search';
+  act.textContent = searching ? 'Cancel' : !a ? 'Search' : a.kind === 'exit' ? (r.key === 'raid' ? 'Hide' : 'Leave') : a.kind === 'stairs' ? (a.to > (b.floor || 0) ? ((b.floor || 0) < 0 ? 'Climb up' : 'Go up') : 'Go down') : a.kind === 'surv' ? 'Rescue' : a.ct.searched ? 'Open' : 'Search';
   act.disabled = !searching && !a;
   $('#btn-reload').disabled = !gun || !!reloading || w.mag >= DEF[w.id].cap || ammoCount(c, w) <= 0;
 }
@@ -2515,6 +2782,18 @@ function pickRun(px, py){
   if(cands.length){ cands.sort((a, c) => c.k - a.k); return cands[0].t; }
   const [wx, wy] = unproj(px, py); return [Math.floor(wx), Math.floor(wy)];
 }
+// v106: stairs, drawn flat on the floor as steps
+function drawStairs(x, y, d){
+  for(let i = 0; i < 5; i++){ ctx.fillStyle = i % 2 ? '#6e5842' : '#9a7e5e'; ctx.fillRect(x + .1, y + .1 + i * .16, .8, .16); }
+  ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fillRect(x + .1, y + .1, .06, .8); ctx.fillRect(x + .84, y + .1, .06, .8);
+  if(d){ ctx.fillStyle = `rgba(7,8,9,${d})`; ctx.fillRect(x + .1, y + .1, .8, .8); }
+}
+// v107: the bunker hatch (a trapdoor) on the ground floor; in the bunker the ladder up
+function drawHatch(x, y, d, ladder){
+  if(ladder){ ctx.fillStyle = '#2a2a28'; ctx.fillRect(x + .12, y + .12, .76, .76); ctx.fillStyle = '#9a8a6a'; ctx.fillRect(x + .24, y + .1, .08, .8); ctx.fillRect(x + .68, y + .1, .08, .8); for(let i = 0; i < 4; i++) ctx.fillRect(x + .24, y + .2 + i * .2, .52, .06); }
+  else { ctx.fillStyle = '#4a3523'; ctx.fillRect(x + .12, y + .12, .76, .76); ctx.fillStyle = '#6e5038'; for(let i = 0; i < 3; i++) ctx.fillRect(x + .16, y + .16 + i * .24, .68, .18); ctx.fillStyle = '#b9b2a2'; ctx.fillRect(x + .44, y + .46, .12, .08); }
+  if(d){ ctx.fillStyle = `rgba(7,8,9,${d})`; ctx.fillRect(x + .1, y + .1, .8, .8); }
+}
 function drawWallTile(x, y, m, low, dim){
   const h = low ? .2 : 1.6;
   ibox(x, y, x + 1, y + 1, 0, h, low ? m.wallCap : m.wallTop, m.wallFront, shadeC(m.wallFront, .8), dim);
@@ -2527,7 +2806,7 @@ function drawDoorTile(x, y, g, m, low, dim){
   if(!low) ibox(x, y, x + 1, y + 1, 1.25, 1.6, m.wallTop, m.wallFront, shadeC(m.wallFront, .8), dim);
 }
 function drawRun(now, dt){
-  const b = B(), r = R(), m = MAPS[btype(r.key)] || RAIDMAP, g = b.grid, cw = runVW, chh = runVH;
+  const b = B(), r = R(), m = (b.floor === -1 ? BUNKER : MAPS[btype(r.key)]) || RAIDMAP, g = b.grid, cw = runVW, chh = runVH;
   ensureRun();
   pAn.rx = r.x; pAn.ry = r.y; pAn.moving = !!r.moving; if(pAn.moving) pAn.phase += dt * (r.sneak ? 9 : 15); { const sd = r.fdx - r.fdy; if(Math.abs(sd) > .05) pAn.face = sd > 0 ? 1 : -1; }
   for(const z of b.zombies){ const a = za(z); a.rx = z.rx; a.ry = z.ry; a.moving = !!z.moving && !z.dead; if(a.moving) a.phase += dt * 9; const sd = (z.fx || 0) - (z.fy || 0); if(Math.abs(sd) > .05) a.face = sd > 0 ? 1 : -1; }
@@ -2545,6 +2824,8 @@ function drawRun(now, dt){
     const i = y * W + x, ch = g[y][x]; if(ch === '#' || !known(i)) continue;
     if(ch === 'E'){ ctx.fillStyle = '#2c4a33'; ctx.fillRect(x + .08, y + .08, .84, .84); ctx.fillStyle = '#3f6a48'; ctx.fillRect(x + .16, y + .16, .68, .68); continue; }
     drawFloor(x, y, kinds[Math.min(kinds.length - 1, Math.max(0, rooms[i]))], lit(i));
+    if(ch === '^') drawStairs(x, y, lit(i));
+    else if(ch === '_' && !(b.hatchFound === false && !b.floor)) drawHatch(x, y, lit(i), (b.floor || 0) < 0);
   }
   for(const d of (b.decals || [])){ const i = Math.round(d.y) * W + Math.round(d.x); if(!inb(Math.round(d.x), Math.round(d.y)) || !known(i)) continue; ctx.fillStyle = vis[i] ? 'rgba(96,14,10,.6)' : 'rgba(50,8,6,.6)'; ctx.beginPath(); ctx.ellipse(d.x + .5, d.y + .5, d.r * 1.2, d.r, .4, 0, 7); ctx.fill(); }
   const wpn = (() => { const w = activeWeapon(); return w ? (DEF[w.id].quiet ? 'bow' : DEF[w.id].kind) : null; })();
@@ -2568,6 +2849,8 @@ function drawRun(now, dt){
   screenTf();
   const [ex, ey] = (() => { for(let y = 0; y < H; y++) for(let x = 0; x < W; x++) if(g[y][x] === 'E') return [x, y]; return [0, 0]; })();
   if(g[ey][ex] === 'E' && known(ey * W + ex)){ const [lx, ly] = ip(ex + .5, ey + .5); ctx.fillStyle = '#b6e3a8'; ctx.font = `700 ${Math.round(T * .2)}px "Pixelify Sans",monospace`; ctx.textAlign = 'center'; ctx.fillText(r.key === 'raid' ? 'SHELTER' : 'EXIT', lx, ly + T * .06); }
+  for(const k in b.links || {}){ const to = +k, l = b.links[k]; if(!known(l.y * W + l.x) || (to === -1 && b.hatchFound === false)) continue;
+    const [lx, ly] = ip(l.x + .5, l.y + .5); ctx.fillStyle = '#f2d27a'; ctx.font = `700 ${Math.round(T * .2)}px "Pixelify Sans",monospace`; ctx.textAlign = 'center'; ctx.fillText(to === -1 ? 'HATCH' : to > (b.floor || 0) ? 'UP' : 'DOWN', lx, ly + T * .06); }
   // depth-sorted objects
   const pr = Math.round(pAn.rx) + Math.round(pAn.ry), items = [], myRoom = rooms[r.py * W + r.px];
   const inRoom = (x, y) => inb(x, y) && myRoom >= 0 && rooms[y * W + x] === myRoom && g[y][x] !== '#';
@@ -3256,8 +3539,8 @@ function openWorkshop(s){
       const ok = rc.cost.every(k => craftCount(k.id) >= k.n);
       const b = el('button', {class:'mini', onclick:() => { craft(rc); openWorkshop(s); refresh(); }}, 'Make');
       if(!ok) b.disabled = true;
-      box.append(el('div', {class:'row'}, el('span', {class:'name'}, `${rc.n > 1 ? rc.n + ' × ' : ''}${DEF[rc.out].name}`,
-        el('small', {}, rc.cost.map(k => `${k.n} ${DEF[k.id] ? DEF[k.id].name : k.id} (${craftCount(k.id)})`).join(' + '))), b));
+      box.append(el('div', {class:'row'}, ico(rc.out), el('span', {class:'name'}, `${rc.n > 1 ? rc.n + ' × ' : ''}${DEF[rc.out].name}`,
+        el('small', {}, costNodes(rc.cost))), b));
     }
   }
   // repair and upgrade: needs a hammer (bag or storage), paid in Scrap metal
@@ -3282,7 +3565,7 @@ function openWorkshop(s){
           spend('scrap', RL.upgrade_scrap); it.up = upOf(it) + 1; save(); toast(`${dd.name} upgraded: ${bodyDmg(it)}${dd.kind === 'gun' ? '/' + headDmg(it) : ''} damage (${it.up}/${RL.upgrade_max})`); openWorkshop(s); refresh(); }},
           `Upgrade +${RL.upgrade_damage} dmg · ${RL.upgrade_scrap} Scrap`); if(!hammer || scrapN() < RL.upgrade_scrap) b3.disabled = true; btns.push(b3); }
       else btns.push(el('span', {class:'chip ok'}, 'Fully upgraded'));
-      rbox.append(el('div', {class:'row', style:'flex-wrap:wrap'}, el('span', {class:'name', style:'flex:1 1 100%'}, `${dd.name}${upTag(it)}`,
+      rbox.append(el('div', {class:'row', style:'flex-wrap:wrap'}, ico(it.id), el('span', {class:'name', style:'flex:1 1 calc(100% - 40px)'}, `${dd.name}${upTag(it)}`,
         el('small', {}, `${lbl}${it.eq ? ' · in hand' : ''} · ${durOf(it)}/${maxDur(it)} durability · ${bodyDmg(it)}${dd.kind === 'gun' ? '/' + headDmg(it) : ''} damage · upgrades ${upOf(it)}/${RL.upgrade_max}`)), ...btns));
     });
     if(!anyW) rbox.append(el('p', {class:'empty'}, 'No weapons in your bag or storage.'));
@@ -3297,13 +3580,13 @@ function openWorkshop(s){
   const give = (id, n) => addItem(state.stash, stashCap(), {id, n}) || addItem(c.inv, cap(c), {id, n});
   let any = false;
   for(const [lbl, list] of lists) list.forEach(it => { const n = salv(it); if(!n || it.eq) return; any = true;
-    sbox.append(el('div', {class:'row'}, el('span', {class:'name'}, `${DEF[it.id].name}${upTag(it)}`, el('small', {}, `${lbl} · ${durOf(it)}/${maxDur(it)} durability · gives ${n} Scrap metal`)),
+    sbox.append(el('div', {class:'row'}, ico(it.id), el('span', {class:'name'}, `${DEF[it.id].name}${upTag(it)}`, el('small', {}, `${lbl} · ${durOf(it)}/${maxDur(it)} durability · gives ${n} Scrap metal`)),
       el('button', {class:'mini', onclick:() => { const i = list.indexOf(it); if(i < 0) return; list.splice(i, 1);
         if(!give('scrap', n)){ list.splice(i, 0, it); toast('No room for the Scrap metal'); return; } save(); toast(`${DEF[it.id].name} → ${n} Scrap metal`); openWorkshop(s); refresh(); }}, 'Salvage'))); });
   if(tools){
     const bulk = (id, per, out) => { const have = stashCount(id), k = per > 0 ? Math.floor(have / per) : 0; if(!k) return; any = true;
       const go = m => { stashTake(id, m * per); if(!give(out, m)){ give(id, m * per); toast('No room'); return; } save(); toast(`${m * per} ${DEF[id].name} → ${m} ${DEF[out].name}`); openWorkshop(s); refresh(); };
-      sbox.append(el('div', {class:'row'}, el('span', {class:'name'}, DEF[id].name, el('small', {}, `${have} in storage · ${per} give 1 ${DEF[out].name}`)),
+      sbox.append(el('div', {class:'row'}, ico(id), el('span', {class:'name'}, DEF[id].name, el('small', {}, `${have} in storage · ${per} give 1 ${DEF[out].name}`)),
         el('button', {class:'mini', onclick:() => go(1)}, `${per} → 1`), k > 1 ? el('button', {class:'mini', onclick:() => go(k)}, `All · ${k * per} → ${k}`) : '')); };
     for(const id of Object.keys(DEF).filter(id => DEF[id].kind === 'ammo' && id !== 'arrow')) bulk(id, RL.salvage_ammo_per_scrap, 'scrap');
   }
@@ -3551,8 +3834,8 @@ function openCampfire(s){
     const ok = rc.cost.every(k => craftCount(k.id) >= k.n);
     const b = el('button', {class:'mini', onclick:() => { craft(rc, true); openCampfire(s); refresh(); }}, 'Cook');
     if(!ok) b.disabled = true;
-    box.append(el('div', {class:'row'}, el('span', {class:'name'}, `${rc.n > 1 ? rc.n + ' × ' : ''}${DEF[rc.out].name}`,
-      el('small', {}, DEF[rc.out].desc), el('small', {}, rc.cost.map(k => `${k.n} ${DEF[k.id] ? DEF[k.id].name : k.id} (${craftCount(k.id)})`).join(' + '))), b));
+    box.append(el('div', {class:'row'}, ico(rc.out), el('span', {class:'name'}, `${rc.n > 1 ? rc.n + ' × ' : ''}${DEF[rc.out].name}`,
+      el('small', {}, DEF[rc.out].desc), el('small', {}, costNodes(rc.cost))), b));
   }
   d.append(el('p', {class:'sub', style:'margin:0;font-size:13px'}, 'Ingredients come from your bag and base storage (amount you have in brackets). A meal goes into your bag, or into base storage when the bag is full.'));
   openSheet('Campfire', d, 'struct');
@@ -3658,14 +3941,9 @@ function travelCost(from, to){
   return {h:Math.max(mn, Math.round(RL.hunger_drain_travel * k * home)), t:Math.max(mn, Math.round(RL.thirst_drain_travel * k * home))};
 }
 let mapSel = 'polis';
-// v104: the map covers the whole screen (the world is taller than a landscape screen) and is dragged to see the rest.
-// mapPan = how far the view is scrolled, in screen pixels (null: centre on the selected place). mapPop = the small window for mapSel is open.
-let mapPan = null, mapPop = false;
-function mapView(){ const st = $('#mstage'); const w = st.clientWidth, h = st.clientHeight; const k = Math.max(w / WORLD.w, h / WORLD.h);
-  const mx = Math.max(0, WORLD.w * k - w), my = Math.max(0, WORLD.h * k - h);
-  if(!mapPan){ const pl = PLACES[mapSel] || PLACES.base; mapPan = {x:pl.x * k - w / 2, y:pl.y * k - h / 2}; }
-  mapPan.x = clamp(mapPan.x, 0, mx); mapPan.y = clamp(mapPan.y, 0, my);
-  return {k, ox:-mapPan.x, oy:-mapPan.y, w, h}; }
+// v105: the whole world fits the screen (no dragging); the strips beside it are drawn as more countryside. mapPop = the small window for mapSel is open.
+let mapPop = false;
+function mapView(){ const st = $('#mstage'); const w = st.clientWidth, h = st.clientHeight; const k = Math.min(w / WORLD.w, h / WORLD.h); return {k, ox:(w - WORLD.w * k) / 2, oy:(h - WORLD.h * k) / 2, w, h}; }
 // Where the survivor currently is on the world map. Travelling between places costs hunger and thirst.
 const here = () => PLACES[state.at] ? state.at : 'base';
 function openMapBag(){ openBagView('town', 'Bag', 'mapbag'); }
@@ -3706,35 +3984,26 @@ function openMapPop(key){ mapSel = key; mapPop = true; mapInfo(); }
 function closeMapPop(){ mapPop = false; mapInfo(); }
 $('#m-bag').onclick = openMapBag;
 $('#m-back').onclick = () => journey(here());   // back to where you are, no cost
-// drag to move the map; a tap (no drag) on a place opens its window, a tap elsewhere closes it
-let mapDrag = null;
-mcv.addEventListener('pointerdown', e => { mapView(); mapDrag = {id:e.pointerId, x:e.clientX, y:e.clientY, px:mapPan.x, py:mapPan.y, moved:false}; try { mcv.setPointerCapture(e.pointerId); } catch(_){} });
-mcv.addEventListener('pointermove', e => {
-  if(!mapDrag || e.pointerId !== mapDrag.id) return;
-  const dx = e.clientX - mapDrag.x, dy = e.clientY - mapDrag.y;
-  if(Math.hypot(dx, dy) > 8) mapDrag.moved = true;
-  if(mapDrag.moved){ mapPan.x = mapDrag.px - dx; mapPan.y = mapDrag.py - dy; }
-});
-mcv.addEventListener('pointerup', e => {
-  if(!mapDrag || e.pointerId !== mapDrag.id) return;
-  const moved = mapDrag.moved; mapDrag = null; if(moved) return;
+// a tap on a place opens its window, a tap elsewhere closes it
+mcv.addEventListener('pointerdown', e => {
   const v = mapView(), rc = mcv.getBoundingClientRect();
   const wx = (e.clientX - rc.left - v.ox) / v.k, wy = (e.clientY - rc.top - v.oy) / v.k;
   let best = null; for(const [key, pl] of Object.entries(PLACES)){ const d = Math.hypot(wx - pl.x, wy - pl.y); if(d < Math.max(90, pl.r + 15) && (!best || d < best[1])) best = [key, d]; }
   if(best) openMapPop(best[0]); else closeMapPop();
 });
-mcv.addEventListener('pointercancel', () => { mapDrag = null; });
-mcv.addEventListener('wheel', e => { e.preventDefault(); mapView(); mapPan.x += e.deltaX; mapPan.y += e.deltaY; }, {passive:false});
 function seeded(n){ let x = Math.sin(n * 12.9898) * 43758.5453; return x - Math.floor(x); }
 function drawMap(now){
   const g = mctx, v = mapView(), k = v.k, X = x => v.ox + x * k, Y = y => v.oy + y * k;
-  g.fillStyle = '#1c2320'; g.fillRect(0, 0, v.w, v.h);
-  g.fillStyle = '#51603f'; g.fillRect(X(0), Y(0), WORLD.w * k, WORLD.h * k);
+  g.fillStyle = '#51603f'; g.fillRect(0, 0, v.w, v.h);
+  const ex = Math.max(0, v.ox / k) + 40;   // width of each side strip, in world units
+  for(const side of [-1, 1]){ const x0 = side < 0 ? -ex : WORLD.w, n = Math.ceil(ex / 1000 * 26), m = Math.ceil(ex / 1000 * 140);
+    for(let i = 0; i < n; i++){ const fx0 = x0 + seeded(i + 3000 + side * 500) * ex, fy0 = seeded(i + 3200 + side * 500) * 1200; g.fillStyle = i % 3 ? '#5c6a44' : '#6b6a45'; g.fillRect(X(fx0), Y(fy0), 70 * k, 50 * k); }
+    for(let i = 0; i < m; i++){ const fx0 = x0 + seeded(i + 4000 + side * 900) * ex, fy0 = seeded(i + 5000 + side * 900) * 1300; g.fillStyle = i % 2 ? '#2f4a2b' : '#35522f'; g.beginPath(); g.arc(X(fx0), Y(fy0), (14 + seeded(i + 6000) * 14) * k, 0, 7); g.fill(); } }
   // fields
   for(let i = 0; i < 26; i++){ const fx0 = seeded(i) * 900, fy0 = seeded(i + 50) * 1200; g.fillStyle = i % 3 ? '#5c6a44' : '#6b6a45'; g.fillRect(X(fx0), Y(fy0), 70 * k, 50 * k); }
   // river
   g.strokeStyle = '#3d6a86'; g.lineWidth = Math.max(4, 22 * k); g.lineCap = 'round';
-  g.beginPath(); g.moveTo(X(-20), Y(560)); g.bezierCurveTo(X(250), Y(480), X(420), Y(760), X(620), Y(700)); g.bezierCurveTo(X(800), Y(650), X(900), Y(820), X(1020), Y(780)); g.stroke();
+  g.beginPath(); g.moveTo(X(-20 - ex), Y(560 + ex * 80 / 270)); g.lineTo(X(-20), Y(560)); g.bezierCurveTo(X(250), Y(480), X(420), Y(760), X(620), Y(700)); g.bezierCurveTo(X(800), Y(650), X(900), Y(820), X(1020), Y(780)); g.lineTo(X(1020 + ex), Y(780 - ex / 3)); g.stroke();
   // forests
   for(let i = 0; i < 140; i++){ const fx0 = seeded(i + 200) * 1000, fy0 = seeded(i + 400) * 1300;
     if(Object.values(PLACES).some(pl => Math.hypot(fx0 - pl.x, fy0 - pl.y) < pl.r + (pl.kind === 'base' ? 30 : 5))) continue;
@@ -3742,7 +4011,7 @@ function drawMap(now){
   // road
   g.strokeStyle = '#8a7c62'; g.lineWidth = Math.max(3, 10 * k); g.setLineDash([]);
   g.beginPath(); g.moveTo(X(PLACES.base.x), Y(PLACES.base.y)); g.bezierCurveTo(X(360), Y(820), X(470), Y(690), X(520), Y(620)); g.bezierCurveTo(X(580), Y(530), X(640), Y(470), X(PLACES.polis.x), Y(PLACES.polis.y)); g.stroke();
-  g.strokeStyle = '#6f644f'; g.lineWidth = Math.max(2, 8 * k); g.beginPath(); g.moveTo(X(PLACES.polis.x), Y(PLACES.polis.y)); g.lineTo(X(1000), Y(200)); g.moveTo(X(PLACES.polis.x), Y(PLACES.polis.y)); g.lineTo(X(560), Y(0)); g.stroke();
+  g.strokeStyle = '#6f644f'; g.lineWidth = Math.max(2, 8 * k); g.beginPath(); g.moveTo(X(PLACES.polis.x), Y(PLACES.polis.y)); g.lineTo(X(1000 + ex), Y(200 - ex * 160 / 340)); g.moveTo(X(PLACES.polis.x), Y(PLACES.polis.y)); g.lineTo(X(560), Y(0)); g.stroke();
   // side roads and tracks to the villages and farms
   g.strokeStyle = '#7d705a'; g.lineWidth = Math.max(2, 7 * k);
   const side = (...q) => { g.beginPath(); g.moveTo(X(q[0]), Y(q[1])); g.quadraticCurveTo(X(q[2]), Y(q[3]), X(q[4]), Y(q[5])); g.stroke(); };
@@ -3877,7 +4146,7 @@ function viewOf(stageSel, WD){ const st = $(stageSel); const w = st.clientWidth,
 function bStatus(key){
   const b = state.buildings[key];
   if(!b) return {text:'Fully stocked', done:false};
-  const cs = Object.values(b.containers), done = cs.filter(x => x.searched).length, zl = b.zombies.filter(z => !z.dead).length;
+  const fl = floorsOf(b), cs = fl.flatMap(f => Object.values(f.containers)), done = cs.filter(x => x.searched).length, zl = fl.flatMap(f => f.zombies).filter(z => !z.dead).length;
   return {text:`${done}/${cs.length} searched · ${zl} zombie${zl === 1 ? '' : 's'} left · ${restockIn(b)}`, done:done === cs.length};
 }
 function townRefresh(){
