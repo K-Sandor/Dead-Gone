@@ -58,6 +58,9 @@ h3{font-size:15px;color:var(--muted);font-weight:500;text-transform:uppercase;le
 .stor-head{flex:none;display:flex;flex-direction:column;padding:0 2px 6px;border-bottom:1px solid var(--line, #2b3236)}
 .stor-head b,.stor-head small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .stor-head b{font-family:"IBM Plex Mono",monospace;font-size:15px}.stor-head small{color:var(--muted);font-size:12px}
+.skt-list{flex:1 1 0;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.skt-perk .name b{display:block}.skt-perk.locked{opacity:.5}
+.pips{display:inline-flex;gap:3px;margin:2px 0}.pips i{width:12px;height:6px;border-radius:2px;background:#2b3236;border:1px solid #4a5258}.pips i.on{background:#9b7fd4;border-color:#c9a8ff}   /* v138 */
 .stor-list{flex:1 1 0;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 .taprow{cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .holdtip{position:fixed;z-index:30;max-width:min(320px,70vw);padding:8px 10px;border-radius:8px;background:#101315;border:1px solid #e2a93f;color:var(--text);font-size:13px;line-height:1.35;display:flex;flex-direction:column;gap:3px;pointer-events:none;box-shadow:0 6px 18px rgba(0,0,0,.5)}
@@ -304,6 +307,7 @@ details ul{padding-left:18px;margin:8px 0}
         <button class="btn sel" id="tab-eq" role="tab">Equipment</button>
         <button class="btn" id="tab-bag" role="tab">Bag &amp; stats</button>
       </div>
+      <button class="btn" id="camp-skills">Skills</button>
       <button class="btn" id="camp-awards">Awards</button>
       <button class="btn" id="camp-notes">Notes</button>
       <button class="btn primary" id="camp-back">Back</button>
@@ -416,7 +420,7 @@ details ul{padding-left:18px;margin:8px 0}
 <div id="toast" role="status"></div>
 <div id="rotate" hidden><div class="ph"></div><h2>Turn your phone sideways</h2><p>Dead &amp; Gone is played in landscape.</p></div>
 
-<script type="application/json" id="game-data">{"syncedAt": "2026-10-06", "items": {"knife": {"name": "Knife", "type": "Melee", "body": 20, "range": 1, "hands": 1, "attackAp": 15, "cd": 0.6}, "bat": {"name": "Baseball bat", "type": "Melee", "body": 40, "range": 1, "hands": 2, "attackAp": 35, "cd": 1.2}, "machete": {"name": "Machete", "type": "Melee", "body": 30, "range": 1, "hands": 1, "attackAp": 15, "cd": 0.6}, "hammer": {"name": "Hammer", "type": "Melee", "body": 20, "range": 1, "hands": 1, "attackAp": 20, "cd": 0.8}, "glock": {"name": "Glock", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo9"}, "beretta": {"name": "Beretta", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo9"}, "colt": {"name": "Colt 1911", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo45"}, "revolver": {"name": "Revolver", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 6, "reload": 10, "hands": 1, "cd": 0.8, "mode": "single", "ammo": "ammo357"}, "hunting": {"name": "Hunting rifle", "type": "Rifle", "body": 40, "head": 80, "range": 30, "mag": 5, "reload": 10, "hands": 2, "cd": 1.4, "mode": "single", "ammo": "ammo308"}, "m4a1": {"name": "M4A1", "type": "Automatic rifle", "body": 30, "head": 60, "range": 20, "mag": 30, "reload": 5, "hands": 2, "cd": 0.15, "mode": "auto", "ammo": "ammo556"}, "ak47": {"name": "AK47", "type": "Automatic rifle", "body": 30, "head": 60, "range": 20, "mag": 30, "reload": 5, "hands": 2, "cd": 0.15, "mode": "auto", "ammo": "ammo762"}, "ammo9": {"name": "9mm Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "ammo45": {"name": ".45 ACP Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "ammo357": {"name": ".357 Magnum Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "ammo308": {"name": ".308 Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "ammo556": {"name": "5.56 Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "ammo762": {"name": "7.62 Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "bandage": {"name": "Bandage", "type": "Medical", "use": 10, "hp": 20, "stopsBleed": true}, "painkiller": {"name": "Painkiller", "type": "Medical", "use": 10, "hp": 10, "dmgRed": 10, "secs": 120}, "antibiotics": {"name": "Antibiotics", "type": "Medical", "use": 20, "treatsWound": true}, "medkit": {"name": "Medkit", "type": "Medical", "use": 20, "hp": 80, "stopsBleed": true, "treatsWound": true}, "herbtea": {"name": "Herbal tea", "type": "Medical", "use": 10, "hp": 25, "thirst": 20}, "water": {"name": "Water", "type": "Drink", "use": 10, "thirst": 50}, "soda": {"name": "Soda", "type": "Drink", "use": 10, "thirst": 30}, "cheese": {"name": "Cheese", "type": "Food", "use": 10, "hunger": 30}, "burrito": {"name": "Burrito", "type": "Food", "use": 10, "hunger": 30}, "beans": {"name": "Baked beans", "type": "Food", "use": 10, "hunger": 30}, "meat": {"name": "Canned meat", "type": "Food", "use": 10, "hunger": 30}, "materials": {"name": "Bricks", "type": "Material", "stack": 10, "findMin": 3, "findMax": 9}, "backpack": {"name": "Backpack", "type": "Backpack", "slots": 20, "slot": "backpack"}, "axe": {"name": "Splitting axe", "type": "Melee", "body": 40, "range": 1, "hands": 2, "attackAp": 30, "cd": 1.1}, "wood": {"name": "Wood", "type": "Material", "stack": 10, "findMin": 3, "findMax": 6}, "scrap": {"name": "Scrap metal", "type": "Material", "stack": 20, "findMin": 2, "findMax": 6}, "jeans": {"name": "Jeans", "type": "Clothing", "slot": "legs", "slots": 4}, "jacket": {"name": "Leather jacket", "type": "Clothing", "slot": "body", "slots": 6}, "boots": {"name": "Leather boots", "type": "Clothing", "slot": "feet"}, "vest": {"name": "Vest", "type": "Clothing", "slot": "body", "slots": 4}, "coat": {"name": "Coat", "type": "Clothing", "slot": "body", "slots": 6}, "camojacket": {"name": "Camo jacket", "type": "Clothing", "slot": "body", "slots": 6}, "raincoat": {"name": "Raincoat", "type": "Clothing", "slot": "body", "slots": 4}, "shorts": {"name": "Shorts", "type": "Clothing", "slot": "legs", "slots": 3}, "cargo": {"name": "Cargo pants", "type": "Clothing", "slot": "legs", "slots": 6}, "smallpack": {"name": "Small backpack", "type": "Backpack", "slot": "backpack", "slots": 12}, "hikingpack": {"name": "Hiking backpack", "type": "Backpack", "slot": "backpack", "slots": 30}, "impaxe": {"name": "Improvised axe", "type": "Melee", "body": 40, "range": 1, "uses": 4, "hands": 2, "attackAp": 35, "cd": 1.2}, "cloth": {"name": "Cloth", "type": "Material", "stack": 10, "findMin": 1, "findMax": 2, "use": 10, "stopsBleed": true}, "seeds": {"name": "Seeds", "type": "Material", "stack": 10, "findMin": 1, "findMax": 2}, "vegetables": {"name": "Vegetables", "type": "Food", "use": 10, "hunger": 30, "spoil": 5}, "milhelmet": {"name": "Military helmet", "type": "Clothing", "slot": "head", "woundRed": 60, "cloth": 0}, "motohelmet": {"name": "Motorbike helmet", "type": "Clothing", "slot": "head", "woundRed": 40, "cloth": 0}, "woolcap": {"name": "Wool cap", "type": "Clothing", "slot": "head", "woundRed": 10}, "leathergloves": {"name": "Leather gloves", "type": "Clothing", "slot": "hands", "bleedRed": 30}, "gloves": {"name": "Gloves", "type": "Clothing", "slot": "hands", "bleedRed": 15}, "armguards": {"name": "Arm protection", "type": "Clothing", "slot": "armor", "armor": 3, "cloth": 0}, "bodyarmor": {"name": "Body armor", "type": "Clothing", "slot": "armor", "armor": 5, "cloth": 0}, "fullarmor": {"name": "Full body armor kit", "type": "Clothing", "slot": "armor", "armor": 8, "cloth": 0}, "roastveg": {"name": "Roasted vegetables", "type": "Food", "use": 10, "hunger": 45}, "vegstew": {"name": "Vegetable stew", "type": "Food", "use": 10, "hunger": 70, "thirst": 30, "hp": 10}, "meatstew": {"name": "Meat and bean stew", "type": "Food", "use": 10, "hunger": 75, "hp": 10}, "rawmeat": {"name": "Raw meat", "type": "Food", "use": 10, "hunger": 20, "spoil": 3}, "roastmeat": {"name": "Roast meat", "type": "Food", "use": 10, "hunger": 55, "hp": 5}, "bow": {"name": "Bow", "type": "Bow", "body": 25, "head": 50, "range": 8, "mag": 1, "reload": 4, "hands": 2, "cd": 0.5, "mode": "single", "quiet": true, "ammo": "arrow"}, "arrow": {"name": "Arrows", "type": "Ammo", "stack": 20, "findMin": 3, "findMax": 8}}, "loot": {"Fridge": [["soda", 1], ["water", 1], ["cheese", 0.6], ["burrito", 0.6]], "Cabinet": [["beans", 0.9], ["water", 1.5], ["painkiller", 1.5], ["ammo9", 0.14], ["ammo45", 0.07], ["ammo357", 0.0525], ["ammo308", 0.035], ["ammo556", 0.0262], ["ammo762", 0.0262], ["knife", 0.7], ["antibiotics", 0.35], ["materials", 1], ["glock", 0.1], ["beretta", 0.1], ["colt", 0.1], ["jeans", 0.1], ["jacket", 0.1], ["boots", 0.1], ["vest", 0.1], ["coat", 0.1], ["camojacket", 0.1], ["raincoat", 0.1], ["shorts", 0.1], ["cargo", 0.1], ["woolcap", 0.1]], "Plastic container": [["ammo9", 0.14], ["ammo45", 0.07], ["ammo357", 0.0525], ["ammo308", 0.035], ["ammo556", 0.0262], ["ammo762", 0.0262], ["beans", 0.42], ["medkit", 0.35], ["bandage", 0.5], ["smallpack", 0.3], ["backpack", 0.15], ["hikingpack", 0.05], ["jeans", 0.1], ["jacket", 0.1], ["boots", 0.1], ["vest", 0.1], ["coat", 0.1], ["camojacket", 0.1], ["raincoat", 0.1], ["shorts", 0.1], ["cargo", 0.1], ["woolcap", 0.1]], "Shelves": [["beans", 0.48], ["meat", 0.48], ["water", 0.5], ["soda", 0.5], ["scrap", 0.3], ["seeds", 0.25]], "Boxes": [["materials", 0.8], ["scrap", 0.6], ["water", 0.5], ["soda", 0.5], ["meat", 0.3], ["bandage", 0.15], ["painkiller", 0.3], ["cloth", 1.2]], "Crates": [["materials", 3], ["scrap", 2], ["wood", 2], ["machete", 1], ["bat", 1.5], ["axe", 1], ["motohelmet", 0.5]], "Medicine shelf": [["bandage", 1.75], ["painkiller", 3.0], ["antibiotics", 0.5], ["medkit", 0.4], ["water", 2.5], ["soda", 1.65]], "Clothes rack": [["jeans", 0.5], ["jacket", 0.5], ["boots", 0.5], ["vest", 0.5], ["coat", 0.5], ["camojacket", 0.5], ["raincoat", 0.5], ["shorts", 0.5], ["cargo", 0.5], ["cloth", 3], ["smallpack", 0.3], ["backpack", 0.15], ["hikingpack", 0.05], ["woolcap", 0.5], ["gloves", 0.5], ["leathergloves", 0.3]], "Tool rack": [["materials", 3], ["scrap", 2.5], ["wood", 2], ["hammer", 1.5], ["knife", 0.7], ["machete", 0.5], ["axe", 0.5], ["seeds", 2], ["gloves", 0.5], ["armguards", 0.3], ["bow", 0.4], ["arrow", 1]], "Gun locker": [["ammo9", 0.8], ["ammo45", 0.4], ["ammo357", 0.3], ["ammo308", 0.2], ["ammo556", 0.15], ["ammo762", 0.15], ["glock", 0.3], ["beretta", 0.3], ["colt", 0.3], ["revolver", 0.3], ["hunting", 0.1], ["m4a1", 0.08], ["ak47", 0.08], ["bat", 1], ["medkit", 0.15], ["bandage", 0.35], ["milhelmet", 0.3], ["armguards", 0.4], ["bodyarmor", 0.3], ["fullarmor", 0.15], ["bow", 0.3], ["arrow", 1]], "Produce crate": [["vegetables", 4], ["seeds", 2.5], ["beans", 0.6], ["water", 1]], "Military crate": [["ammo556", 1.2], ["ammo762", 1.2], ["ammo308", 0.8], ["ammo9", 0.6], ["m4a1", 0.25], ["ak47", 0.25], ["hunting", 0.15], ["bodyarmor", 0.5], ["fullarmor", 0.2], ["milhelmet", 0.6], ["armguards", 0.5], ["medkit", 0.5], ["bandage", 0.8], ["beans", 0.5], ["water", 0.5]]}, "rules": {"ap_per_turn": 100, "ap_move": 20, "ap_sneak_move": 30, "ap_attack": 20, "ap_search_big": 40, "ap_search_small": 20, "player_max_hp": 100, "gun_body_chance": 60, "gun_head_chance": 25, "shooting_max_miss": 10, "block_chance_melee": 0, "dodge_base": 0, "dodge_max": 0, "zombie_would_hit": 100, "tier1_chance": 60, "tier1_damage": 15, "tier2_chance": 30, "tier2_damage": 15, "tier3_chance": 10, "tier3_damage": 35, "bleed_per_turn": 5, "detect_sight_chance": 40, "detect_hearing_chance": 25, "door_hearing_cut": 75, "sneak_reduction_base": 60, "sneak_reduction_max": 80, "hunger_drain_per_trip": 5, "thirst_drain_per_trip": 5, "starving_max_hp": 50, "recover_above": 60, "infection_days": 2, "slots_base": 10, "backpack_slots": 20, "loot_chance_0": 25, "loot_chance_1": 50, "loot_chance_2": 25, "stat_max": 200, "stat_gain_per_run": 0, "base_grid": 50, "base_storage_slots": 200, "storage_slots": 100, "cost_storage": 10, "cost_wall": 2, "cost_shelter_upgrade": 20, "cost_shelter_late_percent": 150, "shelter_max_level": 5, "counter_chance": 30, "cost_woodwall": 2, "cost_workshop_wood": 10, "cost_workshop_scrap": 5, "zombies_min": 2, "zombies_max": 6, "zombies_big_bonus": 1, "upstairs_zombie_percent": 60, "upstairs_chance": 60, "upstairs_containers_share": 50, "bunker_chance": 1, "bunker_zombies_min": 1, "bunker_zombies_max": 3, "gunshot_reinf_min": 1, "gunshot_reinf_max": 2, "scrap_per_weapon": 2, "salvage_gun_scrap": 3, "salvage_rifle_scrap": 5, "salvage_ammo_per_scrap": 20, "salvage_cloth_per_material": 0, "ambush_chance": 40, "hunger_drain_travel": 40, "thirst_drain_travel": 50, "travel_home_percent": 50, "heal_above": 80, "heal_sleep": 20, "heal_step": 5, "cost_upgrade_materials": 10, "cost_upgrade_scrap": 5, "melee_durability": 100, "melee_wear_per_kill": 2, "cloth_per_clothing": 2, "gun_unalerted_dmg_bonus": 100, "xp_per_stealth": 3, "xp_per_agility": 4, "xp_per_shooting": 15, "restock_days": 3, "zombies_bonus_police": 3, "hunger_drain_sleep": 20, "thirst_drain_sleep": 20, "cost_farm_wood": 4, "cost_greenhouse_materials": 10, "cost_greenhouse_wood": 6, "cost_greenhouse_scrap": 4, "cost_rain_materials": 4, "cost_rain_scrap": 2, "farm_grow_sleeps": 3, "farm_yield": 2, "greenhouse_grow_sleeps": 2, "greenhouse_yield": 3, "plant_seeds": 1, "plant_water": 1, "rain_sleeps_per_water": 1, "rain_capacity": 2, "rain_collector_max": 4, "start_beans": 2, "start_water": 2, "start_bricks": 15, "wander_chance": 30, "actions_per_turn": 2, "move_per_action": 2, "sneak_move_per_action": 1, "gun_durability": 100, "gun_wear_per_shot": 1, "repair_scrap": 1, "repair_amount": 10, "upgrade_scrap": 5, "upgrade_damage": 5, "upgrade_max": 3, "raid_first_day": 5, "raid_first_zombies": 5, "raid_growth": 4, "raid_gap_min": 4, "raid_gap_max": 7, "raid_storage_loss": 20, "raid_repair_materials": 5, "player_speed": 3, "sneak_speed": 1.5, "zombie_speed": 1.2, "zombie_wander_speed": 0.5, "detect_seconds": 2, "turn_seconds": 5, "search_seconds_small": 1.5, "search_seconds_big": 3, "zombie_attack_seconds": 1.6, "zombie_windup_seconds": 0.45, "zombie_reach": 1.35, "melee_reach": 1.35, "melee_arc": 55, "gun_spread": 6, "gun_spread_min": 2, "reload_seconds_per_ap": 0.2, "player_sight": 10, "zombie_multiplier": 1.5, "block_move_factor": 0.5, "block_wear": 0, "block_arc": 70, "swing_root_seconds": 0.3, "stamina_max": 100, "block_stamina_per_second": 0, "block_stamina_per_blow": 33, "stamina_regen_per_second": 6, "stamina_regen_delay": 1, "block_regen_factor": 0.5, "stun_seconds": 1, "raid_first_day_max": 8, "raid_spawn_seconds": 3, "zombies_factor_village": 0.6, "zombies_factor_farm": 0.35, "zombies_factor_military": 1.5, "zombies_factor_town": 1.2, "zombies_factor_stop": 0.5, "military_brute_share": 15, "horde_start_day": 30, "horde_chance": 10, "horde_stay_days": 2, "horde_zombie_percent": 80, "horde_brute_share": 20, "crash_start_day": 20, "crash_chance": 10, "crash_days": 3, "zombies_factor_crash": 1.3, "containers_share_village": 60, "containers_share_stop": 70, "trader_trades_per_day": 3, "mission_offers": 2, "mission_days": 3, "mission_skips_per_day": 1, "far_loot_bonus": 30, "ad_drop_food": 2, "ad_drop_drink": 2, "ad_drop_bandage": 1, "travel_min_cost": 5, "cost_campfire_wood": 4, "cost_campfire_materials": 2, "cost_radio_materials": 15, "cost_radio_scrap": 10, "cost_radio_wood": 5, "radio_signal_chance": 15, "radio_signal_days": 3, "beds_per_shelter_level": 2, "survivor_food_per_night": 1, "survivor_drink_per_night": 1, "guard_block_max": 50, "farmer_plots": 2, "farmer_yield_bonus": 1, "hunter_meat_min": 1, "hunter_meat_max": 3, "scavenger_items_min": 1, "scavenger_items_max": 2, "agility_speed_max": 20, "survivor_stat_start_min": 10, "survivor_stat_start_max": 60, "survivor_stat_gain_per_day": 2, "survivor_job_bonus_max": 100, "hunter_ammo_per_meat": 1, "hunter_arrow_loss_chance": 50, "hunter_fail_chance": 25, "hunter_fail_ammo": 1, "hunter_big_chance": 15, "hunter_big_mult": 2, "arrow_recover_chance": 50, "cost_well_materials": 20, "cost_well_scrap": 5, "well_water_per_day": 5, "well_capacity": 10, "well_max": 1, "cost_watchtower_materials": 20, "cost_watchtower_wood": 10, "watchtower_max_level": 3, "cost_watchtower_upgrade": 15, "watchtower_hp_per_level": 100, "watchtower_range_bonus": 2, "cost_trap_materials": 2, "cost_trap_scrap": 1, "trap_rearm_materials": 1, "cost_wall_reinforce": 3, "cost_wall_fortify_materials": 5, "cost_wall_fortify_scrap": 2, "cost_wall_armor_materials": 6, "cost_wall_armor_scrap": 4, "wall_repair_materials": 1, "raid_wrecker_chance": 30, "raid_brute_day": 20, "raid_brute_share": 25, "brute_hp": 120, "brute_hit_bonus": 10, "survivor_heal_night": 10, "survivor_rest_heal": 25, "survivor_bleed_night": 20, "woodcutter_wood_min": 2, "woodcutter_wood_max": 3, "medic_heal": 10, "radio_operator_bonus": 10, "walkin_chance": 10, "walkin_supplies": 5, "camp_water_keep": 20, "building_hp": 100, "zombie_building_damage": 5, "zombie_building_tick_seconds": 1, "woodwall_hp": 150, "wall_hp": 300, "wall_reinforced_hp": 450, "wall_fortified_hp": 600, "wall_armored_hp": 800}, "zombie": {"hp": 50, "sight": 6, "hearing": 8, "move": 1}, "recipes": [{"upgrade": "medical", "out": "bandage", "n": 1, "cost": [{"id": "cloth", "n": 2}]}, {"upgrade": "medical", "out": "medkit", "n": 1, "cost": [{"id": "bandage", "n": 2}, {"id": "painkiller", "n": 1}, {"id": "cloth", "n": 2}]}, {"upgrade": "ammo", "out": "ammo9", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "ammo", "out": "ammo45", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "ammo", "out": "ammo357", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "ammo", "out": "ammo308", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "ammo", "out": "ammo556", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "ammo", "out": "ammo762", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "tools", "out": "knife", "n": 1, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 2}]}, {"upgrade": "tools", "out": "hammer", "n": 1, "cost": [{"id": "wood", "n": 2}, {"id": "scrap", "n": 2}]}, {"upgrade": "tools", "out": "impaxe", "n": 1, "cost": [{"id": "wood", "n": 3}, {"id": "scrap", "n": 3}]}, {"upgrade": "tools", "out": "machete", "n": 1, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 4}]}, {"upgrade": "medical", "out": "antibiotics", "n": 1, "cost": [{"id": "cloth", "n": 1}, {"id": "painkiller", "n": 1}, {"id": "herbtea", "n": 1}]}, {"upgrade": "campfire", "out": "roastveg", "n": 1, "cost": [{"id": "vegetables", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "herbtea", "n": 1, "cost": [{"id": "vegetables", "n": 1}, {"id": "water", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "vegstew", "n": 1, "cost": [{"id": "vegetables", "n": 2}, {"id": "water", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "meatstew", "n": 1, "cost": [{"id": "meat", "n": 1}, {"id": "beans", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "roastmeat", "n": 1, "cost": [{"id": "rawmeat", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "tools", "out": "bow", "n": 1, "cost": [{"id": "wood", "n": 3}, {"id": "cloth", "n": 2}]}, {"upgrade": "tools", "out": "arrow", "n": 5, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 1}]}], "trades": [{"give": {"id": "@ammo", "n": 30}, "get": {"id": "wood", "n": 5}}, {"give": {"id": "@ammo", "n": 20}, "get": {"id": "materials", "n": 10}}, {"give": {"id": "cloth", "n": 10}, "get": {"id": "seeds", "n": 2}}, {"give": {"id": "materials", "n": 20}, "get": {"id": "wood", "n": 5}}, {"give": {"id": "scrap", "n": 10}, "get": {"id": "wood", "n": 4}}, {"give": {"id": "materials", "n": 20}, "get": {"id": "scrap", "n": 6}}, {"give": {"id": "bandage", "n": 2}, "get": {"id": "scrap", "n": 3}}]}</script>
+<script type="application/json" id="game-data">{"syncedAt": "2026-10-06", "items": {"knife": {"name": "Knife", "type": "Melee", "body": 20, "range": 1, "hands": 1, "attackAp": 15, "cd": 0.6}, "bat": {"name": "Baseball bat", "type": "Melee", "body": 40, "range": 1, "hands": 2, "attackAp": 35, "cd": 1.2}, "machete": {"name": "Machete", "type": "Melee", "body": 30, "range": 1, "hands": 1, "attackAp": 15, "cd": 0.6}, "hammer": {"name": "Hammer", "type": "Melee", "body": 20, "range": 1, "hands": 1, "attackAp": 20, "cd": 0.8}, "glock": {"name": "Glock", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo9"}, "beretta": {"name": "Beretta", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo9"}, "colt": {"name": "Colt 1911", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 9, "reload": 5, "hands": 1, "cd": 0.45, "mode": "semi", "ammo": "ammo45"}, "revolver": {"name": "Revolver", "type": "Handgun", "body": 25, "head": 50, "range": 10, "mag": 6, "reload": 10, "hands": 1, "cd": 0.8, "mode": "single", "ammo": "ammo357"}, "pipepistol": {"name": "Pipe pistol", "type": "Handgun", "body": 20, "head": 40, "range": 8, "mag": 6, "reload": 7, "hands": 1, "cd": 0.6, "mode": "semi", "ammo": "ammo9", "wear": 2}, "hunting": {"name": "Hunting rifle", "type": "Rifle", "body": 40, "head": 80, "range": 30, "mag": 5, "reload": 10, "hands": 2, "cd": 1.4, "mode": "single", "ammo": "ammo308"}, "piperifle": {"name": "Pipe rifle", "type": "Rifle", "body": 35, "head": 70, "range": 22, "mag": 2, "reload": 4, "hands": 2, "cd": 1.4, "mode": "single", "ammo": "ammo308", "wear": 2}, "m4a1": {"name": "M4A1", "type": "Automatic rifle", "body": 30, "head": 60, "range": 20, "mag": 30, "reload": 5, "hands": 2, "cd": 0.15, "mode": "auto", "ammo": "ammo556"}, "ak47": {"name": "AK47", "type": "Automatic rifle", "body": 30, "head": 60, "range": 20, "mag": 30, "reload": 5, "hands": 2, "cd": 0.15, "mode": "auto", "ammo": "ammo762"}, "ammo9": {"name": "9mm Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "ammo45": {"name": ".45 ACP Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "ammo357": {"name": ".357 Magnum Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "ammo308": {"name": ".308 Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "ammo556": {"name": "5.56 Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "ammo762": {"name": "7.62 Ammo", "type": "Ammo", "stack": 50, "findMin": 3, "findMax": 10}, "bandage": {"name": "Bandage", "type": "Medical", "use": 10, "hp": 20, "stopsBleed": true}, "painkiller": {"name": "Painkiller", "type": "Medical", "use": 10, "hp": 10, "dmgRed": 10, "secs": 120}, "antibiotics": {"name": "Antibiotics", "type": "Medical", "use": 20, "treatsWound": true}, "medkit": {"name": "Medkit", "type": "Medical", "use": 20, "hp": 80, "stopsBleed": true, "treatsWound": true}, "herbtea": {"name": "Herbal tea", "type": "Medical", "use": 10, "hp": 25, "thirst": 20}, "water": {"name": "Water", "type": "Drink", "use": 10, "thirst": 50}, "soda": {"name": "Soda", "type": "Drink", "use": 10, "thirst": 30}, "cheese": {"name": "Cheese", "type": "Food", "use": 10, "hunger": 30}, "burrito": {"name": "Burrito", "type": "Food", "use": 10, "hunger": 30}, "beans": {"name": "Baked beans", "type": "Food", "use": 10, "hunger": 30}, "meat": {"name": "Canned meat", "type": "Food", "use": 10, "hunger": 30}, "materials": {"name": "Bricks", "type": "Material", "stack": 10, "findMin": 3, "findMax": 9}, "backpack": {"name": "Backpack", "type": "Backpack", "slots": 20, "slot": "backpack"}, "axe": {"name": "Splitting axe", "type": "Melee", "body": 40, "range": 1, "hands": 2, "attackAp": 30, "cd": 1.1}, "wood": {"name": "Wood", "type": "Material", "stack": 10, "findMin": 3, "findMax": 6}, "scrap": {"name": "Scrap metal", "type": "Material", "stack": 20, "findMin": 2, "findMax": 6}, "jeans": {"name": "Jeans", "type": "Clothing", "slot": "legs", "slots": 4}, "jacket": {"name": "Leather jacket", "type": "Clothing", "slot": "body", "slots": 6}, "boots": {"name": "Leather boots", "type": "Clothing", "slot": "feet"}, "vest": {"name": "Vest", "type": "Clothing", "slot": "body", "slots": 4}, "coat": {"name": "Coat", "type": "Clothing", "slot": "body", "slots": 6}, "camojacket": {"name": "Camo jacket", "type": "Clothing", "slot": "body", "slots": 6}, "raincoat": {"name": "Raincoat", "type": "Clothing", "slot": "body", "slots": 4}, "shorts": {"name": "Shorts", "type": "Clothing", "slot": "legs", "slots": 3}, "cargo": {"name": "Cargo pants", "type": "Clothing", "slot": "legs", "slots": 6}, "smallpack": {"name": "Small backpack", "type": "Backpack", "slot": "backpack", "slots": 12}, "hikingpack": {"name": "Hiking backpack", "type": "Backpack", "slot": "backpack", "slots": 30}, "impaxe": {"name": "Improvised axe", "type": "Melee", "body": 40, "range": 1, "uses": 4, "hands": 2, "attackAp": 35, "cd": 1.2}, "cloth": {"name": "Cloth", "type": "Material", "stack": 10, "findMin": 1, "findMax": 2, "use": 10, "stopsBleed": true}, "seeds": {"name": "Seeds", "type": "Material", "stack": 10, "findMin": 1, "findMax": 2}, "vegetables": {"name": "Vegetables", "type": "Food", "use": 10, "hunger": 30, "spoil": 5}, "milhelmet": {"name": "Military helmet", "type": "Clothing", "slot": "head", "woundRed": 60, "cloth": 0}, "motohelmet": {"name": "Motorbike helmet", "type": "Clothing", "slot": "head", "woundRed": 40, "cloth": 0}, "woolcap": {"name": "Wool cap", "type": "Clothing", "slot": "head", "woundRed": 10}, "leathergloves": {"name": "Leather gloves", "type": "Clothing", "slot": "hands", "bleedRed": 30}, "gloves": {"name": "Gloves", "type": "Clothing", "slot": "hands", "bleedRed": 15}, "armguards": {"name": "Arm protection", "type": "Clothing", "slot": "armor", "armor": 3, "cloth": 0}, "bodyarmor": {"name": "Body armor", "type": "Clothing", "slot": "armor", "armor": 5, "cloth": 0}, "fullarmor": {"name": "Full body armor kit", "type": "Clothing", "slot": "armor", "armor": 8, "cloth": 0}, "roastveg": {"name": "Roasted vegetables", "type": "Food", "use": 10, "hunger": 45}, "vegstew": {"name": "Vegetable stew", "type": "Food", "use": 10, "hunger": 70, "thirst": 30, "hp": 10}, "meatstew": {"name": "Meat and bean stew", "type": "Food", "use": 10, "hunger": 75, "hp": 10}, "rawmeat": {"name": "Raw meat", "type": "Food", "use": 10, "hunger": 20, "spoil": 3}, "roastmeat": {"name": "Roast meat", "type": "Food", "use": 10, "hunger": 55, "hp": 5}, "bow": {"name": "Bow", "type": "Bow", "body": 25, "head": 50, "range": 8, "mag": 1, "reload": 4, "hands": 2, "cd": 0.5, "mode": "single", "quiet": true, "ammo": "arrow"}, "arrow": {"name": "Arrows", "type": "Ammo", "stack": 20, "findMin": 3, "findMax": 8}, "paddedjacket": {"name": "Padded jacket", "type": "Clothing", "slot": "body", "slots": 6, "armor": 2}, "paddedpants": {"name": "Padded trousers", "type": "Clothing", "slot": "legs", "slots": 4, "armor": 1}, "sewnbag": {"name": "Sewn bag", "type": "Backpack", "slot": "backpack", "slots": 16}}, "loot": {"Fridge": [["soda", 1], ["water", 1], ["cheese", 0.6], ["burrito", 0.6]], "Cabinet": [["beans", 0.9], ["water", 1.5], ["painkiller", 0.75], ["ammo9", 0.14], ["ammo45", 0.07], ["ammo357", 0.0525], ["ammo308", 0.035], ["ammo556", 0.0262], ["ammo762", 0.0262], ["knife", 0.7], ["antibiotics", 0.35], ["materials", 1], ["glock", 0.1], ["beretta", 0.1], ["colt", 0.1], ["jeans", 0.1], ["jacket", 0.1], ["boots", 0.1], ["vest", 0.1], ["coat", 0.1], ["camojacket", 0.1], ["raincoat", 0.1], ["shorts", 0.1], ["cargo", 0.1], ["woolcap", 0.1]], "Plastic container": [["ammo9", 0.14], ["ammo45", 0.07], ["ammo357", 0.0525], ["ammo308", 0.035], ["ammo556", 0.0262], ["ammo762", 0.0262], ["beans", 0.42], ["medkit", 0.25], ["bandage", 0.5], ["smallpack", 0.3], ["backpack", 0.15], ["hikingpack", 0.05], ["jeans", 0.1], ["jacket", 0.1], ["boots", 0.1], ["vest", 0.1], ["coat", 0.1], ["camojacket", 0.1], ["raincoat", 0.1], ["shorts", 0.1], ["cargo", 0.1], ["woolcap", 0.1]], "Shelves": [["beans", 0.48], ["meat", 0.48], ["water", 0.5], ["soda", 0.5], ["scrap", 0.3], ["seeds", 0.25]], "Boxes": [["materials", 0.8], ["scrap", 0.6], ["water", 0.5], ["soda", 0.5], ["meat", 0.3], ["bandage", 0.15], ["painkiller", 0.15], ["cloth", 1.2]], "Crates": [["materials", 3], ["scrap", 2], ["wood", 2], ["machete", 1], ["bat", 1.5], ["axe", 1], ["motohelmet", 0.5]], "Medicine shelf": [["bandage", 1.75], ["painkiller", 1.5], ["antibiotics", 0.5], ["medkit", 0.25], ["water", 2.5], ["soda", 1.65]], "Clothes rack": [["jeans", 0.5], ["jacket", 0.5], ["boots", 0.5], ["vest", 0.5], ["coat", 0.5], ["camojacket", 0.5], ["raincoat", 0.5], ["shorts", 0.5], ["cargo", 0.5], ["cloth", 3], ["smallpack", 0.3], ["backpack", 0.15], ["hikingpack", 0.05], ["woolcap", 0.5], ["gloves", 0.5], ["leathergloves", 0.3]], "Tool rack": [["materials", 3], ["scrap", 2.5], ["wood", 2], ["hammer", 1.5], ["knife", 0.7], ["machete", 0.5], ["axe", 0.5], ["seeds", 2], ["gloves", 0.5], ["armguards", 0.3], ["bow", 0.4], ["arrow", 1]], "Gun locker": [["ammo9", 0.8], ["ammo45", 0.4], ["ammo357", 0.3], ["ammo308", 0.2], ["ammo556", 0.15], ["ammo762", 0.15], ["glock", 0.3], ["beretta", 0.3], ["colt", 0.3], ["revolver", 0.3], ["hunting", 0.1], ["m4a1", 0.08], ["ak47", 0.08], ["bat", 1], ["medkit", 0.1], ["bandage", 0.35], ["milhelmet", 0.3], ["armguards", 0.4], ["bodyarmor", 0.3], ["fullarmor", 0.15], ["bow", 0.3], ["arrow", 1]], "Produce crate": [["vegetables", 4], ["seeds", 2.5], ["beans", 0.6], ["water", 1]], "Military crate": [["ammo556", 1.2], ["ammo762", 1.2], ["ammo308", 0.8], ["ammo9", 0.6], ["m4a1", 0.25], ["ak47", 0.25], ["hunting", 0.15], ["bodyarmor", 0.5], ["fullarmor", 0.2], ["milhelmet", 0.6], ["armguards", 0.5], ["medkit", 0.35], ["bandage", 0.8], ["beans", 0.5], ["water", 0.5]]}, "rules": {"ap_per_turn": 100, "ap_move": 20, "ap_sneak_move": 30, "ap_attack": 20, "ap_search_big": 40, "ap_search_small": 20, "player_max_hp": 100, "gun_body_chance": 60, "gun_head_chance": 25, "shooting_max_miss": 10, "block_chance_melee": 0, "dodge_base": 0, "dodge_max": 0, "zombie_would_hit": 100, "tier1_chance": 60, "tier1_damage": 15, "tier2_chance": 30, "tier2_damage": 15, "tier3_chance": 10, "tier3_damage": 35, "bleed_per_turn": 5, "detect_sight_chance": 40, "detect_hearing_chance": 25, "door_hearing_cut": 75, "sneak_reduction_base": 60, "sneak_reduction_max": 80, "hunger_drain_per_trip": 5, "thirst_drain_per_trip": 5, "starving_max_hp": 50, "recover_above": 60, "infection_days": 2, "slots_base": 10, "backpack_slots": 20, "loot_chance_0": 25, "loot_chance_1": 50, "loot_chance_2": 25, "stat_max": 200, "stat_gain_per_run": 0, "base_grid": 50, "base_storage_slots": 200, "storage_slots": 100, "cost_storage": 10, "cost_wall": 2, "cost_shelter_upgrade": 20, "cost_shelter_late_percent": 150, "shelter_max_level": 5, "counter_chance": 30, "cost_woodwall": 2, "cost_sandbag_cloth": 8, "cost_workshop_wood": 10, "cost_workshop_scrap": 5, "zombies_min": 2, "zombies_max": 6, "zombies_big_bonus": 1, "upstairs_zombie_percent": 60, "upstairs_chance": 60, "upstairs_containers_share": 50, "bunker_chance": 1, "bunker_zombies_min": 1, "bunker_zombies_max": 3, "gunshot_reinf_min": 1, "gunshot_reinf_max": 2, "scrap_per_weapon": 2, "salvage_gun_scrap": 3, "salvage_rifle_scrap": 5, "salvage_ammo_per_scrap": 20, "salvage_cloth_per_material": 0, "ambush_chance": 40, "hunger_drain_travel": 40, "thirst_drain_travel": 50, "travel_home_percent": 50, "heal_above": 80, "heal_sleep": 20, "heal_step": 5, "cost_upgrade_materials": 10, "cost_upgrade_scrap": 5, "melee_durability": 100, "melee_wear_per_kill": 2, "cloth_per_clothing": 2, "gun_unalerted_dmg_bonus": 100, "xp_per_stealth": 3, "xp_per_agility": 4, "xp_per_shooting": 15, "restock_days": 3, "zombies_bonus_police": 3, "hunger_drain_sleep": 20, "thirst_drain_sleep": 20, "cost_farm_wood": 4, "cost_greenhouse_materials": 10, "cost_greenhouse_wood": 6, "cost_greenhouse_scrap": 4, "cost_rain_materials": 4, "cost_rain_scrap": 2, "farm_grow_sleeps": 3, "farm_yield": 2, "greenhouse_grow_sleeps": 2, "greenhouse_yield": 3, "plant_seeds": 1, "plant_water": 1, "rain_sleeps_per_water": 1, "rain_capacity": 2, "rain_collector_max": 4, "start_beans": 2, "start_water": 2, "start_bricks": 15, "wander_chance": 30, "actions_per_turn": 2, "move_per_action": 2, "sneak_move_per_action": 1, "gun_durability": 100, "gun_wear_per_shot": 1, "repair_scrap": 1, "repair_amount": 10, "upgrade_scrap": 5, "upgrade_damage": 5, "upgrade_max": 3, "raid_first_day": 5, "raid_first_zombies": 5, "raid_growth": 4, "raid_gap_min": 4, "raid_gap_max": 7, "raid_storage_loss": 20, "raid_repair_materials": 5, "player_speed": 3, "sneak_speed": 1.5, "zombie_speed": 1.2, "zombie_wander_speed": 0.5, "detect_seconds": 2, "turn_seconds": 5, "search_seconds_small": 1.5, "search_seconds_big": 3, "zombie_attack_seconds": 1.6, "zombie_windup_seconds": 0.45, "zombie_reach": 1.35, "melee_reach": 1.35, "melee_arc": 55, "gun_spread": 6, "gun_spread_min": 2, "reload_seconds_per_ap": 0.2, "player_sight": 10, "zombie_multiplier": 1.5, "block_move_factor": 0.5, "block_wear": 0, "block_arc": 70, "swing_root_seconds": 0.3, "stamina_max": 100, "block_stamina_per_second": 0, "block_stamina_per_blow": 33, "stamina_regen_per_second": 6, "stamina_regen_delay": 1, "block_regen_factor": 0.5, "stun_seconds": 1, "raid_first_day_max": 8, "raid_spawn_seconds": 3, "zombies_factor_village": 0.6, "zombies_factor_farm": 0.35, "zombies_factor_military": 1.5, "zombies_factor_town": 1.2, "zombies_factor_stop": 0.5, "military_brute_share": 15, "horde_start_day": 30, "horde_chance": 10, "horde_stay_days": 2, "horde_zombie_percent": 80, "horde_brute_share": 20, "crash_start_day": 20, "crash_chance": 10, "crash_days": 3, "zombies_factor_crash": 1.3, "containers_share_village": 60, "containers_share_stop": 70, "trader_trades_per_day": 3, "mission_offers": 2, "mission_days": 3, "mission_skips_per_day": 1, "far_loot_bonus": 30, "ad_drop_food": 2, "ad_drop_drink": 2, "ad_drop_bandage": 1, "travel_min_cost": 5, "cost_campfire_wood": 4, "cost_campfire_materials": 2, "cost_radio_materials": 15, "cost_radio_scrap": 10, "cost_radio_wood": 5, "radio_signal_chance": 15, "radio_signal_days": 3, "beds_per_shelter_level": 2, "survivor_food_per_night": 1, "survivor_drink_per_night": 1, "guard_block_max": 50, "farmer_plots": 2, "farmer_yield_bonus": 1, "hunter_meat_min": 1, "hunter_meat_max": 3, "scavenger_items_min": 1, "scavenger_items_max": 2, "agility_speed_max": 20, "survivor_stat_start_min": 10, "survivor_stat_start_max": 60, "survivor_stat_gain_per_day": 2, "survivor_job_bonus_max": 100, "hunter_ammo_per_meat": 1, "hunter_arrow_loss_chance": 50, "hunter_fail_chance": 25, "hunter_fail_ammo": 1, "hunter_big_chance": 15, "hunter_big_mult": 2, "arrow_recover_chance": 50, "cost_well_materials": 20, "cost_well_scrap": 5, "well_water_per_day": 5, "well_capacity": 10, "well_max": 1, "cost_watchtower_materials": 20, "cost_watchtower_wood": 10, "watchtower_max_level": 3, "cost_watchtower_upgrade": 15, "watchtower_hp_per_level": 100, "watchtower_range_bonus": 2, "cost_trap_materials": 2, "cost_trap_scrap": 1, "trap_rearm_materials": 1, "cost_wall_reinforce": 3, "cost_wall_fortify_materials": 5, "cost_wall_fortify_scrap": 2, "cost_wall_armor_materials": 6, "cost_wall_armor_scrap": 4, "wall_repair_materials": 1, "raid_wrecker_chance": 30, "raid_brute_day": 20, "raid_brute_share": 25, "brute_hp": 120, "brute_hit_bonus": 10, "survivor_heal_night": 10, "survivor_rest_heal": 25, "survivor_bleed_night": 20, "woodcutter_wood_min": 2, "woodcutter_wood_max": 3, "medic_heal": 10, "radio_operator_bonus": 10, "walkin_chance": 10, "walkin_supplies": 5, "camp_water_keep": 20, "building_hp": 100, "zombie_building_damage": 5, "zombie_building_tick_seconds": 1, "woodwall_hp": 150, "sandbag_hp": 200, "wall_hp": 300, "wall_reinforced_hp": 450, "wall_fortified_hp": 600, "wall_armored_hp": 800, "xp_walker": 10, "xp_brute": 40, "xp_level_base": 100, "xp_level_growth": 1.5, "skill_points_per_level": 1, "perk_tier2_points": 3, "perk_tier3_points": 6}, "zombie": {"hp": 50, "sight": 6, "hearing": 8, "move": 1}, "recipes": [{"upgrade": "medical", "out": "bandage", "n": 1, "cost": [{"id": "cloth", "n": 2}]}, {"upgrade": "medical", "out": "medkit", "n": 1, "cost": [{"id": "bandage", "n": 2}, {"id": "painkiller", "n": 1}, {"id": "cloth", "n": 2}]}, {"upgrade": "ammo", "out": "ammo9", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "ammo", "out": "ammo45", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "ammo", "out": "ammo357", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "ammo", "out": "ammo308", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "ammo", "out": "ammo556", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "ammo", "out": "ammo762", "n": 3, "cost": [{"id": "scrap", "n": 2}]}, {"upgrade": "tools", "out": "knife", "n": 1, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 2}]}, {"upgrade": "tools", "out": "hammer", "n": 1, "cost": [{"id": "wood", "n": 2}, {"id": "scrap", "n": 2}]}, {"upgrade": "tools", "out": "impaxe", "n": 1, "cost": [{"id": "wood", "n": 3}, {"id": "scrap", "n": 3}]}, {"upgrade": "tools", "out": "machete", "n": 1, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 4}]}, {"upgrade": "medical", "out": "antibiotics", "n": 1, "cost": [{"id": "cloth", "n": 1}, {"id": "painkiller", "n": 1}, {"id": "herbtea", "n": 1}]}, {"upgrade": "campfire", "out": "roastveg", "n": 1, "cost": [{"id": "vegetables", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "herbtea", "n": 1, "cost": [{"id": "vegetables", "n": 1}, {"id": "water", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "vegstew", "n": 1, "cost": [{"id": "vegetables", "n": 2}, {"id": "water", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "meatstew", "n": 1, "cost": [{"id": "meat", "n": 1}, {"id": "beans", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "campfire", "out": "roastmeat", "n": 1, "cost": [{"id": "rawmeat", "n": 1}, {"id": "wood", "n": 1}]}, {"upgrade": "tools", "out": "bow", "n": 1, "cost": [{"id": "wood", "n": 3}, {"id": "cloth", "n": 2}]}, {"upgrade": "tools", "out": "arrow", "n": 5, "cost": [{"id": "wood", "n": 1}, {"id": "scrap", "n": 1}]}, {"upgrade": "tools", "out": "paddedjacket", "n": 1, "cost": [{"id": "jacket", "n": 1}, {"id": "cloth", "n": 6}]}, {"upgrade": "tools", "out": "paddedpants", "n": 1, "cost": [{"id": "jeans", "n": 1}, {"id": "cloth", "n": 4}]}, {"upgrade": "tools", "out": "sewnbag", "n": 1, "cost": [{"id": "cloth", "n": 20}]}, {"upgrade": "tools", "out": "pipepistol", "n": 1, "cost": [{"id": "scrap", "n": 4}, {"id": "wood", "n": 3}], "tool": "hammer"}, {"upgrade": "tools", "out": "piperifle", "n": 1, "cost": [{"id": "scrap", "n": 6}, {"id": "wood", "n": 6}], "tool": "hammer"}], "trades": [{"give": {"id": "@ammo", "n": 30}, "get": {"id": "wood", "n": 5}}, {"give": {"id": "@ammo", "n": 20}, "get": {"id": "materials", "n": 10}}, {"give": {"id": "cloth", "n": 10}, "get": {"id": "seeds", "n": 2}}, {"give": {"id": "materials", "n": 20}, "get": {"id": "wood", "n": 5}}, {"give": {"id": "scrap", "n": 10}, "get": {"id": "wood", "n": 4}}, {"give": {"id": "materials", "n": 20}, "get": {"id": "scrap", "n": 6}}, {"give": {"id": "bandage", "n": 2}, "get": {"id": "scrap", "n": 3}}, {"give": {"id": "cloth", "n": 10}, "get": {"id": "scrap", "n": 3}}], "perks": [{"id": "heavy", "branch": "Combat", "name": "Heavy hitter", "ranks": 3, "tier": 1, "per": 10, "desc": "+{v}% melee damage"}, {"id": "quickhands", "branch": "Combat", "name": "Quick hands", "ranks": 2, "tier": 1, "per": 20, "desc": "guns and the bow reload {v}% faster"}, {"id": "headhunter", "branch": "Combat", "name": "Headhunter", "ranks": 2, "tier": 2, "per": 5, "desc": "+{v}% headshot chance"}, {"id": "shieldarm", "branch": "Combat", "name": "Shield arm", "ranks": 2, "tier": 2, "per": 25, "desc": "blocking a blow costs {v}% less stamina"}, {"id": "slayer", "branch": "Combat", "name": "Brute slayer", "ranks": 1, "tier": 3, "per": 30, "desc": "+{v}% damage to brutes"}, {"id": "tough", "branch": "Survival", "name": "Tough", "ranks": 3, "tier": 1, "per": 10, "desc": "+{v} max HP"}, {"id": "clotting", "branch": "Survival", "name": "Clotting", "ranks": 2, "tier": 1, "per": 2, "desc": "bleeding costs {v} HP less every 5 s"}, {"id": "stomach", "branch": "Survival", "name": "Iron stomach", "ranks": 2, "tier": 2, "per": 20, "desc": "runs, journeys and nights cost {v}% less hunger and thirst"}, {"id": "thickskin", "branch": "Survival", "name": "Thick skin", "ranks": 2, "tier": 2, "per": 1, "desc": "−{v} damage from every zombie hit"}, {"id": "secondwind", "branch": "Survival", "name": "Second wind", "ranks": 1, "tier": 3, "per": 3, "desc": "+{v} HP for every zombie you kill"}, {"id": "quicksearch", "branch": "Scavenging", "name": "Quick search", "ranks": 3, "tier": 1, "per": 15, "desc": "search containers {v}% faster"}, {"id": "packmule", "branch": "Scavenging", "name": "Pack mule", "ranks": 3, "tier": 1, "per": 2, "desc": "+{v} bag slots"}, {"id": "lucky", "branch": "Scavenging", "name": "Lucky find", "ranks": 2, "tier": 2, "per": 10, "desc": "{v}% chance of one more item in a container"}, {"id": "tinkerer", "branch": "Scavenging", "name": "Tinkerer", "ranks": 2, "tier": 2, "per": 25, "desc": "your weapons wear {v}% slower"}, {"id": "bighaul", "branch": "Scavenging", "name": "Big hauls", "ranks": 1, "tier": 3, "per": 25, "desc": "+{v}% Ammo, Arrows, Bricks, Wood, Scrap and Cloth per find"}]}</script>
 <script>
 (() => {
 'use strict';
@@ -436,7 +440,7 @@ const DEF = {};
 for(const [id, it] of Object.entries(GD.items)){
   const d = {name:it.name, type:it.type, kind:KIND[it.type] || 'misc', body:it.body || 0, head:it.head || 0, range:it.range || 1,
     cap:it.mag || 0, rl:it.reload || 0, ap:it.use || 0, atk:it.attackAp || GD.rules.ap_attack, cd:it.cd || .8, mode:it.mode || null, hp:it.hp || 0, hunger:it.hunger || 0, thirst:it.thirst || 0,
-    quiet:!!it.quiet, ammo:it.ammo || null, spoil:it.spoil || 0, stopsBleed:!!it.stopsBleed, treatsWound:!!it.treatsWound, dmgRed:it.dmgRed || 0, secs:it.secs || 0,
+    quiet:!!it.quiet, ammo:it.ammo || null, spoil:it.spoil || 0, stopsBleed:!!it.stopsBleed, treatsWound:!!it.treatsWound, dmgRed:it.dmgRed || 0, secs:it.secs || 0, wear:it.wear || 1,
     stack:it.stack || 50, findMin:it.findMin || 1, findMax:it.findMax || 1, hands:it.hands || 1, uses:it.uses || 0, armor:it.armor || 0, woundRed:it.woundRed || 0, bleedRed:it.bleedRed || 0, cloth:it.cloth, slots:it.slots || (it.type === 'Backpack' ? (GD.rules.backpack_slots || 0) : 0), slot:it.slot || (it.type === 'Backpack' ? 'backpack' : null)};
   const fx = [];
   if(d.hp) fx.push(`+${d.hp} HP`); if(d.hunger) fx.push(`+${d.hunger} hunger`); if(d.thirst) fx.push(`+${d.thirst} thirst`);
@@ -450,6 +454,21 @@ const POOLS = {};
 for(const [code, name] of Object.entries(CODE)) POOLS[code] = (GD.loot[name] || []).filter(([id, w]) => DEF[id] && w > 0);
 function weighted(pool){ const tot = pool.reduce((a, [, w]) => a + w, 0); let r = Math.random() * tot; for(const [id, w] of pool){ if((r -= w) < 0) return id; } return pool[pool.length - 1][0]; }
 const CNAME = CODE;
+// v138: XP and the skill tree. GD.perks {id, branch, name, ranks, tier, per, desc}; a character has c.xp (total) and c.perks {id: rank}.
+const PERKS = GD.perks || [], PERK = Object.fromEntries(PERKS.map(q => [q.id, q])), BRANCHES = [...new Set(PERKS.map(q => q.branch))];
+function perkRank(c, id){ return ((c && c.perks) || {})[id] || 0; }
+function perkVal(c, id){ const q = PERK[id]; return q ? perkRank(c, id) * q.per : 0; }
+function xpFor(lv){ let t = 0; for(let i = 1; i < lv; i++) t += Math.round((RL.xp_level_base || 100) * Math.pow(RL.xp_level_growth || 1.5, i - 1)); return t; }   // total XP to reach level lv
+function levelOf(c){ const x = (c && c.xp) || 0; let lv = 1; while(lv < 99 && x >= xpFor(lv + 1)) lv++; return lv; }
+function pointsLeft(c){ return (levelOf(c) - 1) * (RL.skill_points_per_level ?? 1) - Object.values((c && c.perks) || {}).reduce((a, n) => a + n, 0); }
+function branchPoints(c, br){ return PERKS.filter(q => q.branch === br).reduce((a, q) => a + perkRank(c, q.id), 0); }
+function perkNeed(q){ return q.tier >= 3 ? (RL.perk_tier3_points ?? 6) : q.tier === 2 ? (RL.perk_tier2_points ?? 3) : 0; }
+function perkOpen(c, q){ return branchPoints(c, q.branch) >= perkNeed(q); }
+const perkText = (q, rank) => q.desc.replace('{v}', q.per * rank);
+const wearK = x => { const v = x * (1 - perkVal(C(), 'tinkerer') / 100), f = Math.floor(v); return f + (Math.random() < v - f ? 1 : 0); };   // Tinkerer; random rounding keeps the average
+const drainK = () => 1 - perkVal(C(), 'stomach') / 100;   // Iron stomach
+const tripDrain = () => ({h:Math.round(RL['hunger_drain_per_trip'] * drainK()), t:Math.round(RL['thirst_drain_per_trip'] * drainK())});
+const nightDrain = () => ({h:Math.round((RL['hunger_drain_sleep'] || 0) * drainK()), t:Math.round((RL['thirst_drain_sleep'] || 0) * drainK())});
 const BIG = {F:1,C:1,S:1,R:1,M:1,T:1,G:1,A:1};
 // Map legend: # wall · . floor · D doorway · E exit · P start · ^ stairs (v106) · _ hatch to the bunker / ladder up out of it (v107) · containers F C p S B R M H T G V
 // furniture (blocks movement, not sight): k counter · t table · b bed · n nightstand · o sofa · v TV · w toilet · u bathtub · c checkout · x pallet · m mannequin
@@ -916,8 +935,8 @@ if(!state.base) state.base = newBase();
 const C = () => state.char;
 const packSlots = c => (c.gear && c.gear.backpack && DEF[c.gear.backpack] ? DEF[c.gear.backpack].slots : 0);
 const gearSlots = c => Object.values(c.gear || {}).reduce((a, id) => a + ((id && DEF[id] && DEF[id].slots) || 0), 0);
-const cap = c => RL.slots_base + gearSlots(c);
-const maxHp = c => c.starving ? RL.starving_max_hp : RL.player_max_hp;
+const cap = c => RL.slots_base + gearSlots(c) + perkVal(c, 'packmule');
+const maxHp = c => c.starving ? RL.starving_max_hp : RL.player_max_hp + perkVal(c, 'tough');
 // Hands: an item's `eq` is 'R' (right hand), 'L' (left hand) or 'B' (both hands, two-handed items).
 const inHand = (c, h) => c.inv.find(i => i.eq === h || i.eq === 'B') || null;
 const heldItems = c => c.inv.filter(i => i.eq).sort((a, b) => (a.eq === 'L') - (b.eq === 'L'));   // right hand (or two-hander) first
@@ -979,7 +998,7 @@ function itemDesc0(it){
   const d = DEF[it.id];
   if(d.kind === 'melee') return `Melee · ${d.hands >= 2 ? 'two-handed' : 'one-handed'} · ${bodyDmg(it)} dmg${upOf(it) ? ` (upgraded ${upOf(it)}/${RL.upgrade_max})` : ''} · one swing every ${d.cd} s${d.hands >= 2 ? ' · hits every zombie in the swing' : ''} · can block · loses ${RL.melee_wear_per_kill} durability per kill${d.uses ? ` · chops ${d.uses} trees, then breaks` : it.id === 'axe' ? ' · chops trees, never breaks' : ''}`;
   if(d.quiet) return `${d.type} · two-handed · ${bodyDmg(it)}/${headDmg(it)} dmg${upOf(it) ? ` (upgraded ${upOf(it)}/${RL.upgrade_max})` : ''} · quiet: a shot does not wake the building · one Arrow at a time · range ${d.range} · about ${RL.arrow_recover_chance}% of the Arrows you shoot are picked up again when you leave · loses ${RL.gun_wear_per_shot} durability per shot · +${RL.gun_unalerted_dmg_bonus}% dmg on a zombie that hasn't noticed you · a hunter can use it`;
-  if(d.kind === 'gun') return `${d.type} · ${d.hands >= 2 ? 'two-handed' : 'one-handed'} · ${bodyDmg(it)}/${headDmg(it)} dmg${upOf(it) ? ` (upgraded ${upOf(it)}/${RL.upgrade_max})` : ''} · ${d.mode === 'auto' ? 'automatic' : d.mode === 'semi' ? 'semi-automatic' : 'single shot'}, ${d.cd} s between shots · range ${d.range} · takes ${ammoName(ammoOf(it))} · loses ${RL.gun_wear_per_shot} durability per shot · +${RL.gun_unalerted_dmg_bonus}% dmg on a zombie that hasn't noticed you`;
+  if(d.kind === 'gun') return `${d.type} · ${d.hands >= 2 ? 'two-handed' : 'one-handed'} · ${bodyDmg(it)}/${headDmg(it)} dmg${upOf(it) ? ` (upgraded ${upOf(it)}/${RL.upgrade_max})` : ''} · ${d.mode === 'auto' ? 'automatic' : d.mode === 'semi' ? 'semi-automatic' : 'single shot'}, ${d.cd} s between shots · range ${d.range} · takes ${ammoName(ammoOf(it))} · loses ${RL.gun_wear_per_shot * (d.wear || 1)} durability per shot${d.wear > 1 ? ' (homemade)' : ''} · +${RL.gun_unalerted_dmg_bonus}% dmg on a zombie that hasn't noticed you`;
   if(d.kind === 'ammo') return it.id === 'arrow' ? `For the bow · ${d.stack} per slot` : `For the ${gunsFor(it.id)} · ${d.stack} per slot`;
   if(d.kind === 'backpack') return `Wear it for +${d.slots} bag slots`;
   if(d.kind === 'clothing') return `Clothing · ${SLOT_NAME[d.slot] || d.slot}${d.slots ? ` · +${d.slots} bag slots when worn` : ''}${d.armor ? ` · −${d.armor} damage from every zombie hit` : ''}${d.woundRed ? ` · ${d.woundRed}% of heavy hits become normal ones (no wound)` : ''}${d.bleedRed ? ` · ${d.bleedRed}% chance a hit doesn't make you bleed` : ''}${clothOf(it.id) ? ` · strips into ${clothOf(it.id)} Cloth` : ''}`;
@@ -1087,10 +1106,12 @@ const ICONS = {
   axe:["axe", {"M": "#b9bec2", "H": "#8a5a32"}],
   impaxe:["axe", {"M": "#7c6a5a", "H": "#6e5a3e"}],
   glock:["pistol", {"M": "#3a3d40", "s": "#24272a", "G": "#1d1f21", "S": "#1d1f21"}],
+  pipepistol:["pistol", {"M": "#7a5a3e", "s": "#5a4030", "G": "#6b4a2e", "S": "#4a3322"}],   // v136
   beretta:["pistol", {"M": "#2a2c2e", "s": "#55595c", "G": "#6b4a2e", "S": "#2a2c2e"}],
   colt:["pistol", {"M": "#b6bcc0", "s": "#848b90", "G": "#7a4a28", "S": "#848b90"}],
   revolver:["revolver", {"H": "#5a6166", "M": "#9aa1a6", "C": "#5a6166", "c": "#3a3f43", "B": "#c9cfd2", "b": "#8a9196", "F": "#9aa1a6", "T": "#3a3f43", "G": "#6b4426"}],
   hunting:["rifle", {"S": "#2a2d30", "L": "#8fc4dc", "M": "#2a2d30", "R": "#5a6166", "B": "#8a9196", "W": "#9a6236", "T": "#2a2d30"}],
+  piperifle:["rifle", {"S": "#6e5038", "L": "#6e5038", "M": "#7a5a3e", "R": "#8a6a4a", "B": "#9a7a56", "W": "#6b4a2e", "T": "#5a4030"}],   // v136
   m4a1:["m4", {"M": "#2f3234"}],
   ak47:["ak", {"W": "#9a5a2a", "M": "#3a3d40"}],
   bow:["bow", {"W": "#8a5a32", "G": "#3a2a1e", "S": "#e8e2d0"}],
@@ -1120,10 +1141,13 @@ const ICONS = {
   backpack:["pack", {"P": "#4f5a3c", "D": "#3a4228"}],
   smallpack:["pack", {"P": "#4a5868", "D": "#36414e"}],
   hikingpack:["pack", {"P": "#8a4a2c", "D": "#66361f"}],
+  sewnbag:["pack", {"P": "#a8946c", "D": "#7d6c4a"}],   // v135
   jeans:["pants", {"P": "#3c4a63", "B": "#2a3446"}],
+  paddedpants:["pants", {"P": "#4f5a6e", "B": "#c9b48a"}],   // v135
   cargo:["pants", {"P": "#5d6146", "B": "#45482f"}],
   shorts:["shorts", {"P": "#7a6f55", "B": "#5c533e"}],
   jacket:["jacket", {"P": "#4b3526", "c": "#4b3526", "W": "#9a9488"}],
+  paddedjacket:["jacket", {"P": "#6a5638", "c": "#c9b48a", "W": "#c9b48a"}],   // v135
   camojacket:["jacket", {"P": "#56603f", "c": "#3f4a2e", "W": "#9a9488"}],
   vest:["vest", {"P": "#6b5a3a", "W": "#9a9488"}],
   coat:["coat", {"P": "#3a3f4a", "W": "#9a9488"}],
@@ -1166,6 +1190,7 @@ const worn = (c, slot) => (c.gear && c.gear[slot]) || null;
 // Spare clothing can be cut up into Cloth (a material for bandages and medkits).
 const clothOf = id => DEF[id] && DEF[id].kind === 'clothing' ? (DEF[id].cloth ?? RL.cloth_per_clothing) : 0;
 const gearDef = (c, slot) => { const id = c.gear && c.gear[slot]; return (id && DEF[id]) || null; };
+const armorOf = c => Object.values(c.gear || {}).reduce((a, id) => a + ((id && DEF[id] && DEF[id].armor) || 0), 0) + perkVal(c, 'thickskin');   // v138: + Thick skin   // v135: every worn item's armor adds up
 function stripItem(i){
   const c = C(), it = c.inv[i], n = it ? clothOf(it.id) : 0; if(!it || !n) return;
   c.inv.splice(i, 1);
@@ -1190,11 +1215,11 @@ const SKIN = '#d2a57f';
 // How each upper-body item looks (cosmetic): colour, sleeves, long = reaches the thighs, camo pattern, hood
 const TOPS = {
   jacket:{c:'#4b3526', sleeves:true}, vest:{c:'#6b5a3a', sleeves:false}, coat:{c:'#3a3f4a', sleeves:true, long:true},
-  camojacket:{c:'#56603f', sleeves:true, camo:true}, raincoat:{c:'#c2a233', sleeves:true, long:true, hood:true}
+  camojacket:{c:'#56603f', sleeves:true, camo:true}, paddedjacket:{c:'#6a5638', sleeves:true}, raincoat:{c:'#c2a233', sleeves:true, long:true, hood:true}
 };
-const PACKS = {smallpack:{c:'#4a5868', w:11, h:8}, backpack:{c:'#4f5a3c', w:13.2, h:11}, hikingpack:{c:'#8a4a2c', w:14.6, h:14, top:true}};
+const PACKS = {smallpack:{c:'#4a5868', w:11, h:8}, backpack:{c:'#4f5a3c', w:13.2, h:11}, hikingpack:{c:'#8a4a2c', w:14.6, h:14, top:true}, sewnbag:{c:'#a8946c', w:12, h:9}};
 const packLook = id => id ? (PACKS[id] || PACKS.backpack) : null;
-const LEGS = {jeans:{c:'#3c4a63'}, shorts:{c:'#7a6f55', short:true}, cargo:{c:'#5d6146', pockets:true}};
+const LEGS = {jeans:{c:'#3c4a63'}, shorts:{c:'#7a6f55', short:true}, cargo:{c:'#5d6146', pockets:true}, paddedpants:{c:'#4f5a6e', pockets:true}};
 const HEADS = {milhelmet:{c:'#4a5240', kind:'helmet'}, motohelmet:{c:'#1f2225', kind:'full'}, woolcap:{c:'#7a2f2f', kind:'cap'}};
 const GLOVES = {leathergloves:'#4b3526', gloves:'#8a8f7a'};
 const ARMORS = {armguards:{c:'#5a6068', arms:true}, bodyarmor:{c:'#5a6068', vest:true}, fullarmor:{c:'#3f444a', vest:true, arms:true, legs:true}};
@@ -1311,6 +1336,10 @@ function drawDoll(root){
 }
 function charCard(target){
   const c = C(); target.innerHTML = '';
+  { const lv = levelOf(c), a = xpFor(lv), b2 = xpFor(lv + 1), pl = pointsLeft(c);   // v138
+    target.append(el('div', {class:'bars'}, el('label', {}, `Level ${lv}`), el('div', {class:'bar'}, el('i', {style:`width:${clamp(((c.xp || 0) - a) / (b2 - a) * 100, 0, 100)}%;background:#9b7fd4`})), el('span', {class:'num'}, `${(c.xp || 0) - a}/${b2 - a} XP`)));
+    if(pl > 0) target.append(el('button', {class:'btn primary', style:'align-self:flex-start', onclick:openSkills}, `${pl} skill point${pl === 1 ? '' : 's'} to spend`));
+    const sb = $('#camp-skills'); if(sb){ sb.textContent = pl > 0 ? `Skills (${pl})` : 'Skills'; sb.classList.toggle('primary', pl > 0); } }
   target.append(el('div', {class:'bars'}, bar('Health', c.hp, maxHp(c), 'var(--hp)'), bar('Hunger', c.hunger, 100, 'var(--hunger)'), bar('Thirst', c.thirst, 100, 'var(--thirst)')));
   const chips = el('div', {class:'chips'});
   if(c.bleeding) chips.append(el('span', {class:'chip'}, 'Bleeding'));
@@ -1318,7 +1347,7 @@ function charCard(target){
   if(c.starving) chips.append(el('span', {class:'chip'}, `Starving · max HP ${RL.starving_max_hp} until hunger & thirst > ${RL.recover_above}`));
   if(!chips.children.length) chips.append(el('span', {class:'chip ok'}, 'No injuries'));
   { const ar = gearDef(c, 'armor'), hd = gearDef(c, 'head'), gl = gearDef(c, 'hands'), parts = [];
-    if(ar && ar.armor) parts.push(`−${ar.armor} damage per hit`); if(hd && hd.woundRed) parts.push(`${hd.woundRed}% fewer wounds`); if(gl && gl.bleedRed) parts.push(`${gl.bleedRed}% less bleeding`);
+    if(armorOf(c)) parts.push(`−${armorOf(c)} damage per hit`); if(hd && hd.woundRed) parts.push(`${hd.woundRed}% fewer wounds`); if(gl && gl.bleedRed) parts.push(`${gl.bleedRed}% less bleeding`);
     if(parts.length) chips.append(el('span', {class:'chip ok'}, `Protection · ${parts.join(' · ')}`)); }
   if(wellFed(c)) chips.append(el('span', {class:'chip ok'}, `Well fed · heals +${RL.heal_step} HP per journey or building, +${RL.heal_sleep} when you sleep`));
   else if(c.bleeding && c.hunger > RL.heal_above && c.thirst > RL.heal_above) chips.append(el('span', {class:'chip'}, 'Well fed, but bleeding stops you healing'));
@@ -1440,6 +1469,7 @@ $('#go-base').onclick = () => { mapSel = 'base'; show('map'); };
 $('#go-camp').onclick = () => { cancelPlacing(); campPage = 'eq'; show('camp'); setCampPage('eq'); };
 $('#tab-eq').onclick = () => setCampPage('eq');
 $('#camp-awards').onclick = openAwards;   // v120
+$('#camp-skills').onclick = () => openSkills();   // v138
 $('#camp-notes').onclick = () => { const box = el('div', {class:'notes'}); for(const n of $('#scr-camp>details').children) if(n.tagName !== 'SUMMARY') box.append(n.cloneNode(true)); openSheet('Game data and notes', box, 'notes'); };   // v109
 $('#tab-bag').onclick = () => setCampPage('bag');
 window.addEventListener('resize', () => { if(state.screen === 'camp') drawDoll($('#pg-eq')); const bl = $('#sh-body .bag-l'); if(bl && !$('#sheet').hidden) drawDoll(bl); });
@@ -1460,7 +1490,7 @@ function doSleep(skipRaid){
   let woundDeath = false; if(c.wound){ c.woundDays++; if(c.woundDays >= RL.infection_days) woundDeath = true; }   // v118: the camp's night still happens
   const healed = regen(c, RL.heal_sleep);
   // a night costs hunger and thirst (after the well-fed check, like journeys and buildings)
-  const dh = RL.hunger_drain_sleep || 0, dt = RL.thirst_drain_sleep || 0;
+  const dh = nightDrain().h, dt = nightDrain().t;
   c.hunger = Math.max(0, c.hunger - dh); c.thirst = Math.max(0, c.thirst - dt);
   if((dh || dt) && (c.hunger === 0 || c.thirst === 0)) c.starving = true;
   fixHp(c);
@@ -1475,7 +1505,7 @@ $('#reset').onclick = () => { state = newState(); save(); show('base'); };
 
 /* ---------- sheet ---------- */
 let sheetMode = null, sheetCt = null;
-function openSheet(title, body, mode){ sheetMode = mode; $('#sheet').classList.toggle('wide', mode === 'bag' || mode === 'townbag' || mode === 'mapbag' || mode === 'storage'); $('#sheet').classList.toggle('fixed', mode === 'storage'); $('#sh-title').textContent = title; const b = $('#sh-body'); b.innerHTML = ''; b.append(body); $('#sheet').hidden = false; $('#backdrop').hidden = false; }
+function openSheet(title, body, mode){ sheetMode = mode; $('#sheet').classList.toggle('wide', mode === 'bag' || mode === 'townbag' || mode === 'mapbag' || mode === 'storage' || mode === 'skills'); $('#sheet').classList.toggle('fixed', mode === 'storage' || mode === 'skills'); $('#sh-title').textContent = title; const b = $('#sh-body'); b.innerHTML = ''; b.append(body); $('#sheet').hidden = false; $('#backdrop').hidden = false; }
 function closeSheet(){ sheetMode = null; sheetCt = null; $('#sheet').hidden = true; $('#backdrop').hidden = true; if(state.pendingDeath && !state.run) setTimeout(openDeathChoice, 0); else if(state.traderCall && !state.traderMet && !state.run) setTimeout(traderCall, 0); }
 let tapOpenT = 0;   // v127b: when a tap on the map opened a window; the same tap's click must not close it
 $('#sh-close').onclick = closeSheet; $('#backdrop').onclick = () => { if(performance.now() - tapOpenT > 350) closeSheet(); };
@@ -1758,9 +1788,9 @@ function changeFloor(to){
 }
 function enterBuilding(key, ok){
   const ch = C();
-  if(!ok && (ch.starving || ch.hunger <= RL.hunger_drain_per_trip || ch.thirst <= RL.thirst_drain_per_trip)){
+  if(!ok && (ch.starving || ch.hunger <= tripDrain().h || ch.thirst <= tripDrain().t)){
     const d = el('div', {style:'display:flex;flex-direction:column;gap:10px'},
-      el('p', {style:'margin:0'}, ch.starving ? `You're starving: max HP is only ${RL.starving_max_hp} until hunger and thirst are both above ${RL.recover_above}.` : `After this run you'll be starving (hunger ${ch.hunger} − ${RL.hunger_drain_per_trip}, thirst ${ch.thirst} − ${RL.thirst_drain_per_trip}). Max HP drops to ${RL.starving_max_hp}.`),
+      el('p', {style:'margin:0'}, ch.starving ? `You're starving: max HP is only ${RL.starving_max_hp} until hunger and thirst are both above ${RL.recover_above}.` : `After this run you'll be starving (hunger ${ch.hunger} − ${tripDrain().h}, thirst ${ch.thirst} − ${tripDrain().t}). Max HP drops to ${RL.starving_max_hp}.`),
       el('p', {class:'sub', style:'margin:0'}, 'Eat or drink from your bag first if you can.'),
       el('button', {class:'btn primary', onclick:() => { closeSheet(); enterBuilding(key, true); }}, 'Go in anyway'),
       el('button', {class:'btn', onclick:closeSheet}, 'Not yet'));
@@ -1879,14 +1909,14 @@ function leaveBuilding(){
     openSheet('Give up the yard?', d, 'warn'); return;
   }
   const c = C(), healed = regen(c, RL.heal_step);
-  c.hunger = Math.max(0, c.hunger - RL.hunger_drain_per_trip); c.thirst = Math.max(0, c.thirst - RL.thirst_drain_per_trip);
+  c.hunger = Math.max(0, c.hunger - tripDrain().h); c.thirst = Math.max(0, c.thirst - tripDrain().t);
   if(c.hunger === 0 || c.thirst === 0) c.starving = true;
   for(const k of ['stealth','agility','shooting']) c[k] = Math.min(RL.stat_max, c[k] + RL.stat_gain_per_run);
   const backA = takeArrows();
   const bl = B(); let joined = '';
   if(bl && bl.surv){ if(bl.surv.found){ joined = bl.surv.name; joinCamp(bl.surv); delete bl.surv; } else { bl.surv.rx = bl.surv.x; bl.surv.ry = bl.surv.y; } }
   fixHp(c); state.runs++; state.run = null; closeSheet();
-  travel('Leaving the building…', 'town').then(() => toast(`${joined ? `${joined} is safe and has gone ahead to your camp (${camp().length}/${beds()} beds). ` : ''}${backA ? `Picked up ${backA} of your arrows. ` : ''}Run survived: −${RL.hunger_drain_per_trip} hunger, −${RL.thirst_drain_per_trip} thirst${RL.stat_gain_per_run ? ` · Stealth/Agility/Shooting +${RL.stat_gain_per_run}` : ''}${healed ? ` · well fed: +${healed} HP` : ''}`));
+  travel('Leaving the building…', 'town').then(() => toast(`${joined ? `${joined} is safe and has gone ahead to your camp (${camp().length}/${beds()} beds). ` : ''}${backA ? `Picked up ${backA} of your arrows. ` : ''}Run survived: −${tripDrain().h} hunger, −${tripDrain().t} thirst${RL.stat_gain_per_run ? ` · Stealth/Agility/Shooting +${RL.stat_gain_per_run}` : ''}${healed ? ` · well fed: +${healed} HP` : ''}`));
 }
 // v93: death ends the game (Sándor: the game is about how long you can last). The save is wiped and a new game starts on day 1.
 // The death screen shows this game's statistics and your best game so far, which is kept apart from the save (BEST_KEY) and survives.
@@ -1920,6 +1950,25 @@ function achCheck(){
   const got = achLoad(); let changed = false;
   for(const a of ACH){ if(got[a.id]) continue; let ok = false; try{ ok = a.test(); }catch(e){} if(ok){ got[a.id] = new Date().toISOString().slice(0, 10); achQueue.push(a.name); changed = true; } }
   if(changed){ try{ localStorage.setItem(ACH_KEY, JSON.stringify(got)); }catch(e){} const names = achQueue.splice(0); setTimeout(() => toast(`Achievement unlocked: ${names.join(', ')}`), 1600); }
+}
+// v138: the skill tree, one column per branch; tier 2 / 3 perks open with perk_tier2_points / perk_tier3_points in their branch
+function openSkills(){
+  const c = C(), lv = levelOf(c), pl = pointsLeft(c), old = [...document.querySelectorAll('#sh-body .skt-list')].map(x => x.scrollTop), keep = sheetMode === 'skills' && !$('#sheet').hidden;
+  const cols = BRANCHES.map(br => {
+    const list = el('div', {class:'list skt-list'});
+    for(const q of PERKS.filter(x => x.branch === br)){
+      const rk = perkRank(c, q.id), open = perkOpen(c, q), full = rk >= q.ranks;
+      const pips = el('span', {class:'pips'}, ...Array.from({length:q.ranks}, (_, i) => el('i', {class:i < rk ? 'on' : ''})));
+      const btn = el('button', {class:'mini', onclick:() => { if(pointsLeft(c) <= 0 || !perkOpen(c, q) || perkRank(c, q.id) >= q.ranks) return; c.perks = c.perks || {}; c.perks[q.id] = perkRank(c, q.id) + 1; save(); toast(`${q.name} ${c.perks[q.id]}/${q.ranks}: ${perkText(q, c.perks[q.id])}`); openSkills(); refresh(); }}, full ? 'Max' : 'Learn');
+      if(full || !open || pl <= 0) btn.disabled = true;
+      const sub = full ? perkText(q, rk) : rk ? `${perkText(q, rk)} → next: ${perkText(q, rk + 1)}` : perkText(q, 1);
+      list.append(el('div', {class:'row skt-perk' + (open ? '' : ' locked')}, el('span', {class:'name'}, el('b', {}, q.name), pips, el('small', {}, open ? sub : `Needs ${perkNeed(q)} points in ${br} · ${perkText(q, 1)}`)), btn));
+    }
+    return el('div', {class:'stor-col'}, el('div', {class:'stor-head'}, el('b', {}, br), el('small', {}, `${branchPoints(c, br)} point${branchPoints(c, br) === 1 ? '' : 's'} spent`)), list);
+  });
+  const head = el('p', {class:'sub', style:'margin:0;font-size:13px;flex:none'}, `Level ${lv} · ${(c.xp || 0) - xpFor(lv)}/${xpFor(lv + 1) - xpFor(lv)} XP to level ${lv + 1} · ${pl} skill point${pl === 1 ? '' : 's'} to spend. Kill zombies for XP (walker ${RL.xp_walker}, brute ${RL.xp_brute}). Perks are lost when you die.`);
+  openSheet('Skills', el('div', {style:'display:flex;flex-direction:column;gap:8px;flex:1 1 0;min-height:0'}, head, el('div', {class:'stor'}, ...cols)), 'skills');
+  if(keep) [...document.querySelectorAll('#sh-body .skt-list')].forEach((x, k) => x.scrollTop = old[k] || 0);
 }
 function openAwards(){
   const got = achLoad(), n = ACH.filter(a => got[a.id]).length, d = el('div', {class:'list'});
@@ -2029,7 +2078,7 @@ function buildRaid(n){
   const sh = state.base.structs.find(q => q.type === 'shelter'), G = RL.base_grid;
   const ox = clamp(sh.x - 4, 0, G - W), oy = clamp(sh.y - 6, 0, G - H), grid = [];
   for(let y = 0; y < H; y++){ const row = []; for(let x = 0; x < W; x++){ const q = structAt(ox + x, oy + y);
-    row.push(q ? (isWall(q.type) ? (q.damaged ? '.' : q.type === 'wall' ? 'l' : 'L') : q.type === 'trap' ? '.' : q.type === 'rain' ? 'r' : q.type === 'campfire' ? 'f' : q.type === 'farm' ? '.' : '#') : treeAt(ox + x, oy + y) ? 'y' : '.'); } grid.push(row); }
+    row.push(q ? (isWall(q.type) ? (q.damaged ? '.' : q.type === 'wall' ? 'l' : q.type === 'sandbag' ? 'Q' : 'L') : q.type === 'trap' ? '.' : q.type === 'rain' ? 'r' : q.type === 'campfire' ? 'f' : q.type === 'farm' ? '.' : '#') : treeAt(ox + x, oy + y) ? 'y' : '.'); } grid.push(row); }
   // you stand at the shelter door (the tile below it); it is also where you can hide
   let sx = sh.x + 1 - ox, sy = sh.y + sh.h - oy;
   if(!inb(sx, sy) || grid[sy][sx] !== '.'){ let best = null; for(let y = 0; y < H; y++) for(let x = 0; x < W; x++) if(grid[y][x] === '.'){ const dd = Math.abs(x - sx) + Math.abs(y - sy); if(!best || dd < best[2]) best = [x, y, dd]; } [sx, sy] = best; }
@@ -2168,7 +2217,12 @@ function loudNoise(all){
 function alertZ(z){ if(z.alerted) return; z.alerted = true; z.goal = null; z.path = null; if(visible(z)) float(z.rx, z.ry, '!', '#ff6a5a'); }
 // v93: statistics of this game, shown on the death screen
 const ST = () => state.stats || (state.stats = {kills:0, guardKills:0, trapKills:0, cleared:0, searched:0, raids:0, raidsRepelled:0, survivors:0, survivorsLost:0, built:0, crafted:0});
-function killZ(z){ ST().kills++; if(state.run && state.run.key !== 'raid') missionKill(state.run.key); if(z.brute) ST().bruteKills = (ST().bruteKills || 0) + 1;
+function addXp(n, z){   // v138
+  const c = C(), lv0 = levelOf(c); c.xp = (c.xp || 0) + n; if(z) float(z.rx, z.ry - .3, `+${n} XP`, '#c9a8ff', 200);
+  const lv = levelOf(c); if(lv > lv0){ const r = R(); if(r) float(r.x, r.y, `Level ${lv}!`, '#f2d27a', 500); toast(`Level ${lv}! ${pointsLeft(c)} skill point${pointsLeft(c) === 1 ? '' : 's'} to spend: Character → Skills.`); }
+}
+function killZ(z, mine){ if(mine){ addXp(z.brute ? (RL.xp_brute ?? 40) : (RL.xp_walker ?? 10), z); const sw = perkVal(C(), 'secondwind'); if(sw){ const c = C(); c.hp = Math.min(maxHp(c), c.hp + sw); } }
+  ST().kills++; if(state.run && state.run.key !== 'raid') missionKill(state.run.key); if(z.brute) ST().bruteKills = (ST().bruteKills || 0) + 1;
   { const b = B(); if(b && state.run && state.run.key !== 'raid' && !b.clearedStat && b.zombies.length && b.zombies.every(q => q.dead || q === z) && floorsOf(b).every(f => f === b || f.zombies.every(q => q.dead))){ b.clearedStat = true; ST().cleared++; missionCleared(state.run.key); if(PLACES[placeOf(state.run.key)] && PLACES[placeOf(state.run.key)].kind === 'military') ST().milCleared = (ST().milCleared || 0) + 1; } }   // every zombie in it killed
   z.dead = true; za(z).die = performance.now(); blood(z.rx, z.ry, 16, 1.2); addDecal(z.rx, z.ry, .45); float(z.rx, z.ry, 'Dead', '#8db466', 300); }
 function tryAttack(dx, dy){
@@ -2196,16 +2250,16 @@ function meleeSwing(w, dx, dy){
     facing(t);
     const stab = !t.alerted && ((r.x - t.rx) * t.fx + (r.y - t.ry) * t.fy) < 0;   // unaware and hit from behind: dies at once, quietly
     if(!t.alerted) gainXp('stealth');
-    const dmg = stab ? Math.max(bodyDmg(w), t.hp) : bodyDmg(w);
+    const dmg = stab ? Math.max(bodyDmg(w), t.hp) : Math.round(bodyDmg(w) * (1 + perkVal(c, 'heavy') / 100) * (t.brute ? 1 + perkVal(c, 'slayer') / 100 : 1));   // v138 Heavy hitter, Brute slayer
     t.hp -= dmg; const a = za(t); a.hit = now; a.kbx = dx; a.kby = dy; blood(t.rx, t.ry, 10); if(rnd() < .5) addDecal(t.rx, t.ry, .14);
     float(t.rx, t.ry, stab ? 'Backstab' : `-${dmg}`, '#ffd27a');
-    if(t.hp <= 0){ killZ(t); kills++; }
+    if(t.hp <= 0){ killZ(t, true); kills++; }
     else { alertZ(t); slide(b.grid, t, 'rx', 'ry', dx * .25, dy * .25); t.x = Math.round(t.rx); t.y = Math.round(t.ry); }
     if(!stab) loud = true;
   }
   shake(hits.length > 1 ? 5 : 3, 130);
   if(kills){
-    const before = durOf(w), wear = RL.melee_wear_per_kill * kills, warnAt = RL.melee_wear_per_kill * 5;
+    const before = durOf(w), wear = wearK(RL.melee_wear_per_kill * kills), warnAt = RL.melee_wear_per_kill * 5;
     w.dur = Math.max(0, before - wear);
     if(w.dur <= 0){ c.inv.splice(c.inv.indexOf(w), 1); float(r.x, r.y, `${d.name} broke!`, '#ff8a7a', 500); toast(`Your ${d.name} broke. Equip another weapon from your bag.`); }
     else if(w.dur <= warnAt && before > warnAt) toast(`Your ${d.name} is almost worn out (${w.dur}/${RL.melee_durability})`);
@@ -2217,7 +2271,7 @@ function gunShot(w, dx, dy){
   const r = R(), c = C(), d = DEF[w.id], b = B(), g = b.grid, now = performance.now();
   if(durOf(w) <= 0){ warn(`Your ${d.name} is worn out. Repair it at the Workshop.`); return false; }
   if(w.mag <= 0){ if(ammoCount(c, w) > 0) startReload(w); else warn(d.quiet ? 'No arrows in your bag.' : `Empty, and no ${ammoName(ammoOf(w))} in your bag.`); return false; }
-  w.mag--; w.dur = Math.max(0, durOf(w) - (RL.gun_wear_per_shot || 0));
+  w.mag--; w.dur = Math.max(0, durOf(w) - wearK((RL.gun_wear_per_shot || 0) * (DEF[w.id].wear || 1)));   // v136: homemade guns wear faster; v138 Tinkerer
   if(w.dur <= 0) setTimeout(() => toast(`Your ${d.name} is worn out. Repair it at the Workshop.`), 600); else if(w.dur === 10) setTimeout(() => toast(`Your ${d.name} is almost worn out (${w.dur}/${maxDur(w)})`), 600);
   // the better your Shooting, the tighter the spread
   const skill = Math.min(1, c.shooting / RL.stat_max), spread = ((RL.gun_spread || 0) - ((RL.gun_spread || 0) - (RL.gun_spread_min || 0)) * skill) * Math.PI / 180;
@@ -2231,13 +2285,13 @@ function gunShot(w, dx, dy){
   let head = false;
   if(t){
     const baseMiss = Math.max(0, 100 - RL.gun_body_chance - RL.gun_head_chance), gain = Math.max(0, baseMiss - RL.shooting_max_miss) * skill;
-    head = rnd() < pct(RL.gun_head_chance + gain);
-    let dmg = head ? headDmg(w) : bodyDmg(w), text = head ? `Headshot -${dmg}` : `-${dmg}`;
+    head = rnd() < pct(RL.gun_head_chance + gain + perkVal(c, 'headhunter'));   // v138 Headhunter
+    let dmg = Math.round((head ? headDmg(w) : bodyDmg(w)) * (t.brute ? 1 + perkVal(c, 'slayer') / 100 : 1)), text = head ? `Headshot -${dmg}` : `-${dmg}`;
     if(!t.alerted){ dmg = Math.round(dmg * (1 + pct(RL.gun_unalerted_dmg_bonus))); text = head ? `Headshot -${dmg}` : `Surprise -${dmg}`; }
     gainXp('shooting');
     t.hp -= dmg; const a = za(t); a.hit = now; a.kbx = ux; a.kby = uy; blood(t.rx, t.ry, head ? 20 : 10, head ? 1.5 : 1); if(rnd() < .6) addDecal(t.rx, t.ry, head ? .22 : .14);
     float(t.rx, t.ry, text, '#ffd27a');
-    if(t.hp <= 0) killZ(t);
+    if(t.hp <= 0) killZ(t, true);
   } else sparks(r.x + ux * tt, r.y + uy * tt, 8);
   if(d.quiet){   // a bow makes no noise: only a zombie that survives the arrow comes for you. The next arrow is nocked at once.
     if(t && !t.dead) alertZ(t);
@@ -2253,7 +2307,7 @@ function startReload(w){
   if(reloading) return;
   if(d.cap - w.mag <= 0){ toast('Already full'); return; }
   if(ammoCount(c, w) <= 0){ toast(`No ${ammoWord(w)} in your bag`); return; }
-  reloading = {w, t:(d.rl || 5) * (RL.reload_seconds_per_ap || .2)};
+  reloading = {w, t:(d.rl || 5) * (RL.reload_seconds_per_ap || .2) * (1 - perkVal(c, 'quickhands') / 100)};   // v138 Quick hands
   float(R().x, R().y, d.quiet ? 'Nocking' : 'Reloading', '#8fd3ff'); updateHud();
 }
 function finishReload(){
@@ -2287,7 +2341,7 @@ function doAction(noCt){
 function startSearch(key){
   const r = R(), b = B(), ct = b.containers[key]; if(!ct) return; const [x, y] = key.split(',').map(Number);
   if(ct.searched){ openLoot(ct); return; }
-  searching = {key, x, y, x0:r.x, y0:r.y, t:0, total:BIG[ct.type] ? (RL.search_seconds_big || 3) : (RL.search_seconds_small || 1.5)};
+  searching = {key, x, y, x0:r.x, y0:r.y, t:0, total:(BIG[ct.type] ? (RL.search_seconds_big || 3) : (RL.search_seconds_small || 1.5)) * (1 - perkVal(C(), 'quicksearch') / 100)};   // v138 Quick search
   updateHud();
 }
 function finishSearch(){
@@ -2298,7 +2352,9 @@ function finishSearch(){
   let n = Math.max(ct.rich ? 1 : 0, lr < RL.loot_chance_0 ? 0 : lr < RL.loot_chance_0 + RL.loot_chance_1 ? 1 : 2);   // a bunker container always gives something
   { const pl = PLACES[placeOf(R().key)]; if(pl && pl.far && rnd() * 100 < (RL.far_loot_bonus || 0)) n++; }   // v117: far places are worth the trip
   spray(s.x, s.y, 8, .8, ['#caa06a', '#e3cf9f', '#9aa5a8'], false, .6); fxs.push({type:'ring', x:s.x, y:s.y, t0:performance.now(), dur:400, c:'#e2a93f'});
+  if(rnd() * 100 < perkVal(C(), 'lucky')) n++;   // v138 Lucky find
   ct.items = POOLS[ct.type].length ? Array.from({length:n}, () => makeItem(weighted(POOLS[ct.type]))) : [];
+  { const bh = perkVal(C(), 'bighaul'); if(bh) for(const it of ct.items) if(stackable(it.id) && (DEF[it.id].kind === 'ammo' || ['materials', 'wood', 'scrap', 'cloth'].includes(it.id))) it.n = Math.ceil(it.n * (1 + bh / 100)); }   // v138 Big hauls
   updateHud(); openLoot(ct); save();
 }
 // A zombie's blow lands: the same rolls as before (miss, block, dodge, then how bad it is).
@@ -2312,7 +2368,7 @@ function zombieStrike(z){
     const vx = z.rx - r.x, vy = z.ry - r.y, vd = Math.hypot(vx, vy) || 1;
     const guard = r.blocking && w && (vx * r.fdx + vy * r.fdy) / vd >= Math.cos((RL.block_arc ?? 70) * Math.PI / 180);
     if(guard){ text = 'Blocked'; col = '#8fd3ff'; sparks(r.x, r.y, 8); shake(2, 100);
-      r.stam = Math.max(0, (r.stam ?? 0) - (RL.block_stamina_per_blow ?? 20)); r.stamT = 0;
+      r.stam = Math.max(0, (r.stam ?? 0) - (RL.block_stamina_per_blow ?? 20) * (1 - perkVal(c, 'shieldarm') / 100)); r.stamT = 0;   // v138 Shield arm
       if(r.stam <= 0){ r.stun = RL.stun_seconds ?? 1; r.blocking = false; text = 'Blocked · stunned'; shake(5, 200); }
       if(RL.block_wear) w.dur = Math.max(0, durOf(w) - RL.block_wear);
       if(RL.block_wear && w.dur <= 0){ c.inv.splice(c.inv.indexOf(w), 1); float(r.x, r.y, `${DEF[w.id].name} broke!`, '#ff8a7a', 500); toast(`Your ${DEF[w.id].name} broke. Equip another weapon from your bag.`); } }
@@ -2327,7 +2383,7 @@ function zombieStrike(z){
       if(bleed) c.bleeding = true; if(tier === 3) c.wound = true;
       text = tier === 3 ? (bleed ? 'Heavy hit + wound' : 'Heavy hit + wound, no bleeding') : bleed ? 'Hit + bleeding' : 'Hit';
       if(c.pk > 0) dmg = Math.max(0, dmg - (c.pkRed || 0));
-      if(ar) dmg = Math.max(0, dmg - ar.armor);
+      dmg = Math.max(0, dmg - armorOf(c));   // v135
       if(saved) float(r.x, r.y, saved, '#8fd3ff', 450);
       c.hp -= dmg; text = `-${dmg} ${text}`; col = '#ff8a7a'; hurtFlash = now;
       pAn.hit = now; fxs.push({type:'claw', x:r.x, y:r.y, t0:now, dur:300}); blood(r.x, r.y, dmg > 20 ? 14 : 8); if(rnd() < .5) addDecal(r.x, r.y, .12); shake(dmg > 20 ? 7 : 4, 220);
@@ -2407,12 +2463,12 @@ function simBreach(z, dt, goal){
   const b = B(), g = b.grid, r = R(), saved = [], isGoal = goal || ((x, y) => x === r.px && y === r.py);
   z.bt = (z.bt || 0) - dt;
   if(z.bt <= 0 || !z.bpath){ z.bt = .5;
-    for(let y = 0; y < H; y++) for(let x = 0; x < W; x++) if(g[y][x] === 'l' || g[y][x] === 'L'){ saved.push([x, y, g[y][x]]); g[y][x] = '.'; }
+    for(let y = 0; y < H; y++) for(let x = 0; x < W; x++) if(g[y][x] === 'l' || g[y][x] === 'L' || g[y][x] === 'Q'){ saved.push([x, y, g[y][x]]); g[y][x] = '.'; }
     z.bpath = bfs({x:z.x, y:z.y}, isGoal, () => false);
     for(const [x, y, ch] of saved) g[y][x] = ch; }
   if(!z.bpath || !z.bpath.length) return false;   // no way even through walls
   const [wx, wy] = z.bpath.find(([x, y]) => !(x === z.x && y === z.y)) || z.bpath[0];
-  if(g[wy][wx] === 'l' || g[wy][wx] === 'L'){
+  if(g[wy][wx] === 'l' || g[wy][wx] === 'L' || g[wy][wx] === 'Q'){
     z.fx = Math.sign(wx - z.x); z.fy = Math.sign(wy - z.y);
     const wq = structAt(b.ox + wx, b.oy + wy), every = Math.max(.2, RL.zombie_building_tick_seconds || 1), dmg = RL.zombie_building_damage || 0;
     z.tick = (z.tick || 0) + dt;
@@ -2504,7 +2560,7 @@ function guardSwing(b, gd, v, w, t){
 }
 function guardShot(b, gd, v, w, t, range){
   const d = DEF[w.id], g = b.grid, now = performance.now(), skill = Math.min(1, ((v.st || {}).shooting || 0) / RL.stat_max);
-  w.mag--; w.dur = Math.max(0, durOf(w) - (RL.gun_wear_per_shot || 0)); gd.cd = d.cd; if(d.quiet) gd.arrows = (gd.arrows || 0) + 1;
+  w.mag--; w.dur = Math.max(0, durOf(w) - (RL.gun_wear_per_shot || 0) * (d.wear || 1)); gd.cd = d.cd; if(d.quiet) gd.arrows = (gd.arrows || 0) + 1;
   const spread = ((RL.gun_spread || 0) - ((RL.gun_spread || 0) - (RL.gun_spread_min || 0)) * skill) * Math.PI / 180;
   const ang = Math.atan2(t.ry - gd.ry, t.rx - gd.rx) + (rnd() * 2 - 1) * spread, ux = Math.cos(ang), uy = Math.sin(ang);
   let wallT = range;
@@ -2655,7 +2711,7 @@ function simRun(dt){
   // bleeding ticks once per "turn" of real time
   r.bt = (r.bt || 0) + dt;
   while(r.bt >= (RL.turn_seconds || 5)){ r.bt -= RL.turn_seconds || 5;
-    if(c.bleeding){ c.hp -= RL.bleed_per_turn; blood(r.x, r.y, 5, .4); pAn.hit = performance.now(); float(r.x, r.y, `-${RL.bleed_per_turn} bleeding`, '#ff8a7a'); } }
+    if(c.bleeding){ const bl = Math.max(0, RL.bleed_per_turn - perkVal(c, 'clotting')); c.hp -= bl; blood(r.x, r.y, 5, .4); pAn.hit = performance.now(); float(r.x, r.y, `-${bl} bleeding`, '#ff8a7a'); } }   // v138 Clotting
   if(c.hp <= 0){ die('You bled out.'); return; }
   if(r.key === 'raid') raidTraps(b);
   if(r.key === 'raid'){ if(raidLeft(b)) raidWinT = 0; else if((raidWinT += dt) > .9){ raidWinT = 0; finishRaid(0); return; } }
@@ -2980,7 +3036,7 @@ function drawContainer(x, y, ct, dim){
 }
 
 /* furniture (decoration; blocks movement, not sight) */
-const DECOR = {k:1, t:1, b:1, n:1, o:1, v:1, w:1, u:1, c:1, x:1, m:1, y:1, l:1, L:1, r:1, f:1};   // y tree, l wall, L wooden wall, r rain collector, f campfire: only on the base raid map
+const DECOR = {k:1, t:1, b:1, n:1, o:1, v:1, w:1, u:1, c:1, x:1, m:1, y:1, l:1, L:1, Q:1, r:1, f:1};   // y tree, l wall, L wooden wall, r rain collector, f campfire: only on the base raid map
 // A ring of stones, crossed logs and a flame that flickers. Used in the base view and on the raid map.
 function drawCampfire(x, y, dim = 0, tint = c => c){
   ishadow(x + .14, y + .14, x + .86, y + .86, .25);
@@ -2999,6 +3055,7 @@ function drawDecor(ch, x, y, g, dim){
     case 'y': drawTree(x, y); break;
     case 'l': cube(x + .04, y + .04, x + .96, y + .96, 0, 1.0, '#7b6d5c', dim); break;
     case 'L': for(const [a, c] of [[.28, .28], [.72, .28], [.28, .72], [.72, .72]]) cube(x + a - .15, y + c - .15, x + a + .15, y + c + .15, 0, 1.1, a + c === 1 ? '#7d5a36' : '#6d4d2d', dim); break;
+    case 'Q': for(let k = 0; k < 3; k++) for(const [a, b] of [[.04, .5], [.5, .96]]) for(const [c2, d2] of [[.04, .5], [.5, .96]]) cube(x + a + .02, y + c2 + .02, x + b - .02, y + d2 - .02, k * .3, k * .3 + .28, (a + c2 + k) * 7 % 2 < 1 ? '#a89064' : '#97804f', dim); break;   // v135 sandbag wall
     case 'r': cube(x + .2, y + .2, x + .8, y + .8, 0, .7, '#5d6f78', dim); break;
     case 'f': drawCampfire(x, y, dim); break;
     case 'k': ibox(x, y, x + 1, y + 1, 0, .88, '#d8d2c2', '#9c8f76', '#7f7460', dim);
@@ -3336,9 +3393,9 @@ function drawRun(now, dt){
 /* ---------- base building ---------- */
 let zoomTiles = 12, cam = {x:0, y:0}, tool = 'walk', pendingRemove = null, follow = true, snapCam = true, lastBaseNow = 0, baseSaveT = 0, baseDustT = 0, baseHudT = 0;
 const bAn = {rx:null, ry:null, face:1, phase:0, moving:false};
-const SIZE = {wall:1, woodwall:1, storage:4, shelter:3, workshop:3, farm:2, greenhouse:3, rain:1, campfire:1, radio:2, well:2, watchtower:2, trap:1};
-const SNAME = {wall:'Wall', woodwall:'Wooden wall', storage:'Storage', shelter:'Shelter', workshop:'Workshop', farm:'Farm plot', greenhouse:'Greenhouse', rain:'Rain collector', campfire:'Campfire', radio:'Radio station', well:'Well', watchtower:'Watchtower', trap:'Trap'};
-const COST = t => t === 'storage' ? [{id:'materials', n:RL.cost_storage}] : t === 'woodwall' ? [{id:'wood', n:RL.cost_woodwall}]
+const SIZE = {wall:1, woodwall:1, sandbag:1, storage:4, shelter:3, workshop:3, farm:2, greenhouse:3, rain:1, campfire:1, radio:2, well:2, watchtower:2, trap:1};
+const SNAME = {wall:'Wall', woodwall:'Wooden wall', sandbag:'Sandbag wall', storage:'Storage', shelter:'Shelter', workshop:'Workshop', farm:'Farm plot', greenhouse:'Greenhouse', rain:'Rain collector', campfire:'Campfire', radio:'Radio station', well:'Well', watchtower:'Watchtower', trap:'Trap'};
+const COST = t => t === 'storage' ? [{id:'materials', n:RL.cost_storage}] : t === 'woodwall' ? [{id:'wood', n:RL.cost_woodwall}] : t === 'sandbag' ? [{id:'cloth', n:RL.cost_sandbag_cloth ?? 8}]
   : t === 'farm' ? [{id:'wood', n:RL.cost_farm_wood}]
   : t === 'greenhouse' ? [{id:'materials', n:RL.cost_greenhouse_materials}, {id:'wood', n:RL.cost_greenhouse_wood}, {id:'scrap', n:RL.cost_greenhouse_scrap}]
   : t === 'rain' ? [{id:'materials', n:RL.cost_rain_materials}, {id:'scrap', n:RL.cost_rain_scrap}]
@@ -3350,7 +3407,7 @@ const COST = t => t === 'storage' ? [{id:'materials', n:RL.cost_storage}] : t ==
   : t === 'workshop' ? [{id:'wood', n:RL.cost_workshop_wood}, {id:'scrap', n:RL.cost_workshop_scrap}] : [{id:'materials', n:RL.cost_wall}];
 const costText = t => COST(t).map(c => `${c.n} ${DEF[c.id].name}`).join(' + ');
 const canAfford = t => COST(t).every(c => countItem(c.id) >= c.n);
-const PLACEABLE = t => t === 'wall' || t === 'woodwall' || t === 'storage' || t === 'workshop' || t === 'farm' || t === 'greenhouse' || t === 'rain' || t === 'campfire' || t === 'radio' || t === 'well' || t === 'watchtower' || t === 'trap';
+const PLACEABLE = t => t === 'wall' || t === 'woodwall' || t === 'sandbag' || t === 'storage' || t === 'workshop' || t === 'farm' || t === 'greenhouse' || t === 'rain' || t === 'campfire' || t === 'radio' || t === 'well' || t === 'watchtower' || t === 'trap';
 /* ---------- growing food and collecting rain ---------- */
 const isGrow = t => t === 'farm' || t === 'greenhouse';
 const growSleeps = s => Math.max(1, RL[s.type + '_grow_sleeps'] || 1), growYield = s => RL[s.type + '_yield'] || 1;
@@ -3372,7 +3429,7 @@ const WRECKABLE = ['workshop', 'farm', 'greenhouse', 'rain', 'radio', 'campfire'
 // v95: wall levels 1 plain, 2 reinforced (s.reinf), 3 fortified and 4 armored (s.wl); the watchtower gains watchtower_hp_per_level for every level above 1
 const wallLevel = s => s.wl || (s.reinf ? 2 : 1);
 const WALL_LEVEL_NAME = ['', 'Plain', 'Reinforced', 'Fortified', 'Armored'];
-const bMax = s => isWall(s.type) ? (s.wl === 4 ? (RL.wall_armored_hp || 800) : s.wl === 3 ? (RL.wall_fortified_hp || 600) : s.reinf ? (RL.wall_reinforced_hp || 450) : s.type === 'wall' ? (RL.wall_hp || 300) : (RL.woodwall_hp || 150))
+const bMax = s => isWall(s.type) ? (s.wl === 4 ? (RL.wall_armored_hp || 800) : s.wl === 3 ? (RL.wall_fortified_hp || 600) : s.reinf ? (RL.wall_reinforced_hp || 450) : s.type === 'wall' ? (RL.wall_hp || 300) : s.type === 'sandbag' ? (RL.sandbag_hp || 200) : (RL.woodwall_hp || 150))
   : s.type === 'watchtower' ? (RL.building_hp || 100) + ((s.level || 1) - 1) * (RL.watchtower_hp_per_level || 0) : (RL.building_hp || 100);
 const bHp = s => s.damaged ? 0 : Math.min(bMax(s), s.hp ?? bMax(s));
 const hurt = s => (WRECKABLE.includes(s.type) || isWall(s.type)) && !s.damaged && bHp(s) < bMax(s);
@@ -3459,7 +3516,7 @@ const WALL_STEP = {1:['Reinforce', 'reinforced', () => [{id:'materials', n:RL.co
 function openWall(s){
   if(s.damaged){ openStruct(s); return; }
   const lv = wallLevel(s), d = el('div', {style:'display:flex;flex-direction:column;gap:10px'});
-  const hpText = `Raid zombies with no way round (to you, or to the building they are after) take ${RL.zombie_building_damage} HP off a wall with every blow, one blow every ${RL.zombie_building_tick_seconds} s. Levels: wooden wall ${RL.woodwall_hp} HP or wall ${RL.wall_hp} HP, reinforced ${RL.wall_reinforced_hp}, fortified ${RL.wall_fortified_hp}, armored ${RL.wall_armored_hp}.`;
+  const hpText = `Raid zombies with no way round (to you, or to the building they are after) take ${RL.zombie_building_damage} HP off a wall with every blow, one blow every ${RL.zombie_building_tick_seconds} s. Levels: wooden wall ${RL.woodwall_hp} HP, sandbag wall ${RL.sandbag_hp} HP or wall ${RL.wall_hp} HP, reinforced ${RL.wall_reinforced_hp}, fortified ${RL.wall_fortified_hp}, armored ${RL.wall_armored_hp}.`;
   d.append(el('p', {style:'margin:0'}, `${WALL_LEVEL_NAME[lv]} (level ${lv} of 4): ${bHp(s)}/${bMax(s)} HP. Blocks movement. ${hpText} At 0 it is rubble until you repair it (${RL.wall_repair_materials} Bricks); it keeps its level.`));
   const step = WALL_STEP[lv];
   if(step){
@@ -3481,7 +3538,7 @@ function openRain(s){
   if(n < RL.rain_capacity){ const next = rate - ((state.day - (s.since ?? state.day)) % rate); d.append(el('p', {class:'sub', style:'margin:0;font-size:13px'}, `Next Water in ${next} sleep${next === 1 ? '' : 's'}.`)); }
   openSheet('Rain collector', d, 'struct');
 }
-const isWall = t => t === 'wall' || t === 'woodwall';
+const isWall = t => t === 'wall' || t === 'woodwall' || t === 'sandbag';
 const structAt = (x, y) => state.base.structs.find(s => x >= s.x && x < s.x + s.w && y >= s.y && y < s.y + s.h);
 function centerCam(){ follow = true; snapCam = true; bAn.rx = null; inp.mId = null; inp.mO = inp.mP = null; inp.keys = {}; }
 const FOREST = {x:0, y:() => RL.base_grid - 1};
@@ -3631,6 +3688,7 @@ function structIcon(type){
   const cv = document.createElement('canvas'); cv.width = 48; cv.height = 48; cv.className = 'ico'; const g = cv.getContext('2d');
   g.fillStyle = '#3e5631'; g.fillRect(0, 0, 48, 48);
   if(type === 'wall'){ g.fillStyle = '#574a3b'; g.fillRect(12, 26, 24, 12); g.fillStyle = '#7a6a55'; g.fillRect(12, 10, 24, 16); }
+  else if(type === 'sandbag'){ for(let j = 0; j < 3; j++) for(let i = 0; i < 3 - (j & 1); i++){ g.fillStyle = (i + j) & 1 ? '#97804f' : '#a89064'; g.beginPath(); g.ellipse(14 + i * 10 + (j & 1) * 5, 36 - j * 9, 6, 4.5, 0, 0, 7); g.fill(); g.fillStyle = 'rgba(0,0,0,.2)'; g.fillRect(9 + i * 10 + (j & 1) * 5, 38 - j * 9, 10, 2); } }   // v135
   else if(type === 'woodwall'){ for(let i = 0; i < 4; i++){ g.fillStyle = i % 2 ? '#7a5a34' : '#8a6440'; g.fillRect(10 + i * 7, 12, 6, 26); g.beginPath(); g.moveTo(10 + i * 7, 12); g.lineTo(13 + i * 7, 6); g.lineTo(16 + i * 7, 12); g.fill(); } }
   else if(type === 'workshop'){ g.fillStyle = '#6b4b2e'; g.fillRect(6, 24, 36, 18); g.fillStyle = '#6d7a80'; g.fillRect(4, 8, 40, 16); g.fillStyle = '#58646a'; for(let i = 0; i < 5; i++) g.fillRect(6 + i * 8, 8, 2, 16); g.fillStyle = '#2a1d12'; g.fillRect(16, 30, 16, 12); }
   else if(type === 'farm'){ g.fillStyle = '#6b4a2c'; g.fillRect(6, 12, 36, 28); g.fillStyle = '#4a3524'; g.fillRect(9, 15, 30, 22); g.fillStyle = '#5f9a4e'; for(let i = 0; i < 3; i++) for(let j = 0; j < 3; j++) g.fillRect(13 + i * 9, 18 + j * 6, 4, 4); }
@@ -3654,6 +3712,7 @@ function openBuildMenu(){
     d.append(el('div', {class:'bopt'}, structIcon(type), el('span', {class:'name'}, el('b', {}, name), el('small', {}, desc)), btn));
   };
   opt('woodwall', 'Wooden wall', `1×1 · ${RL.cost_woodwall} Wood · ${RL.woodwall_hp} HP · blocks movement · tap a built wall to raise its level`);
+  opt('sandbag', 'Sandbag wall', `1×1 · ${RL.cost_sandbag_cloth} Cloth · ${RL.sandbag_hp} HP · blocks movement · tap a built wall to raise its level`);   // v135
   opt('wall', 'Wall', `1×1 · ${RL.cost_wall} Bricks · ${RL.wall_hp} HP · blocks movement · tap a built wall to raise its level (up to ${RL.wall_armored_hp} HP)`);
   opt('trap', 'Trap', `1×1 · ${costText('trap')} · kills the first raid zombie that steps on it, then must be set again (${RL.trap_rearm_materials} Bricks) · only works in the yard around the shelter`);
   opt('watchtower', 'Watchtower', `2×2 · ${costText('watchtower')} · a raid post near the shelter for gun and bow guards (one per level, +${RL.watchtower_range_bonus} range per level)${towerOf() ? ' · built' : ''}`);
@@ -3723,6 +3782,7 @@ function drawStruct(s, now){
   const label = (text, z, c) => { const [lx, ly] = ip((x0 + x1) / 2, (y0 + y1) / 2, z); ctx.font = `700 ${Math.round(T * .26)}px "Pixelify Sans",monospace`; ctx.textAlign = 'center'; ctx.fillStyle = 'rgba(0,0,0,.6)'; ctx.fillText(text, lx + 1, ly + 1); ctx.fillStyle = c; ctx.fillText(text, lx, ly); };
   if(isWall(s.type) && s.damaged){   // rubble
     const stone = s.type === 'wall';
+    if(s.type === 'sandbag'){ cube(x0 + .1, y0 + .12, x1 - .1, y1 - .12, 0, .14, red('#8a7650')); cube(x0 + .2, y0 + .3, x0 + .55, y0 + .6, .14, .3, red('#a89064')); cube(x0 + .55, y0 + .45, x0 + .82, y0 + .72, .14, .26, red('#97804f')); return; }   // v135
     cube(x0 + .1, y0 + .12, x1 - .1, y1 - .12, 0, .16, red(stone ? '#6a5f52' : '#5e4428')); cube(x0 + .22, y0 + .3, x0 + .52, y0 + .62, .16, .34, red(stone ? '#7b6d5c' : '#7d5a36')); cube(x0 + .58, y0 + .46, x0 + .8, y0 + .7, .16, .28, red(stone ? '#857767' : '#6d4d2d'));
     return;
   }
@@ -3733,6 +3793,14 @@ function drawStruct(s, now){
     if(s.wl >= 3) cube(x0, y0, x1, y1, .82, .94, red('#4a5258'));
     if(s.wl >= 4){ cube(x0 - .02, y0 + .12, x1 + .02, y1 - .12, .08, .36, red('#5c666c')); cube(x0 + .12, y0 - .02, x1 - .12, y1 + .02, .08, .36, red('#5c666c')); }
     for(const z of [.33, .66]){ seg(ip(x0 + .04, y1 - .04, z), ip(x1 - .04, y1 - .04, z), 'rgba(0,0,0,.25)', 1); seg(ip(x1 - .04, y0 + .04, z), ip(x1 - .04, y1 - .04, z), 'rgba(0,0,0,.25)', 1); }
+    return;
+  }
+  if(s.type === 'sandbag'){   // v135: three layers of bags, each layer shifted
+    ishadow(x0 + .04, y0 + .04, x1 - .04, y1 - .04);
+    for(let k = 0; k < 3; k++){ const z = k * .3, o = k & 1 ? .25 : 0; for(const [a, b] of [[.04, .5], [.5, .96]]) for(const [c2, d2] of (o ? [[.04, .3], [.3, .7], [.7, .96]] : [[.04, .5], [.5, .96]])) cube(x0 + a + .02, y0 + c2 + .02, x0 + b - .02, y0 + d2 - .02, z, z + .28, red((a + c2 + k) * 7 % 2 < 1 ? '#a89064' : '#97804f')); }
+    if(s.reinf) cube(x0 + .06, y0 + .06, x1 - .06, y1 - .06, .42, .54, red('#8e969a'));
+    if(s.wl >= 3) cube(x0 + .04, y0 + .04, x1 - .04, y1 - .04, .86, .96, red('#4a5258'));
+    if(s.wl >= 4){ cube(x0 + .02, y0 + .14, x1 - .02, y1 - .14, .1, .38, red('#5c666c')); cube(x0 + .14, y0 + .02, x1 - .14, y1 - .02, .1, .38, red('#5c666c')); }
     return;
   }
   if(s.type === 'woodwall'){
@@ -3926,6 +3994,7 @@ const craftCount = id => stackable(id) ? countItem(id) : [...C().inv, ...state.s
 function craft(rc, bagFirst){
   const c = C();
   if(!rc.cost.every(k => craftCount(k.id) >= k.n)){ toast('You are missing ingredients'); return false; }
+  if(rc.tool && countItem(rc.tool) < 1){ toast(`You need a ${DEF[rc.tool].name} in your bag or base storage`); return false; }   // v136
   const outs = stackable(rc.out) ? [{id:rc.out, n:rc.n}] : Array.from({length:rc.n}, () => makeCrafted(rc.out));
   // room check: ingredients leave first, so check after spending on a copy
   const snap = JSON.stringify([state.stash, c.inv]);
@@ -3960,11 +4029,11 @@ function openWorkshop(s){
     const rcs = (GD.recipes || []).filter(r => r.upgrade === id && DEF[r.out]);
     if(!rcs.length) box.append(el('p', {class:'empty'}, 'No recipes yet.'));
     for(const rc of rcs){
-      const ok = rc.cost.every(k => craftCount(k.id) >= k.n);
+      const ok = rc.cost.every(k => craftCount(k.id) >= k.n) && (!rc.tool || countItem(rc.tool) >= 1);
       const b = el('button', {class:'mini', onclick:() => { craft(rc); openWorkshop(s); refresh(); }}, 'Make');
       if(!ok) b.disabled = true;
       box.append(el('div', {class:'row'}, ico(rc.out), el('span', {class:'name'}, `${rc.n > 1 ? rc.n + ' × ' : ''}${DEF[rc.out].name}`,
-        el('small', {}, costNodes(rc.cost))), b));
+        el('small', {}, costNodes(rc.cost), rc.tool ? ` · needs a ${DEF[rc.tool].name}` : '')), b));
     }
   }
   // repair and upgrade: needs a hammer (bag or storage), paid in Scrap metal
@@ -4278,7 +4347,7 @@ function openStruct(s){
     openSheet(`${SNAME[s.type]} (${s.type === 'trap' ? 'sprung' : isWall(s.type) ? 'broken' : 'damaged'})`, d, 'struct'); return;
   }
   if(s.type === 'shelter'){
-    { const ch = C(), dh = RL.hunger_drain_sleep || 0, dt = RL.thirst_drain_sleep || 0;
+    { const ch = C(), dh = nightDrain().h, dt = nightDrain().t;
       if(dh || dt) d.append(el('p', {class:'sub', style:'margin:0;font-size:13px'}, `A night costs ${dh} hunger and ${dt} thirst (you have ${ch.hunger} / ${ch.thirst}).${!ch.starving && (ch.hunger <= dh || ch.thirst <= dt) ? ` You would wake up starving: max HP drops to ${RL.starving_max_hp}. Eat or drink first if you can.` : ''}`)); }
     for(const bd of state.base.bodies || []) d.append(el('div', {class:'row'}, ico('jacket'), el('span', {class:'name'}, `The body of ${bd.name}`, el('small', {}, `By the shelter since day ${bd.day} · ${bd.items.length} thing${bd.items.length === 1 ? '' : 's'}`)),
       el('button', {class:'btn', onclick:() => openLoot({type:'K', searched:true, items:bd.items, body:bd.name})}, 'Search')));   // v118
@@ -4381,7 +4450,7 @@ function travelCost(from, to){
   if(from === to || !PLACES[from] || !PLACES[to]) return {h:0, t:0};
   const k = placeDist(from, to) / placeDist('base', 'polis'), mn = RL.travel_min_cost ?? 5;
   const home = to === 'base' ? (RL.travel_home_percent ?? 100) / 100 : 1;
-  return {h:Math.max(mn, Math.round(RL.hunger_drain_travel * k * home)), t:Math.max(mn, Math.round(RL.thirst_drain_travel * k * home))};
+  return {h:Math.max(mn, Math.round(RL.hunger_drain_travel * k * home * drainK())), t:Math.max(mn, Math.round(RL.thirst_drain_travel * k * home * drainK()))};   // v138 Iron stomach
 }
 let mapSel = 'polis';
 // v105: the whole world fits the screen (no dragging); the strips beside it are drawn as more countryside. mapPop = the small window for mapSel is open.
