@@ -1,5 +1,5 @@
 // Offline cache for Dead & Gone (made by mk_app.py; the cache name changes with every new build).
-const CACHE = 'loot-run-71b31244d087', FILES = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"];
+const CACHE = 'loot-run-8ddb01933da7', FILES = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 // the game's own files come from the cache (the new build arrives with the next sw.js); the Google fonts are cached the first time they load
